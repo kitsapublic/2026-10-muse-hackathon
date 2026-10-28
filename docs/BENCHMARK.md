@@ -40,6 +40,6 @@ The demonstration completed within the five-minute target. Private evaluation's 
 - [Raw model criterion proposals](../evidence/model-interpretations.json)
 - [Age scenario](../evidence/scenario-a-report.json), [regimen scenario](../evidence/scenario-b-report.json), [combined scenario](../evidence/scenario-ab-report.json)
 
-Private case rows, notes, model responses and detailed evaluation reports are excluded. The standalone download remains an offline reference demo. Genuine recorded replay is available in the operator's local store; a portable recording importer is not included in this release.
+Private case rows, notes, model responses and detailed evaluation reports are excluded. The standalone 0.2.5 download includes a portable artifact containing the public demonstration's 391 genuine responses, source approvals and historical result. Import validates the exact bundle, request and response bindings. New recorded runs use evaluator 0.2.5; the measured live runs and their frozen 0.2.4 identities above are unchanged. Imported source accounting covers only the demonstration baseline, with a disabled, exhausted local ledger; the whole-experiment figures above include interpretation, evaluation and failures.
 
 These are measurements on one invented protocol. The evaluation families and note wording are held out, but they reuse demonstration evidence patterns. The results establish neither clinical validity nor unseen-protocol generalization, and they do not promote the model for real patient decisions.

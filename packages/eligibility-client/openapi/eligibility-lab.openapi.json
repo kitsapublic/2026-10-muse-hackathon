@@ -2700,7 +2700,7 @@
   "info": {
     "description": "Local Eligibility Lab service: installed synthetic bundles, reviewed interpretations, durable jobs, comparisons and exports. Loopback only.",
     "title": "Eligibility Lab",
-    "version": "0.2.4"
+    "version": "0.2.5"
   },
   "openapi": "3.1.0",
   "paths": {

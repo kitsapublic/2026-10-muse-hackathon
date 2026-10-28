@@ -9,7 +9,7 @@ The calculation core (`eligibility_lab`) uses the Python standard library only (
 ```sh
 packages/eligibility-lab/build-wheel.sh            # dist/kitsa_eligibility_lab-<version>-py3-none-any.whl and its SHA-256
 python3 -m venv /tmp/eligibility-lab
-/tmp/eligibility-lab/bin/pip install --no-index --no-deps packages/eligibility-lab/dist/kitsa_eligibility_lab-0.2.4-py3-none-any.whl
+/tmp/eligibility-lab/bin/pip install --no-index --no-deps packages/eligibility-lab/dist/kitsa_eligibility_lab-0.2.5-py3-none-any.whl
 . /tmp/eligibility-lab/bin/activate
 
 eligibility-lab validate  --bundle BUNDLE
@@ -114,3 +114,11 @@ Service tests (no network, no model; synthetic provider transports only): `PYTHO
 Operator commands reach public and private bundles. `status` lists recent jobs (optionally `--bundle-key BUNDLE`), so interrupted private work can be found after a crash; `status --job ID` prints the job and items; `proposals --bundle-key BUNDLE` lists proposals for review/scoring; `cancel --job ID` stops new dispatch. `resume --job ID` continues unsent work, while `retry --job ID --item ITEM_ID` repeats only explicitly named failed or ambiguous items (`--item` is repeatable). Live recovery needs the original `--experiment ID`, an enabled experiment, `--confirm-spend` and the server-side key; ambiguous attempts may already be billed. Each command processes only its named job. `run-scenario --baseline ID --scenario scenario-ab --idempotency-key KEY` recalculates without a provider call. Recovery keeps the original configuration and refuses any drift; worker refusals retain the differing fields in reports and API errors.
 
 The recorded-mode indicator requires an accepted genuine answer under the current provider configuration. Use a recorded request plan for exact coverage of a selected bundle and interpretation set; availability alone does not promise a complete recording.
+
+## Portable public recordings
+
+`eligibility-lab-service export-recordings --store SOURCE --job JOB --output NEW.json` exports one completed public live baseline using unchanged reference rules and direct accepted narrative responses. It excludes private jobs, other runs, interpretation experiments, credentials and response headers. Incomplete, retried, synthetic-transport or non-reference baselines are refused. The format `kitsa/eligibility-lab-recordings/1` binds the installed bundle manifest, source evaluator, reviews, exact requests, accepted responses and original result.
+
+After initializing a **new** store and installing the identical public bundle, run `eligibility-lab-service import-recordings --store NEW_STORE --input NEW.json --sha256 TRUSTED_DIGEST`. Obtain the digest from the reviewed artifact manifest; it verifies integrity, not provider authenticity. Import reconstructs requests from the installed evidence, validates every response and its cost, and inserts the bounded history atomically. The imported source ledger contains only the exported baseline's costs and is disabled with its request and cost limits exhausted; it does not reproduce the original experiment's total budget or other costs. Original source run/configuration identities remain intact. New recorded runs use the current evaluator, retain source lineage, spend nothing and recalculate scenarios normally.
+
+Import refuses a store with existing reviews or jobs instead of merging or replacing local work. Reimporting the same artifact is an idempotent no-op, including after the user has changed reviews or added runs. This is an operator CLI capability, not an upload API. The public demo launcher verifies and imports its bundled recording before serving reference and recorded modes; it never enables live mode.

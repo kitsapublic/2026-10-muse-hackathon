@@ -1,26 +1,30 @@
 {
-  "engine_version": "0.2.4",
-  "engine_wheel": "wheelhouse/kitsa_eligibility_lab-0.2.4-py3-none-any.whl",
+  "engine_version": "0.2.5",
+  "engine_wheel": "wheelhouse/kitsa_eligibility_lab-0.2.5-py3-none-any.whl",
   "files": {
     "README.md": {
-      "bytes": 2471,
-      "sha256": "a5314ab05ebc4df8ca72cf87230b3d7c30478c7e46a2db6e5bb9c0588370ffe8"
+      "bytes": 3219,
+      "sha256": "e94da3a0b966564a7737f454b2f7c655a92bf4d617f2ba1d3404d89d21062946"
     },
     "eligibility-lab.openapi.json": {
       "bytes": 99970,
-      "sha256": "ab9814a163d3339b3899cc0292f0398ec32db64db157e298a6caa0ae328bd377"
+      "sha256": "d5867ffe8ecc70ec6f0aa5161c88935beb8e7be68c4251a3c6be92b3a3cd8092"
     },
     "engine-README.md": {
-      "bytes": 21739,
-      "sha256": "672c85b2a9efaef6348ac49366daae74652c05262ffd15b0aa53e249e8ab0013"
+      "bytes": 23551,
+      "sha256": "092ed315e31d3266b79a6d4d97b0a31f644cdc4fe0a777ed35299b8490f15bcf"
     },
     "packages/kitsa-eligibility-lab-client-0.2.4.tgz": {
       "bytes": 17426,
-      "sha256": "3a846a360b4af23fc717106a9e3d935e5a5ec636b1c6330e8c3f5391215feb21"
+      "sha256": "79e2db35596a05e57875910a85440a23f7a7c7e1ca1dfa9d55a43778b8497254"
     },
     "packages/kitsa-eligibility-ui-0.2.4.tgz": {
       "bytes": 14876,
       "sha256": "97be8361803dc3490ee1f5d3304815fda83a78970bf3fff8ff0bdb37fd3c57bf"
+    },
+    "recordings.json": {
+      "bytes": 2526407,
+      "sha256": "75cefa6f4f29cd746d667b743904741be65ab6c6d6b2e675777a519db5cd5d16"
     },
     "reference/cohort.json": {
       "bytes": 283852,
@@ -55,8 +59,8 @@
       "sha256": "32a3bcfa733f6fe3ac20086fe8ff3dcb0b0c505354cec533f70fafdefe1c7c43"
     },
     "run.py": {
-      "bytes": 991,
-      "sha256": "9b4b58e7a6d8468022346374613a22bb17b6a8574a91e5822d6f3831553675b1"
+      "bytes": 1444,
+      "sha256": "13e675995adb966ff7fcb81557f24e6621ce803784568a42a8ead61f30d50238"
     },
     "service.lock": {
       "bytes": 14360,
@@ -182,9 +186,9 @@
       "bytes": 65455,
       "sha256": "7f952cbe720b688055e3f87de14f5c3e5fdaa8bc3928985c4077ca689de849a2"
     },
-    "wheelhouse/kitsa_eligibility_lab-0.2.4-py3-none-any.whl": {
-      "bytes": 105725,
-      "sha256": "180971d82a21be009c678f89762aba0001fa744cbbb60b9a2bf9b17c6dbad275"
+    "wheelhouse/kitsa_eligibility_lab-0.2.5-py3-none-any.whl": {
+      "bytes": 111830,
+      "sha256": "97619f8ffcd7f9d8dadadc2a895e741103c7b4cba6fda2e4826db5148b7d7a0e"
     },
     "wheelhouse/pydantic-2.13.4-py3-none-any.whl": {
       "bytes": 472262,
@@ -217,6 +221,7 @@
   },
   "format": "kitsa/eligibility-lab-demo-artifact/1",
   "publication": "local candidate, not published",
+  "recording_file": "recordings.json",
   "reference_bundle": "elx-nsclc-01-demonstration",
   "reference_version": "1.0.1"
 }

@@ -1,5 +1,6 @@
-"""Serve the reference demo on loopback. It never enables model spending."""
+"""Serve reference and bundled recorded modes on loopback. It never enables model spending."""
 import argparse
+import os
 from pathlib import Path
 import subprocess
 import sys
@@ -15,8 +16,13 @@ from eligibility_lab import __version__
 if __version__ != manifest['engine_version']:
     raise SystemExit('Run with the Python environment created by setup.py')
 service = [sys.executable, '-m', 'eligibility_lab.service.cli']
-subprocess.run([*service, 'init', '--store', str(args.store)], check=True)
+environment = {key: value for key, value in os.environ.items() if key != 'MODEL_API_KEY'}
+subprocess.run([*service, 'init', '--store', str(args.store)], check=True, env=environment)
 subprocess.run([*service, 'install-bundle', '--store', str(args.store), '--bundle', str(ROOT / 'reference'),
-                '--audience', 'public'], check=True)
+                '--audience', 'public'], check=True, env=environment)
+recording = manifest.get('recording_file')
+if recording is not None:
+    subprocess.run([*service, 'import-recordings', '--store', str(args.store), '--input', str(ROOT / recording),
+                    '--sha256', manifest['files'][recording]['sha256']], check=True, env=environment)
 subprocess.run([*service, 'serve', '--store', str(args.store), '--port', str(args.port),
-                '--assets', str(ROOT / 'showcase')], check=True)
+                '--assets', str(ROOT / 'showcase')], check=True, env=environment)
