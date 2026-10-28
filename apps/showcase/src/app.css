@@ -1,0 +1,184 @@
+/* Page layout for the showcase; component styling lives in @kitsa/eligibility-ui. */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+html,
+body {
+  margin: 0;
+  background: #f2f4f1;
+}
+.showcase {
+  min-block-size: 100vh;
+}
+.showcase__skip {
+  position: absolute;
+  inset-inline-start: -999px;
+}
+.showcase__skip:focus {
+  inset-inline-start: 1rem;
+  inset-block-start: 0.5rem;
+  z-index: 10;
+  background: var(--elab-surface);
+  padding: 0.4rem 0.8rem;
+}
+.showcase__bar {
+  position: sticky;
+  inset-block-start: 0;
+  z-index: 5;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem 2rem;
+  padding: 0.6rem clamp(1rem, 4vw, 3rem);
+  background: var(--elab-ink);
+  color: var(--elab-surface);
+}
+.showcase__name {
+  margin: 0;
+  font-family: var(--elab-font-text);
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+.showcase__identity {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.75rem;
+  margin: 0;
+  font-size: 0.875rem;
+}
+.showcase__identity div {
+  display: flex;
+  gap: 0.4rem;
+  align-items: baseline;
+}
+.showcase__identity dt {
+  opacity: 0.75;
+}
+.showcase__identity dd {
+  margin: 0;
+  font-weight: 600;
+}
+.showcase__identity .elab-mode {
+  color: var(--elab-surface);
+}
+.showcase__main {
+  max-inline-size: 76rem;
+  padding: 2rem clamp(1rem, 4vw, 3rem) 5rem;
+}
+.showcase__title {
+  font-family: var(--elab-font-text);
+  font-size: clamp(1.75rem, 3.2vw, 2.625rem);
+  line-height: 1.15;
+  font-weight: 600;
+  max-inline-size: 22ch;
+  margin: 0 0 0.75rem;
+}
+.showcase__lede {
+  max-inline-size: 68ch;
+  margin: 0 0 1rem;
+}
+.showcase__section {
+  padding-block: 2rem 1rem;
+  border-block-start: 1.5px solid var(--elab-ink);
+  margin-block-start: 2rem;
+}
+.showcase__section h2 {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  margin: 0 0 1rem;
+  font-family: var(--elab-font-text);
+  font-size: 1.625rem;
+  font-weight: 600;
+}
+.showcase__section h3 {
+  margin: 2rem 0 0.75rem;
+  font-size: 1.125rem;
+}
+.showcase__step {
+  font-family: var(--elab-font-ui);
+  font-size: 1rem;
+  font-weight: 700;
+  inline-size: 1.9rem;
+  block-size: 1.9rem;
+  display: inline-grid;
+  place-items: center;
+  border: 1.5px solid var(--elab-ink);
+  border-radius: 50%;
+}
+.showcase__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1rem;
+  margin-block: 0.5rem;
+}
+.showcase__row p {
+  margin: 0;
+}
+.showcase__confirm {
+  display: block;
+  margin-block: 0.5rem;
+  font-weight: 600;
+}
+.showcase__protocol {
+  font-family: var(--elab-font-text);
+  font-size: 1.125rem;
+  line-height: 1.6;
+  max-inline-size: 68ch;
+}
+.showcase__facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: 0.75rem 2rem;
+  margin: 1rem 0;
+}
+.showcase__facts dt {
+  color: var(--elab-ink-soft);
+  font-size: 0.875rem;
+}
+.showcase__facts dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+.showcase__conventions summary {
+  cursor: pointer;
+  font-weight: 600;
+}
+.showcase__conventions p {
+  max-inline-size: 72ch;
+  font-family: var(--elab-font-text);
+}
+.showcase__select select {
+  font: inherit;
+  padding: 0.3rem;
+}
+.showcase__results {
+  margin-block-start: 1rem;
+}
+.showcase__runs {
+  margin-block-start: 1.5rem;
+}
+.showcase__runs tr[aria-current="true"] th {
+  box-shadow: inset 4px 0 0 var(--elab-ink);
+}
+.showcase__hidden {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+.showcase__downloads {
+  display: grid;
+  gap: 0.4rem;
+  padding-inline-start: 1.2rem;
+}
+@media (max-width: 640px) {
+  .showcase__identity {
+    display: none;
+  }
+}

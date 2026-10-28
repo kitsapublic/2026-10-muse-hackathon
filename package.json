@@ -1,0 +1,29 @@
+{
+  "name": "2026-10-muse-hackathon",
+  "private": true,
+  "description": "Eligibility Lab showcase: a thin React client of the local Eligibility Lab service, its generated API client and reusable components.",
+  "workspaces": [
+    "packages/eligibility-client",
+    "packages/eligibility-ui",
+    "apps/showcase"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "generate:client": "npm run generate -w @kitsa/eligibility-lab-client",
+    "check:client": "npm run check -w @kitsa/eligibility-lab-client",
+    "typecheck": "npm run typecheck --workspaces",
+    "test": "npm run test --workspaces",
+    "build": "npm run build --workspaces",
+    "e2e": "npm run e2e -w @kitsa/eligibility-lab-showcase"
+  },
+  "devDependencies": {
+    "@types/node": "22.20.5",
+    "playwright-core": "1.59.1",
+    "typescript": "5.9.3",
+    "vite": "7.3.7",
+    "vitest": "4.1.12"
+  },
+  "packageManager": "npm@11.6.2"
+}

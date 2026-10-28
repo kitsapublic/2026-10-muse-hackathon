@@ -1,0 +1,30 @@
+{
+  "name": "@kitsa/eligibility-lab-client",
+  "version": "0.2.4",
+  "description": "Typed client for the Eligibility Lab /v1 API, generated from the service's published OpenAPI schema.",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "source": "./src/index.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "openapi"
+  ],
+  "scripts": {
+    "generate": "openapi-typescript openapi/eligibility-lab.openapi.json --output src/schema.ts",
+    "check": "node scripts/check-generated.mjs",
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "openapi-fetch": "0.17.0"
+  },
+  "devDependencies": {
+    "openapi-typescript": "7.13.0"
+  }
+}

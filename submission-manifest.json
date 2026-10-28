@@ -1,0 +1,427 @@
+{
+  "demo_archive_sha256": "9e2732e6a8d3af12256f9fc24254b6adbecbe88944d61afdf5d70c83c56d66f7",
+  "files": {
+    ".gitignore": {
+      "bytes": 151,
+      "sha256": "e55861ccbeacfb50ddc434351b33751b6c90af285c4546ccae05225454e2117a"
+    },
+    "README.md": {
+      "bytes": 4432,
+      "sha256": "2bf74bf0423bd1c4e036284e80687b72d4384912681607906624973f341640c1"
+    },
+    "apps/showcase/e2e/model-lifecycle.spec.ts": {
+      "bytes": 3515,
+      "sha256": "3c9cf98e597b9055b2675538ea61b3baf3a07434370d168ae06bb5a9f6c0754f"
+    },
+    "apps/showcase/e2e/reference-flow.spec.ts": {
+      "bytes": 8996,
+      "sha256": "5ec579eec0ebf064856d31695d6495b991d30b6b529984243dbcb40729138bf9"
+    },
+    "apps/showcase/index.html": {
+      "bytes": 465,
+      "sha256": "4a6e2a6621c8a20fd0d949f595c6559350937e2e69d4f9f9fb6858f990b83fc7"
+    },
+    "apps/showcase/package.json": {
+      "bytes": 1145,
+      "sha256": "d20cfbd9092d91620ff8d9d506a6f453101f96dfaf904fc82a7618f2df2d708c"
+    },
+    "apps/showcase/playwright.config.ts": {
+      "bytes": 713,
+      "sha256": "98aa6810110d16e706ed1a836e337ec5dfb11558fc03977eeb0e2a6991413d09"
+    },
+    "apps/showcase/src/App.test.tsx": {
+      "bytes": 11997,
+      "sha256": "20f022a7235c3d14a997918dce7b2d14d4b3adb38b23bf80ac9b20e016696768"
+    },
+    "apps/showcase/src/App.tsx": {
+      "bytes": 23909,
+      "sha256": "24ab306af63f3c14788236a0497d329a79e59c550dd448043cdbedd094ff26a4"
+    },
+    "apps/showcase/src/app.css": {
+      "bytes": 3599,
+      "sha256": "757d1d9467caf0310cf88fd7f6cf4ccf763bdc2e6b696212d9d088dfd4a2c68a"
+    },
+    "apps/showcase/src/fake-client.ts": {
+      "bytes": 11641,
+      "sha256": "6c78262e46b39a73ee26050b3bc95878c44654ec066ed25513346bc5600b6199"
+    },
+    "apps/showcase/src/hooks.ts": {
+      "bytes": 4276,
+      "sha256": "3961f846f61bf0a1f48102d1bca40ef803dbb07fc0bc0afe3d31cb4e4fe6e658"
+    },
+    "apps/showcase/src/main.tsx": {
+      "bytes": 536,
+      "sha256": "fb9c2211ca863cde72062b1db7e6e4f0ad4b464de5e932886408036d9d157943"
+    },
+    "apps/showcase/tsconfig.json": {
+      "bytes": 266,
+      "sha256": "be8ed5dc3a46e0cd6bc5cd004197548515f4f6aef34c29b399764543f8a6f4a3"
+    },
+    "apps/showcase/vite.config.ts": {
+      "bytes": 941,
+      "sha256": "f04ea666366a217048f5480ceae39bc07683dc25d413174c7dcced4b53b9eaf4"
+    },
+    "apps/showcase/vitest.config.ts": {
+      "bytes": 335,
+      "sha256": "26fc4d4daf98b3d3d2c6295c9695d304ed9b341902e8de0917f94258a2a90e80"
+    },
+    "apps/showcase/vitest.setup.ts": {
+      "bytes": 211,
+      "sha256": "9bf0121090c02474e1849a33b8e55fb3e8434feb0fab88944c5154a6c67be4e0"
+    },
+    "demo/README.md": {
+      "bytes": 2471,
+      "sha256": "a5314ab05ebc4df8ca72cf87230b3d7c30478c7e46a2db6e5bb9c0588370ffe8"
+    },
+    "demo/artifact-manifest.json": {
+      "bytes": 8893,
+      "sha256": "6c8e8dec96126c094d06fd23086ffabca3b8801d722806856d5eceeb5c0babd1"
+    },
+    "demo/eligibility-lab.openapi.json": {
+      "bytes": 99970,
+      "sha256": "ab9814a163d3339b3899cc0292f0398ec32db64db157e298a6caa0ae328bd377"
+    },
+    "demo/engine-README.md": {
+      "bytes": 21739,
+      "sha256": "672c85b2a9efaef6348ac49366daae74652c05262ffd15b0aa53e249e8ab0013"
+    },
+    "demo/packages/kitsa-eligibility-lab-client-0.2.4.tgz": {
+      "bytes": 17426,
+      "sha256": "3a846a360b4af23fc717106a9e3d935e5a5ec636b1c6330e8c3f5391215feb21"
+    },
+    "demo/packages/kitsa-eligibility-ui-0.2.4.tgz": {
+      "bytes": 14876,
+      "sha256": "97be8361803dc3490ee1f5d3304815fda83a78970bf3fff8ff0bdb37fd3c57bf"
+    },
+    "demo/reference/cohort.json": {
+      "bytes": 283852,
+      "sha256": "236026ce5f4a81550d7b9827bc4c28f6bc829e2c891255b93c3e69334e652408"
+    },
+    "demo/reference/criteria.json": {
+      "bytes": 6192,
+      "sha256": "c794fe937854977b564159335519b39d9c22cef9016e3f59a9ca0e2c1e995681"
+    },
+    "demo/reference/expectations.json": {
+      "bytes": 754292,
+      "sha256": "236b2b2d63b4fb7c4951df967d922ad974e838b87ed3d0bbc8d0298852d141af"
+    },
+    "demo/reference/manifest.json": {
+      "bytes": 778,
+      "sha256": "e6d2153b74c82dd4059034ffbae2bdd6795cba908a20eb11dacef2f4dd5eef20"
+    },
+    "demo/reference/narrative.json": {
+      "bytes": 139457,
+      "sha256": "c9a8c6ec2b3a9b9d51022f42f479e7604a683f62c4ae812fb15a58ade20d04e0"
+    },
+    "demo/reference/protocol.json": {
+      "bytes": 3427,
+      "sha256": "e815d17f3877269cf565142d6e75853a3409d167ed230d82ce5ff600e92db233"
+    },
+    "demo/reference/provenance.json": {
+      "bytes": 18294,
+      "sha256": "e0acb2f3e3b7cd91c55cec2fbe80fc502b6c13bcd1633c91158a9db093b64bc2"
+    },
+    "demo/reference/scenarios.json": {
+      "bytes": 786,
+      "sha256": "32a3bcfa733f6fe3ac20086fe8ff3dcb0b0c505354cec533f70fafdefe1c7c43"
+    },
+    "demo/run.py": {
+      "bytes": 991,
+      "sha256": "9b4b58e7a6d8468022346374613a22bb17b6a8574a91e5822d6f3831553675b1"
+    },
+    "demo/service.lock": {
+      "bytes": 14360,
+      "sha256": "1e04851715ac473b0c0904ee398e49f061dcc003f7abd7c6ffa557e413f15ef3"
+    },
+    "demo/setup.py": {
+      "bytes": 1318,
+      "sha256": "3b58e9a6c13b366c316d85c47c6a345623eb483eb4144cd1776b31989f78e127"
+    },
+    "demo/showcase/assets/atkinson-hyperlegible-next-latin-ext-wght-normal-C6vrW8VD.woff2": {
+      "bytes": 19092,
+      "sha256": "7dae0c6c66af1aec82e096186aeb1f0e6fa36ab8061ed65422f2b7daf4dd93f3"
+    },
+    "demo/showcase/assets/atkinson-hyperlegible-next-latin-wght-normal-BcXVPD7q.woff2": {
+      "bytes": 33996,
+      "sha256": "18b2a1a39a2fa298b0ba5390aca68462669826c90925656f1c1f6796e0e1bbaf"
+    },
+    "demo/showcase/assets/index-DazpNrbJ.js": {
+      "bytes": 244424,
+      "sha256": "49144351f1bbdb17176185d5c5c7f4837fb3421eea7d0001928fe540fad032c6"
+    },
+    "demo/showcase/assets/index-krA12fEU.css": {
+      "bytes": 14497,
+      "sha256": "ebbc2bd1f26def318de3adbbbc69417767555c7a7b8fff58a8844a465dc889b7"
+    },
+    "demo/showcase/assets/source-serif-4-cyrillic-ext-wght-normal-DHTKMUil.woff2": {
+      "bytes": 18112,
+      "sha256": "da49e14ae1d459f3d04cf4555fb954f6e54b247b708f8cfe2d8e7e4ee3c6829b"
+    },
+    "demo/showcase/assets/source-serif-4-cyrillic-wght-normal-B1g8a0vD.woff2": {
+      "bytes": 36508,
+      "sha256": "a81082707b85203d7f2ae33833f7ae0bf832db167c8710f92f805a9808fb051a"
+    },
+    "demo/showcase/assets/source-serif-4-greek-wght-normal-BpXpdlRW.woff2": {
+      "bytes": 20184,
+      "sha256": "54c4728aa0fd97d59b89b6d89b230065794b4c088c55efe71abc9ce882cfa853"
+    },
+    "demo/showcase/assets/source-serif-4-latin-ext-wght-normal-BVZ5su8S.woff2": {
+      "bytes": 42212,
+      "sha256": "d10ccbbd0dc4ebae2938958dc1f622a53460fe297e9c958564742dd684309c3f"
+    },
+    "demo/showcase/assets/source-serif-4-latin-wght-normal-DMe4EKeb.woff2": {
+      "bytes": 50936,
+      "sha256": "382475f38242c52d42a3e5ff8dc69b5d73f10d0d21e4550b5fe232984688779a"
+    },
+    "demo/showcase/assets/source-serif-4-vietnamese-wght-normal-BsaNuasd.woff2": {
+      "bytes": 13508,
+      "sha256": "c3de01b5144e1a2d7e70eeaf66ab92afdedcc4424ed1d7ffc1993a657d1c762a"
+    },
+    "demo/showcase/index.html": {
+      "bytes": 563,
+      "sha256": "c00cc051b28b4700243ed72f442e2df257ad4725ef07d481c587f4a2cfe23c61"
+    },
+    "demo/third-party/@fontsource-variable_atkinson-hyperlegible-next-LICENSE": {
+      "bytes": 4599,
+      "sha256": "474a034e99845062f661855caaa505880d0e9009deddc2727a92795eab374955"
+    },
+    "demo/third-party/@fontsource-variable_source-serif-4-LICENSE": {
+      "bytes": 4314,
+      "sha256": "18aabf190848725e2576eefb5c29ba06aac1029d02132252a7f312eac2e50cf3"
+    },
+    "demo/third-party/openapi-fetch-LICENSE": {
+      "bytes": 1068,
+      "sha256": "bbcaaa447169c969087d38c3edc9ce44a6bd4f67152a8eed5aa9d43969e23edc"
+    },
+    "demo/third-party/openapi-typescript-helpers-LICENSE": {
+      "bytes": 1068,
+      "sha256": "bbcaaa447169c969087d38c3edc9ce44a6bd4f67152a8eed5aa9d43969e23edc"
+    },
+    "demo/third-party/react-LICENSE": {
+      "bytes": 1088,
+      "sha256": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93"
+    },
+    "demo/third-party/react-dom-LICENSE": {
+      "bytes": 1088,
+      "sha256": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93"
+    },
+    "demo/third-party/scheduler-LICENSE": {
+      "bytes": 1088,
+      "sha256": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93"
+    },
+    "demo/verify.py": {
+      "bytes": 971,
+      "sha256": "dce0a8595b093ef1481693dde5bc9b75bcc259fe5bf968a0f8f9406ed4f9da6c"
+    },
+    "demo/wheelhouse/annotated_doc-0.0.5-py3-none-any.whl": {
+      "bytes": 5302,
+      "sha256": "117bac03a25ede5df5440e855b32d556049ca169ead221505badf432fed4b101"
+    },
+    "demo/wheelhouse/annotated_types-0.7.0-py3-none-any.whl": {
+      "bytes": 13643,
+      "sha256": "1f02e8b43a8fbbc3f3e0d4f0f4bfc8131bcb4eebe8849b8e5c773f3a1c582a53"
+    },
+    "demo/wheelhouse/anyio-4.14.0-py3-none-any.whl": {
+      "bytes": 123506,
+      "sha256": "dd9b7a2a9799ed6552fde617b2c5df02b7fdd7d88392fc48101e51bae46164d9"
+    },
+    "demo/wheelhouse/certifi-2026.6.17-py3-none-any.whl": {
+      "bytes": 133289,
+      "sha256": "2227dcbaafe0d2f59279d1762ddddc37783ed4354594f194ffc31d20f41fc3db"
+    },
+    "demo/wheelhouse/click-8.4.1-py3-none-any.whl": {
+      "bytes": 116639,
+      "sha256": "482be17c6991b8c19c5429a1e995d9b0efdbb63172824c41f99965dc0ade8ec2"
+    },
+    "demo/wheelhouse/fastapi-0.141.1-py3-none-any.whl": {
+      "bytes": 131954,
+      "sha256": "bfb91aa2d334c61cb35ba9a116fc123b3d3df31640b801cf57a7a78ec3f603b3"
+    },
+    "demo/wheelhouse/h11-0.16.0-py3-none-any.whl": {
+      "bytes": 37515,
+      "sha256": "63cf8bbe7522de3bf65932fda1d9c2772064ffb3dae62d55932da54b31cb6c86"
+    },
+    "demo/wheelhouse/httpcore-1.0.9-py3-none-any.whl": {
+      "bytes": 78784,
+      "sha256": "2d400746a40668fc9dec9810239072b40b4484b640a8c38fd654a024c7a1bf55"
+    },
+    "demo/wheelhouse/httpx-0.28.1-py3-none-any.whl": {
+      "bytes": 73517,
+      "sha256": "d909fcccc110f8c7faf814ca82a9a4d816bc5a6dbfea25d6591d6985b8ba59ad"
+    },
+    "demo/wheelhouse/idna-3.18-py3-none-any.whl": {
+      "bytes": 65455,
+      "sha256": "7f952cbe720b688055e3f87de14f5c3e5fdaa8bc3928985c4077ca689de849a2"
+    },
+    "demo/wheelhouse/kitsa_eligibility_lab-0.2.4-py3-none-any.whl": {
+      "bytes": 105725,
+      "sha256": "180971d82a21be009c678f89762aba0001fa744cbbb60b9a2bf9b17c6dbad275"
+    },
+    "demo/wheelhouse/pydantic-2.13.4-py3-none-any.whl": {
+      "bytes": 472262,
+      "sha256": "45a282cde31d808236fd7ea9d919b128653c8b38b393d1c4ab335c62924d9aba"
+    },
+    "demo/wheelhouse/pydantic_core-2.46.4-cp311-cp311-macosx_11_0_arm64.whl": {
+      "bytes": 1948255,
+      "sha256": "e0d65b8c354be7fb5f720c3caa8bc940bc2d20ce749c8e06135f07f8ed95dd7c"
+    },
+    "demo/wheelhouse/pydantic_core-2.46.4-cp314-cp314-macosx_11_0_arm64.whl": {
+      "bytes": 1952179,
+      "sha256": "23ace664830ee0bfe014a0c7bc248b1f7f25ed7ad103852c317624a1083af462"
+    },
+    "demo/wheelhouse/starlette-1.3.1-py3-none-any.whl": {
+      "bytes": 73632,
+      "sha256": "c7372aae11c3c3f26a42df7bd626cec2f47d03483d261d369516a615a53714c6"
+    },
+    "demo/wheelhouse/typing_extensions-4.15.0-py3-none-any.whl": {
+      "bytes": 44614,
+      "sha256": "f0fa19c6845758ab08074a0cfa8b7aecb71c999ca73d62883bc25cc018c4e548"
+    },
+    "demo/wheelhouse/typing_inspection-0.4.2-py3-none-any.whl": {
+      "bytes": 14611,
+      "sha256": "4ed1cacbdc298c220f1bd249ed5287caa16f34d44ef4e9c3d0cbad5b521545e7"
+    },
+    "demo/wheelhouse/uvicorn-0.52.3-py3-none-any.whl": {
+      "bytes": 79859,
+      "sha256": "116af2710dbf47c80f463cd20ee4884b6662f4c9f227d797ddc7279d2fcc2c7c"
+    },
+    "docs/ARCHITECTURE.md": {
+      "bytes": 1467,
+      "sha256": "90c52d9291d90325b2069d21421db952460f35bffbd0f7c800081b138762cca3"
+    },
+    "docs/DEMO.md": {
+      "bytes": 1087,
+      "sha256": "160a8222f36da47a70cd53ecaeb971997bf1337319639370684b6b3e986a1156"
+    },
+    "docs/VERIFICATION.md": {
+      "bytes": 1981,
+      "sha256": "d876b6cc1e6f0fd80ee15d5e3a16dd788235cd5051bf073cf2d370f6739ee3cc"
+    },
+    "docs/screenshots/comparison.png": {
+      "bytes": 126358,
+      "sha256": "2b2536c076d06f3fae4394a7f044b990496d209ecf5d2141bc9c6bae9e9c73c7"
+    },
+    "package-lock.json": {
+      "bytes": 127927,
+      "sha256": "fa7775b53162147b91687a2968d548c48a3803e1d66922276fa657b7a40c64ed"
+    },
+    "package.json": {
+      "bytes": 917,
+      "sha256": "45380cf91e83cfd3b6ed06d0a887eead0ce95975789408ff5408eee48cc885d3"
+    },
+    "packages/eligibility-client/openapi/eligibility-lab.openapi.json": {
+      "bytes": 99970,
+      "sha256": "ab9814a163d3339b3899cc0292f0398ec32db64db157e298a6caa0ae328bd377"
+    },
+    "packages/eligibility-client/package.json": {
+      "bytes": 781,
+      "sha256": "e6ef257be7307919fb1e9cf681640c2f4b8320ea099488460628ff43efe8dd9b"
+    },
+    "packages/eligibility-client/scripts/check-generated.mjs": {
+      "bytes": 864,
+      "sha256": "c31a204669ab3813505cf034f28ee8ad4b72a38f7de0f8c6144ddf64fdcd4504"
+    },
+    "packages/eligibility-client/src/index.test.ts": {
+      "bytes": 3639,
+      "sha256": "ad1a9f89145b3078f74f279bd4ff816b091737b62da17eb92fd4e8edd33fdb07"
+    },
+    "packages/eligibility-client/src/index.ts": {
+      "bytes": 8117,
+      "sha256": "5026a9403ef1e3a26495da9ac8977274827111c99470eb49692f9d51135f23c8"
+    },
+    "packages/eligibility-client/src/schema.ts": {
+      "bytes": 66898,
+      "sha256": "2c75fda3361540fee30e523ed91e931aa9cde35af0cac4a78ad6da1ba0c9c87e"
+    },
+    "packages/eligibility-client/src/service.integration.test.ts": {
+      "bytes": 3385,
+      "sha256": "7f1742f05093ff170fcf4f19cb29b9e6906542832bafca9eca2dc76bd44a33cc"
+    },
+    "packages/eligibility-client/tsconfig.build.json": {
+      "bytes": 218,
+      "sha256": "0e41aafe245834d8925bbb313eaaac6b90e06eeeaf837bfb682ee6ab1fd08b30"
+    },
+    "packages/eligibility-client/tsconfig.json": {
+      "bytes": 124,
+      "sha256": "e81b194f96f35e0d1e9e8069998a30740b08703e085bb7d0f92922d7b6d06193"
+    },
+    "packages/eligibility-ui/package.json": {
+      "bytes": 1143,
+      "sha256": "3a06882776c641e03e446eb15840bebf42289deb906a5263e85805b18b7ecdac"
+    },
+    "packages/eligibility-ui/src/CriterionReview.tsx": {
+      "bytes": 5072,
+      "sha256": "21088f2c72874614e17398a27c37e55100f753d14379c8a0d9a0dcdc1afbd3a1"
+    },
+    "packages/eligibility-ui/src/DecisionMatrix.tsx": {
+      "bytes": 5183,
+      "sha256": "3eb7561acab9c0edaf5f645b664077e2418a67b13e66f690e4306bf790a4013c"
+    },
+    "packages/eligibility-ui/src/PatientWaterfall.tsx": {
+      "bytes": 4789,
+      "sha256": "0247bd5d9e25519caac5342ed5c1cb3ec4d68bffb4c58bcf75e95ec5bed64d6c"
+    },
+    "packages/eligibility-ui/src/RuleView.tsx": {
+      "bytes": 5739,
+      "sha256": "3de5aff1ce065c2ea1a093701cc3b31dcd9873024d3b6c0650d17bcb7bbb5b9e"
+    },
+    "packages/eligibility-ui/src/Scenarios.tsx": {
+      "bytes": 8877,
+      "sha256": "ca10d2d0484a53f7e8662d68abb0ad889eab160a435af6c67eff2cbc1e837df9"
+    },
+    "packages/eligibility-ui/src/Status.tsx": {
+      "bytes": 5233,
+      "sha256": "218f227e81723f1ad463a31565cd9a289737b539c87a3fa44978f5d369d7ebb5"
+    },
+    "packages/eligibility-ui/src/Tables.tsx": {
+      "bytes": 5018,
+      "sha256": "e063cc677814139294896e226d359611372d12345c2d395435e2f14283f275da"
+    },
+    "packages/eligibility-ui/src/components.test.tsx": {
+      "bytes": 8878,
+      "sha256": "e20a7efc5deb4ca72934e324a1227c02871058d14655c42413d7a50906dd2f80"
+    },
+    "packages/eligibility-ui/src/index.ts": {
+      "bytes": 740,
+      "sha256": "539094e06de183e0db31a83be446778e8d6bde994b6bc7544fa041a24c8e9382"
+    },
+    "packages/eligibility-ui/src/labels.ts": {
+      "bytes": 3305,
+      "sha256": "06d3e4fe79e3153a2da2087abc32525f954235e43bd8e4fff452fedf09ae27a9"
+    },
+    "packages/eligibility-ui/src/styles.css": {
+      "bytes": 10926,
+      "sha256": "1874c568e56e31d24c91df55dc04772b4210e5b8efb31a948da263d861411bdb"
+    },
+    "packages/eligibility-ui/src/test-data.ts": {
+      "bytes": 6165,
+      "sha256": "aa5ce9817e6c9822aa67e72dd442e498272f69d799cc33ca3633c9fe6d731815"
+    },
+    "packages/eligibility-ui/tsconfig.build.json": {
+      "bytes": 239,
+      "sha256": "9d1b5dfe31a39efe1f3f54130c54aeb65c9183dedd591a764d047195e2ccfed6"
+    },
+    "packages/eligibility-ui/tsconfig.json": {
+      "bytes": 194,
+      "sha256": "f8ecf1883adba3ff8eba2bcf530277fbfc8e5753f26f9bd3bab18350493ebc21"
+    },
+    "packages/eligibility-ui/vitest.config.ts": {
+      "bytes": 216,
+      "sha256": "d38a2ec27d17c7de1b9284df078892ba0c2bd19aa6a7fb2a07c763240e191dad"
+    },
+    "packages/eligibility-ui/vitest.setup.ts": {
+      "bytes": 158,
+      "sha256": "9408a30df297f52f573665036d4dd2b8f0b324c7b5ed37e2bd83fa6587065ae5"
+    },
+    "scripts/run-e2e.sh": {
+      "bytes": 2147,
+      "sha256": "58f6c6e0f0c4504e709199d06b525a661a290f348854f29e51f889f200976e75"
+    },
+    "tsconfig.base.json": {
+      "bytes": 515,
+      "sha256": "9d2428b46d6c1184657fad3610bee846bf2a481787db13de494c9d1afa9ab225"
+    }
+  },
+  "format": "kitsa/eligibility-lab-submission/1",
+  "repository": "https://github.com/kitsapublic/2026-10-muse-hackathon"
+}

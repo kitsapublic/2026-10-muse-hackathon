@@ -1,0 +1,526 @@
+/* Eligibility Lab components. Scope: an ancestor with class "elab" provides the tokens. */
+.elab {
+  --elab-paper: #f2f4f1;
+  --elab-surface: #fbfcfa;
+  --elab-ink: #1a2238;
+  --elab-ink-soft: #4b546a;
+  --elab-rule: #c8d0ca;
+  --elab-pass: #17735e;
+  --elab-pass-text: #125c4b;
+  --elab-pass-tint: #e1f0ea;
+  --elab-fail: #e8c4cc;
+  --elab-fail-text: #8a1f33;
+  --elab-fail-tint: #f7e1e5;
+  --elab-unresolved: #d29b2e;
+  --elab-unresolved-text: #6b4500;
+  --elab-unresolved-tint: #f6ead2;
+  --elab-model: #5b3fb5;
+  --elab-focus: #2b59c3;
+  --elab-font-ui: "Atkinson Hyperlegible Next Variable", "Atkinson Hyperlegible Next", system-ui, sans-serif;
+  --elab-font-text: "Source Serif 4 Variable", "Source Serif 4", Georgia, serif;
+  color: var(--elab-ink);
+  background: var(--elab-paper);
+  font-family: var(--elab-font-ui);
+  font-size: 1rem;
+  line-height: 1.5;
+  font-variant-numeric: tabular-nums;
+}
+
+.elab :focus-visible {
+  outline: 3px solid var(--elab-focus);
+  outline-offset: 2px;
+}
+
+.elab-muted {
+  color: var(--elab-ink-soft);
+  font-size: 0.875rem;
+}
+
+.elab-button {
+  font: inherit;
+  font-weight: 600;
+  padding: 0.4rem 0.95rem;
+  border: 1.5px solid var(--elab-ink);
+  border-radius: 4px;
+  background: var(--elab-ink);
+  color: var(--elab-surface);
+  cursor: pointer;
+}
+.elab-button--quiet {
+  background: transparent;
+  color: var(--elab-ink);
+}
+.elab-button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+.elab-link {
+  font: inherit;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--elab-focus);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  cursor: pointer;
+}
+
+/* Tables */
+.elab-table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 0.9375rem;
+}
+.elab-table caption {
+  caption-side: top;
+  text-align: start;
+  padding-block-end: 0.5rem;
+  color: var(--elab-ink-soft);
+  font-size: 0.875rem;
+  max-width: 72ch;
+}
+.elab-table th,
+.elab-table td {
+  text-align: start;
+  padding: 0.35rem 0.6rem;
+  border-block-end: 1px solid var(--elab-rule);
+  vertical-align: top;
+}
+.elab-table thead th {
+  font-weight: 600;
+  border-block-end: 1.5px solid var(--elab-ink);
+}
+.elab-table tbody th {
+  font-weight: 600;
+}
+.elab-ids {
+  overflow-wrap: anywhere;
+  font-size: 0.8125rem;
+}
+
+/* Modes and job status */
+.elab-mode {
+  display: inline-block;
+  padding: 0.1rem 0.55rem;
+  border: 1.5px solid currentColor;
+  border-radius: 999px;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+.elab-mode[data-mode="recorded"],
+.elab-mode[data-mode="live"] {
+  color: var(--elab-model);
+}
+.elab-modes {
+  border: 0;
+  padding: 0;
+  margin: 0 0 1rem;
+  display: grid;
+  gap: 0.5rem;
+}
+.elab-modes legend {
+  font-weight: 600;
+  margin-block-end: 0.4rem;
+}
+.elab-modes__option {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 0.5rem;
+  align-items: baseline;
+}
+.elab-modes__name {
+  font-weight: 600;
+}
+.elab-modes__hint {
+  grid-column: 2;
+  color: var(--elab-ink-soft);
+  font-size: 0.875rem;
+}
+.elab-modes__option[data-available="false"] .elab-modes__name {
+  color: var(--elab-ink-soft);
+}
+.elab-job {
+  border-inline-start: 4px solid var(--elab-rule);
+  padding: 0.2rem 0 0.2rem 0.9rem;
+  margin-block: 0.75rem;
+}
+.elab-job[data-state="succeeded"] {
+  border-color: var(--elab-pass);
+}
+.elab-job[data-state="partial"],
+.elab-job[data-state="running"],
+.elab-job[data-state="queued"] {
+  border-color: var(--elab-unresolved);
+}
+.elab-job[data-state="failed"],
+.elab-job[data-state="cancelled"] {
+  border-color: var(--elab-fail-text);
+}
+.elab-job__line {
+  margin: 0;
+}
+.elab-job__title {
+  font-weight: 600;
+}
+.elab-job__note {
+  margin: 0.35rem 0 0;
+  max-width: 72ch;
+}
+.elab-job__actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-block-start: 0.4rem;
+}
+.elab-error {
+  color: var(--elab-fail-text);
+  border-inline-start: 4px solid var(--elab-fail-text);
+  padding-inline-start: 0.8rem;
+  max-width: 72ch;
+}
+
+/* Counts */
+.elab-counts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2.5rem;
+  margin: 0.5rem 0 1.5rem;
+}
+.elab-counts dt {
+  font-size: 0.9375rem;
+}
+.elab-counts dd {
+  margin: 0;
+}
+.elab-counts__value {
+  font-family: var(--elab-font-text);
+  font-size: 2.125rem;
+  font-weight: 600;
+  line-height: 1.1;
+}
+.elab-counts__group[data-classification="passing"] .elab-counts__value {
+  color: var(--elab-pass-text);
+}
+.elab-counts__group[data-classification="failing"] .elab-counts__value {
+  color: var(--elab-fail-text);
+}
+.elab-counts__group[data-classification="unresolved"] .elab-counts__value {
+  color: var(--elab-unresolved-text);
+}
+.elab-counts__of {
+  color: var(--elab-ink-soft);
+}
+
+/* Patient strips: one cell per patient. Passing is dark, unresolved mid and failing pale, so the three stay apart
+   without colour. */
+.elab-strip {
+  display: block;
+  inline-size: 100%;
+  min-inline-size: 18rem;
+  block-size: 1.15rem;
+}
+.elab-strip__cell--passing {
+  fill: var(--elab-pass);
+}
+.elab-strip__cell--unresolved {
+  fill: var(--elab-unresolved);
+}
+.elab-strip__cell--failing {
+  fill: var(--elab-fail);
+}
+.elab-strip__cell[data-marked="true"] {
+  stroke: var(--elab-ink);
+  stroke-width: 0.12;
+}
+
+/* Waterfall */
+.elab-waterfall {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 0.9375rem;
+}
+.elab-waterfall caption {
+  caption-side: top;
+  text-align: start;
+  color: var(--elab-ink-soft);
+  font-size: 0.875rem;
+  padding-block-end: 0.5rem;
+}
+.elab-waterfall th,
+.elab-waterfall td {
+  padding: 0.3rem 0.6rem;
+  text-align: end;
+  border-block-end: 1px solid var(--elab-rule);
+  white-space: nowrap;
+}
+.elab-waterfall th[scope="row"],
+.elab-waterfall thead th:first-child {
+  text-align: start;
+}
+.elab-waterfall thead th {
+  border-block-end: 1.5px solid var(--elab-ink);
+  font-weight: 600;
+}
+.elab-waterfall__strip-head,
+.elab-waterfall__strip {
+  inline-size: 55%;
+  text-align: start;
+}
+.elab-waterfall__id {
+  font-weight: 700;
+}
+.elab-waterfall__anchor {
+  color: var(--elab-ink-soft);
+  font-weight: 400;
+  font-size: 0.8125rem;
+}
+
+/* Impact */
+.elab-impact td:last-child {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.elab-bar {
+  display: inline-block;
+  block-size: 0.6rem;
+  max-inline-size: 10rem;
+  background: var(--elab-pass);
+  border-radius: 1px;
+}
+
+.elab-summary__section th {
+  padding-block-start: 0.9rem;
+  color: var(--elab-ink-soft);
+  font-weight: 600;
+}
+
+.elab-metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+  gap: 0.75rem 2rem;
+  margin: 0;
+}
+.elab-metrics dt {
+  color: var(--elab-ink-soft);
+  font-size: 0.875rem;
+}
+.elab-metrics dd {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+/* Interpretation review */
+.elab-review {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.elab-review__item {
+  display: grid;
+  grid-template-columns: minmax(16rem, 1fr) minmax(18rem, 1.15fr);
+  gap: 0.75rem 2.5rem;
+  padding-block: 1.25rem;
+  border-block-end: 1px solid var(--elab-rule);
+}
+@media (max-width: 760px) {
+  .elab-review__item {
+    grid-template-columns: 1fr;
+  }
+}
+.elab-review__heading {
+  margin: 0 0 0.35rem;
+  font-size: 1rem;
+}
+.elab-review__anchor {
+  color: var(--elab-ink-soft);
+  font-weight: 400;
+}
+.elab-review__text {
+  margin: 0;
+  font-family: var(--elab-font-text);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  max-width: 60ch;
+}
+.elab-review__origin {
+  margin: 0 0 0.35rem;
+  font-size: 0.875rem;
+  color: var(--elab-ink-soft);
+}
+.elab-review__origin[data-origin="model"] {
+  color: var(--elab-model);
+}
+.elab-review__decision {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin-block-start: 0.75rem;
+}
+.elab-review__state {
+  margin: 0 0.75rem 0 0;
+  font-weight: 600;
+}
+.elab-review__state[data-state="approved"] {
+  color: var(--elab-pass-text);
+}
+.elab-review__state[data-state="rejected"] {
+  color: var(--elab-fail-text);
+}
+.elab-review__choices {
+  border: 0;
+  padding: 0;
+  margin: 0 0 0.6rem;
+  display: grid;
+  gap: 0.2rem;
+}
+.elab-review__invalid {
+  color: var(--elab-fail-text);
+}
+.elab-rule {
+  font-size: 0.9375rem;
+}
+.elab-rule__part {
+  margin-block-end: 0.35rem;
+}
+.elab-rule__label,
+.elab-rule__joiner {
+  font-weight: 600;
+  margin-inline-end: 0.4rem;
+}
+.elab-rule ul {
+  margin: 0.15rem 0 0;
+  padding-inline-start: 1.1rem;
+}
+.elab-rule__param[data-editable="true"] {
+  font-weight: 700;
+  text-decoration: underline dotted;
+  text-underline-offset: 3px;
+}
+.elab-rule__param-name {
+  color: var(--elab-ink-soft);
+  font-size: 0.8125rem;
+}
+
+/* Matrix */
+.elab-matrix__filter {
+  border: 0;
+  padding: 0;
+  margin: 0 0 0.75rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.25rem;
+}
+.elab-matrix__filter legend {
+  font-weight: 600;
+  margin-block-end: 0.3rem;
+}
+.elab-matrix__scroll {
+  max-block-size: 28rem;
+  overflow: auto;
+  border: 1px solid var(--elab-rule);
+}
+.elab-matrix__table thead th {
+  position: sticky;
+  inset-block-start: 0;
+  background: var(--elab-surface);
+  z-index: 1;
+}
+.elab-matrix__table td[data-status="satisfied"] {
+  background: var(--elab-pass-tint);
+}
+.elab-matrix__table td[data-status="failing"] {
+  background: var(--elab-fail-tint);
+  color: var(--elab-fail-text);
+}
+.elab-matrix__table td[data-status="unresolved"] {
+  background: var(--elab-unresolved-tint);
+  color: var(--elab-unresolved-text);
+}
+.elab-matrix__table tbody th,
+.elab-matrix__table td {
+  white-space: nowrap;
+}
+.elab-matrix__table tr[data-marked="true"] th {
+  box-shadow: inset 4px 0 0 var(--elab-ink);
+}
+.elab-patient {
+  margin-block-start: 1rem;
+}
+.elab-patient tr[data-status="failing"] td:nth-child(2) {
+  color: var(--elab-fail-text);
+  font-weight: 600;
+}
+
+/* Scenarios and comparison */
+.elab-scenario fieldset {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.9rem;
+  justify-items: start;
+}
+.elab-scenario legend {
+  font-weight: 600;
+  margin-block-end: 0.5rem;
+}
+.elab-scenario__field {
+  display: grid;
+  gap: 0.2rem;
+}
+.elab-scenario__field label {
+  font-weight: 600;
+}
+.elab-scenario__field input {
+  font: inherit;
+  inline-size: 7rem;
+  padding: 0.3rem 0.5rem;
+  border: 1.5px solid var(--elab-ink-soft);
+  border-radius: 4px;
+  background: var(--elab-surface);
+}
+.elab-scenario__presets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.elab-compare__headline {
+  font-size: 1.25rem;
+  margin: 0 0 0.25rem;
+}
+.elab-compare__number {
+  font-family: var(--elab-font-text);
+  font-size: 2.125rem;
+  font-weight: 600;
+}
+.elab-compare__delta {
+  font-weight: 700;
+  color: var(--elab-pass-text);
+}
+.elab-compare__strips {
+  margin: 1rem 0;
+}
+.elab-compare__strips figcaption {
+  color: var(--elab-ink-soft);
+  font-size: 0.875rem;
+  margin-block-end: 0.4rem;
+}
+.elab-compare__row {
+  display: grid;
+  grid-template-columns: 5.5rem 1fr;
+  align-items: center;
+  gap: 0.75rem;
+}
+.elab-transitions td[data-moved="true"] {
+  font-weight: 700;
+  background: var(--elab-pass-tint);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .elab * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
