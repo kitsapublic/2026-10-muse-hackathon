@@ -4,7 +4,7 @@ Engine/service release: **0.2.4**. Reference bundle: **1.0.1**. Verification dat
 
 - Fresh offline installations on Python 3.11.12 and 3.14.6: 108 engine and 116 service tests pass on each.
 - Reference gate: 77/77 checks on each interpreter; eight baseline/scenario identities and content digests agree across both.
-- Fine-tuning artifact/scoring checks: 41 tests pass, including verification of the real wheel.
+- Fine-tuning artifact/scoring checks: 43 tests pass, including verification of the real wheel.
 - Showcase: strict TypeScript, 25 unit/component tests, generated-client consistency, and browser reference/security tests pass.
 - Synthetic provider browser test covers consent, cancellation, reload, resume, malformed output, explicit retry and pending interpretation review. This is not a live-model result.
 - Standalone submission: offline dependency installation, source build, 25 frontend tests, generated-client check, two Chrome reference/security tests and one HTTP client integration test pass using only the public bundle. Seven packaging/export safety tests pass.
@@ -12,4 +12,4 @@ Engine/service release: **0.2.4**. Reference bundle: **1.0.1**. Verification dat
 
 Expected reference answers are authored independently of engine execution, but the same implementer authored both artifacts and engine. Independent review and seeded-fault checks improve confidence; these are not clinical validation. Private evaluation families are separate but reuse evidence patterns, so results will not establish unseen-protocol generalization.
 
-The authorized live experiment has a local $15 and 600-request ceiling. Its planned 561 requests have a $7.259288 maximum local reservation under the configured rates, not a provider-side billing guarantee. No live call has yet run; model quality, actual token accounting, latency and genuine replay remain unverified. Linux, Windows and event compliance are also unverified.
+The live experiment is complete within its $15 / 600-request ceiling: 563 requests, $0.984817 locally calculated charges and $0.024875 held. [Measured results](BENCHMARK.md) separate narrative, criterion and patient agreement, first-pass failure and explicit recovery, raw interpretations and accounting limits. Genuine recorded replay and its browser flow passed without new provider requests. Linux, Windows, portable recording import, provider-invoice reconciliation and event compliance remain unverified or unimplemented.

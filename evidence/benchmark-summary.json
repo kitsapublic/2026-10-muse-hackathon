@@ -1,0 +1,369 @@
+{
+  "configuration": {
+    "accounting": {
+      "pricing": {
+        "input": 1250000,
+        "output": 4250000
+      },
+      "template_allowance_tokens": 1024
+    },
+    "evaluator": {
+      "name": "kitsa-eligibility-lab",
+      "version": "0.2.4"
+    },
+    "format": "kitsa/eligibility-lab-configuration/1",
+    "provider": {
+      "adapter": "2",
+      "endpoint": "https://api.meta.ai/v1/chat/completions",
+      "max_tokens": 2048,
+      "model": "muse-spark-1.3",
+      "prompt": "eafe0613dc9b4c86c2ca5a3d66dc7dbf95315ec7612e6d50e51aa8d38b45a074",
+      "provider": "meta",
+      "reasoning_effort": "minimal",
+      "schema": "44dd704fa0216d4847e399e371125e727f4d36d383f5aaf72237fb56beccce0d",
+      "task": "narrative"
+    },
+    "transport": "meta-api"
+  },
+  "configuration_sha256": "c5d566b9ccf7092aac582ee824eb991dd84468d51f1ff1e5a06cf7025c9150bf",
+  "criterion_rule_source": "reviewed reference interpretations; model proposals were not used for these baselines",
+  "date": "2026-10-28",
+  "demonstration": {
+    "criterion_decisions": {
+      "agree": 1000,
+      "cells": 1000,
+      "false_fail": 0,
+      "false_pass": 0,
+      "technical_failure": 0,
+      "unresolved_where_decided": 0
+    },
+    "exclusion_decisions": {
+      "agree": 200,
+      "cells": 200,
+      "false_fail": 0,
+      "false_pass": 0,
+      "technical_failure": 0,
+      "unresolved_where_decided": 0
+    },
+    "inclusion_decisions": {
+      "agree": 800,
+      "cells": 800,
+      "false_fail": 0,
+      "false_pass": 0,
+      "technical_failure": 0,
+      "unresolved_where_decided": 0
+    },
+    "narrative": {
+      "answers": {
+        "agree": 353,
+        "answered": 391,
+        "binding_mismatch": 0,
+        "disagree": 38,
+        "model_abstention": 1,
+        "no_answer": 0
+      },
+      "confusion": {
+        "no->no": 213,
+        "no->no_answer": 0,
+        "no->undetermined": 36,
+        "no->yes": 0,
+        "undetermined->no": 0,
+        "undetermined->no_answer": 0,
+        "undetermined->undetermined": 118,
+        "undetermined->yes": 0,
+        "yes->no": 0,
+        "yes->no_answer": 0,
+        "yes->undetermined": 2,
+        "yes->yes": 22
+      },
+      "coverage": {
+        "answered": 391,
+        "denominator": 391
+      },
+      "inputs": 391,
+      "unmatched_answers": 0
+    },
+    "operations": {
+      "ambiguous": 0,
+      "answers_per_minute": "357.76",
+      "charged_microusd": 645200,
+      "elapsed_ms": 65575,
+      "held_microusd": 0,
+      "late": 0,
+      "latency_ms": {
+        "count": 391,
+        "max": 5795,
+        "median": 1054,
+        "p95": 2928
+      },
+      "outcomes": {
+        "answered": 391
+      },
+      "processing_ms": 65571,
+      "requests": 391,
+      "reused": {
+        "answers": 0,
+        "source_attempts": 0,
+        "source_settled_microusd": 0
+      },
+      "tokens": {
+        "cached_tokens": 2711,
+        "completion_tokens": 99341,
+        "prompt_tokens": 178203,
+        "reasoning_tokens": 85664
+      }
+    },
+    "patient_classification": {
+      "confusion": {
+        "failing->failing": 57,
+        "failing->missing": 0,
+        "failing->passing": 0,
+        "failing->unresolved": 0,
+        "passing->failing": 0,
+        "passing->missing": 0,
+        "passing->passing": 19,
+        "passing->unresolved": 0,
+        "unresolved->failing": 0,
+        "unresolved->missing": 0,
+        "unresolved->passing": 0,
+        "unresolved->unresolved": 24
+      },
+      "false_eligibility": {
+        "count": 0,
+        "denominator": 100
+      },
+      "missed_eligibility": {
+        "count": 0,
+        "denominator": 100
+      }
+    },
+    "patients": {
+      "failing": 57,
+      "passing": 19,
+      "total": 100,
+      "unresolved": 24
+    }
+  },
+  "engine_version": "0.2.4",
+  "evaluation_date": "2026-10-27",
+  "experiment": {
+    "ambiguous_requests": 0,
+    "ceiling_microusd": 15000000,
+    "cost_note": "Local conservative accounting at the configured rates; this is not a verified provider invoice. Cached inputs are charged locally at the uncached rate. The held amount is the initial HTTP 401 authentication failure; no failed-request charge is confirmed.",
+    "enabled": false,
+    "experiment_id": "stage-2b",
+    "exposure_microusd": 1009692,
+    "held_microusd": 24875,
+    "max_requests": 600,
+    "model": "muse-spark-1.3",
+    "pricing": {
+      "input": 1250000,
+      "output": 4250000,
+      "unit": "micro-USD per million tokens"
+    },
+    "provider": "meta",
+    "remaining_microusd": 13990308,
+    "requests": 563,
+    "settled_microusd": 984817,
+    "tokens": {
+      "cached_tokens": 5565,
+      "completion_tokens": 154256,
+      "prompt_tokens": 263095,
+      "reasoning_tokens": 133914
+    }
+  },
+  "format": "kitsa/eligibility-lab-public-benchmark/1",
+  "limitations": [
+    "One invented protocol and synthetic cohorts; no clinical validation or unseen-protocol generalization.",
+    "Evaluation families and wording are held out, but evidence patterns are shared with the demonstration.",
+    "Same implementer authored the engine and expectations; independent review and fault testing are separate controls.",
+    "No prompt, rule, fixture or engine change between demonstration and evaluation.",
+    "Portable recorded-response import is not included in the standalone reference package; recorded replay currently uses the operator store.",
+    "No general open-source license or event compliance determination is established."
+  ],
+  "model": "muse-spark-1.3",
+  "private_evaluation_aggregates": {
+    "criterion_decisions": {
+      "agree": 394,
+      "cells": 400,
+      "false_fail": 0,
+      "false_pass": 0,
+      "technical_failure": 0,
+      "unresolved_where_decided": 6
+    },
+    "exclusion_decisions": {
+      "agree": 76,
+      "cells": 80,
+      "false_fail": 0,
+      "false_pass": 0,
+      "technical_failure": 0,
+      "unresolved_where_decided": 4
+    },
+    "inclusion_decisions": {
+      "agree": 318,
+      "cells": 320,
+      "false_fail": 0,
+      "false_pass": 0,
+      "technical_failure": 0,
+      "unresolved_where_decided": 2
+    },
+    "narrative": {
+      "answers": {
+        "agree": 137,
+        "answered": 160,
+        "binding_mismatch": 0,
+        "disagree": 23,
+        "model_abstention": 0,
+        "no_answer": 0
+      },
+      "confusion": {
+        "no->no": 75,
+        "no->no_answer": 0,
+        "no->undetermined": 18,
+        "no->yes": 0,
+        "undetermined->no": 0,
+        "undetermined->no_answer": 0,
+        "undetermined->undetermined": 49,
+        "undetermined->yes": 0,
+        "yes->no": 0,
+        "yes->no_answer": 0,
+        "yes->undetermined": 5,
+        "yes->yes": 13
+      },
+      "coverage": {
+        "answered": 160,
+        "denominator": 160
+      },
+      "inputs": 160,
+      "unmatched_answers": 0
+    },
+    "operations": {
+      "ambiguous": 0,
+      "answers_per_minute": "45.83",
+      "charged_microusd": 308304,
+      "elapsed_ms": 209454,
+      "held_microusd": 0,
+      "late": 0,
+      "latency_ms": {
+        "count": 161,
+        "max": 4804,
+        "median": 1223,
+        "p95": 3526
+      },
+      "outcomes": {
+        "answered": 160,
+        "citation_invalid": 1
+      },
+      "processing_ms": 3058,
+      "requests": 161,
+      "reused": {
+        "answers": 0,
+        "source_attempts": 0,
+        "source_settled_microusd": 0
+      },
+      "tokens": {
+        "cached_tokens": 1845,
+        "completion_tokens": 50660,
+        "prompt_tokens": 74314,
+        "reasoning_tokens": 45050
+      }
+    },
+    "patient_classification": {
+      "confusion": {
+        "failing->failing": 20,
+        "failing->missing": 0,
+        "failing->passing": 0,
+        "failing->unresolved": 0,
+        "passing->failing": 0,
+        "passing->missing": 0,
+        "passing->passing": 8,
+        "passing->unresolved": 2,
+        "unresolved->failing": 0,
+        "unresolved->missing": 0,
+        "unresolved->passing": 0,
+        "unresolved->unresolved": 10
+      },
+      "false_eligibility": {
+        "count": 0,
+        "denominator": 40
+      },
+      "missed_eligibility": {
+        "count": 2,
+        "denominator": 40
+      }
+    },
+    "patients": {
+      "failing": 20,
+      "passing": 8,
+      "total": 40,
+      "unresolved": 12
+    }
+  },
+  "private_evaluation_first_pass": {
+    "configuration_changed": false,
+    "explicit_retries": 1,
+    "planned_responses": 160,
+    "processing_ms": 33392,
+    "recovery_processing_ms": 3058,
+    "technical_failures": {
+      "citation_invalid": 1
+    },
+    "valid_responses": 159
+  },
+  "raw_interpretations": {
+    "approved_for_execution": 0,
+    "criteria": [
+      "E1",
+      "E2",
+      "I1",
+      "I2",
+      "I3",
+      "I4",
+      "I5",
+      "I6",
+      "I7",
+      "I8"
+    ],
+    "identical_to_reference": 2,
+    "model_proposals": 10,
+    "note": "Structural identity is not semantic equivalence. All model proposals remain pending review; reference rules were used for the benchmark.",
+    "valid": 10
+  },
+  "reasoning_effort": "minimal",
+  "recorded_replay": {
+    "criterion_cells_equal": 1000,
+    "identity_note": "Run and decision identifiers differ; values, reasons, considered/supporting evidence, classifications and aggregates agree.",
+    "narrative_answers_equal": 391,
+    "new_provider_requests": 0
+  },
+  "reference_version": "1.0.1",
+  "scenarios": {
+    "scenario-a": {
+      "failing": 44,
+      "passing": 29,
+      "total": 100,
+      "unresolved": 27
+    },
+    "scenario-ab": {
+      "failing": 33,
+      "passing": 37,
+      "total": 100,
+      "unresolved": 30
+    },
+    "scenario-b": {
+      "failing": 50,
+      "passing": 23,
+      "total": 100,
+      "unresolved": 27
+    }
+  },
+  "verification": {
+    "engine_or_prompt_changes": false,
+    "fine_tuning_tests": 43,
+    "scorer_corrections": [
+      "canonical two-decimal throughput strings",
+      "whole-job elapsed time for retry throughput"
+    ]
+  },
+  "wheel_sha256": "180971d82a21be009c678f89762aba0001fa744cbbb60b9a2bf9b17c6dbad275"
+}

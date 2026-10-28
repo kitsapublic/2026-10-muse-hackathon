@@ -1,0 +1,547 @@
+[
+  {
+    "attempt_id": "att-2cb6bb4952671184d7f5",
+    "author": "meta/muse-spark-1.3",
+    "created_at": "2026-10-28T14:29:27.268130+00:00",
+    "criterion": {
+      "anchor": "5.2.1",
+      "bundle_key": "elx-nsclc-01-demonstration@1.0.1",
+      "category": "exclusion",
+      "criterion_id": "E1",
+      "criterion_set": {
+        "criterion_set_id": "ELX-NSCLC-01-eligibility",
+        "version": "1.0"
+      },
+      "protocol": {
+        "protocol_id": "ELX-NSCLC-01",
+        "version": "1.0"
+      },
+      "text": "Active infection requiring systemic antimicrobial therapy at the time of eligibility assessment."
+    },
+    "criterion_id": "E1",
+    "interpretation": {
+      "applicability": null,
+      "parameters": {},
+      "requirement": {
+        "op": "narrative",
+        "question": "E1.active_infection_requiring_systemic_therapy",
+        "window_days": 14
+      },
+      "rule_version": 1,
+      "status": "executable"
+    },
+    "interpreter": {
+      "kind": "model",
+      "name": "meta/muse-spark-1.3",
+      "transport": "meta-api",
+      "version": "f101c184eaca0b87be11e773f15f3f42f6b6e8d6e87a9ab8afdfc5c6f90f826e"
+    },
+    "origin": "model",
+    "parent_id": null,
+    "problems": [],
+    "proposal_id": "prp-4be2509ee986da5838f1313e",
+    "questions": {
+      "E1.active_infection_requiring_systemic_therapy": "Does the patient have an active infection requiring systemic antimicrobial therapy at the time of eligibility assessment?"
+    },
+    "review": null,
+    "valid": true
+  },
+  {
+    "attempt_id": "att-91b6e54efacb64345904",
+    "author": "meta/muse-spark-1.3",
+    "created_at": "2026-10-28T14:29:28.160393+00:00",
+    "criterion": {
+      "anchor": "5.2.2",
+      "bundle_key": "elx-nsclc-01-demonstration@1.0.1",
+      "category": "exclusion",
+      "criterion_id": "E2",
+      "criterion_set": {
+        "criterion_set_id": "ELX-NSCLC-01-eligibility",
+        "version": "1.0"
+      },
+      "protocol": {
+        "protocol_id": "ELX-NSCLC-01",
+        "version": "1.0"
+      },
+      "text": "Untreated or symptomatic central nervous system (CNS) metastases. Participants with treated, asymptomatic and radiologically stable CNS metastases may enrol."
+    },
+    "criterion_id": "E2",
+    "interpretation": {
+      "applicability": null,
+      "parameters": {},
+      "requirement": {
+        "op": "narrative",
+        "question": "E2.cns_untreated_symptomatic",
+        "window_days": 28
+      },
+      "rule_version": 1,
+      "status": "executable"
+    },
+    "interpreter": {
+      "kind": "model",
+      "name": "meta/muse-spark-1.3",
+      "transport": "meta-api",
+      "version": "f101c184eaca0b87be11e773f15f3f42f6b6e8d6e87a9ab8afdfc5c6f90f826e"
+    },
+    "origin": "model",
+    "parent_id": null,
+    "problems": [],
+    "proposal_id": "prp-da79915dcf1531b7d64e1d36",
+    "questions": {
+      "E2.cns_untreated_symptomatic": "Does the patient have untreated or symptomatic central nervous system metastases, rather than treated, asymptomatic and radiologically stable CNS metastases?"
+    },
+    "review": null,
+    "valid": true
+  },
+  {
+    "attempt_id": "att-80e25ad1f076ad4ce538",
+    "author": "meta/muse-spark-1.3",
+    "created_at": "2026-10-28T14:27:10.987043+00:00",
+    "criterion": {
+      "anchor": "5.1.1",
+      "bundle_key": "elx-nsclc-01-demonstration@1.0.1",
+      "category": "inclusion",
+      "criterion_id": "I1",
+      "criterion_set": {
+        "criterion_set_id": "ELX-NSCLC-01-eligibility",
+        "version": "1.0"
+      },
+      "protocol": {
+        "protocol_id": "ELX-NSCLC-01",
+        "version": "1.0"
+      },
+      "text": "Age 18 to 75 years, inclusive, on the date of eligibility assessment."
+    },
+    "criterion_id": "I1",
+    "interpretation": {
+      "applicability": null,
+      "parameters": {
+        "age_max": {
+          "editable": true,
+          "maximum": 100,
+          "minimum": 18,
+          "type": "integer",
+          "value": 75
+        }
+      },
+      "requirement": {
+        "args": [
+          {
+            "comparator": "ge",
+            "op": "age",
+            "value": 18
+          },
+          {
+            "comparator": "le",
+            "op": "age",
+            "value": {
+              "param": "age_max"
+            }
+          }
+        ],
+        "op": "and"
+      },
+      "rule_version": 1,
+      "status": "executable"
+    },
+    "interpreter": {
+      "kind": "model",
+      "name": "meta/muse-spark-1.3",
+      "transport": "meta-api",
+      "version": "f101c184eaca0b87be11e773f15f3f42f6b6e8d6e87a9ab8afdfc5c6f90f826e"
+    },
+    "origin": "model",
+    "parent_id": null,
+    "problems": [],
+    "proposal_id": "prp-59596970969166c84670bde3",
+    "questions": {},
+    "review": null,
+    "valid": true
+  },
+  {
+    "attempt_id": "att-6adabe6797b310ade054",
+    "author": "meta/muse-spark-1.3",
+    "created_at": "2026-10-28T14:29:26.693994+00:00",
+    "criterion": {
+      "anchor": "5.1.2",
+      "bundle_key": "elx-nsclc-01-demonstration@1.0.1",
+      "category": "inclusion",
+      "criterion_id": "I2",
+      "criterion_set": {
+        "criterion_set_id": "ELX-NSCLC-01-eligibility",
+        "version": "1.0"
+      },
+      "protocol": {
+        "protocol_id": "ELX-NSCLC-01",
+        "version": "1.0"
+      },
+      "text": "Histologically or cytologically confirmed non-small-cell lung cancer."
+    },
+    "criterion_id": "I2",
+    "interpretation": {
+      "applicability": null,
+      "parameters": {},
+      "requirement": {
+        "concept": "nsclc_histology",
+        "op": "assertion",
+        "window_days": null
+      },
+      "rule_version": 1,
+      "status": "executable"
+    },
+    "interpreter": {
+      "kind": "model",
+      "name": "meta/muse-spark-1.3",
+      "transport": "meta-api",
+      "version": "f101c184eaca0b87be11e773f15f3f42f6b6e8d6e87a9ab8afdfc5c6f90f826e"
+    },
+    "origin": "model",
+    "parent_id": null,
+    "problems": [],
+    "proposal_id": "prp-73abf47654e511903c10d7ec",
+    "questions": {},
+    "review": null,
+    "valid": true
+  },
+  {
+    "attempt_id": "att-d2edbef39027d85b34ad",
+    "author": "meta/muse-spark-1.3",
+    "created_at": "2026-10-28T14:29:28.183144+00:00",
+    "criterion": {
+      "anchor": "5.1.3",
+      "bundle_key": "elx-nsclc-01-demonstration@1.0.1",
+      "category": "inclusion",
+      "criterion_id": "I3",
+      "criterion_set": {
+        "criterion_set_id": "ELX-NSCLC-01-eligibility",
+        "version": "1.0"
+      },
+      "protocol": {
+        "protocol_id": "ELX-NSCLC-01",
+        "version": "1.0"
+      },
+      "text": "Locally advanced disease (stage IIIB or IIIC) that is not amenable to curative-intent treatment, or metastatic disease (stage IVA or IVB)."
+    },
+    "criterion_id": "I3",
+    "interpretation": {
+      "applicability": null,
+      "parameters": {},
+      "requirement": {
+        "args": [
+          {
+            "codes": [
+              "IVA",
+              "IVB"
+            ],
+            "concept": "disease_stage",
+            "op": "code_in",
+            "window_days": null
+          },
+          {
+            "args": [
+              {
+                "codes": [
+                  "IIIB",
+                  "IIIC"
+                ],
+                "concept": "disease_stage",
+                "op": "code_in",
+                "window_days": null
+              },
+              {
+                "op": "narrative",
+                "question": "I3.not_amenable_curative",
+                "window_days": 60
+              }
+            ],
+            "op": "and"
+          }
+        ],
+        "op": "or"
+      },
+      "rule_version": 1,
+      "status": "executable"
+    },
+    "interpreter": {
+      "kind": "model",
+      "name": "meta/muse-spark-1.3",
+      "transport": "meta-api",
+      "version": "f101c184eaca0b87be11e773f15f3f42f6b6e8d6e87a9ab8afdfc5c6f90f826e"
+    },
+    "origin": "model",
+    "parent_id": null,
+    "problems": [],
+    "proposal_id": "prp-068447aeef018b17915baf6e",
+    "questions": {
+      "I3.not_amenable_curative": "Is the patient's stage IIIB or IIIC disease not amenable to curative-intent treatment?"
+    },
+    "review": null,
+    "valid": true
+  },
+  {
+    "attempt_id": "att-362b0d09fbb13e0baba8",
+    "author": "meta/muse-spark-1.3",
+    "created_at": "2026-10-28T14:29:28.235135+00:00",
+    "criterion": {
+      "anchor": "5.1.4",
+      "bundle_key": "elx-nsclc-01-demonstration@1.0.1",
+      "category": "inclusion",
+      "criterion_id": "I4",
+      "criterion_set": {
+        "criterion_set_id": "ELX-NSCLC-01-eligibility",
+        "version": "1.0"
+      },
+      "protocol": {
+        "protocol_id": "ELX-NSCLC-01",
+        "version": "1.0"
+      },
+      "text": "Eastern Cooperative Oncology Group (ECOG) performance status of 0 or 1, assessed within 28 days before eligibility assessment."
+    },
+    "criterion_id": "I4",
+    "interpretation": {
+      "applicability": null,
+      "parameters": {},
+      "requirement": {
+        "comparator": "le",
+        "concept": "ecog",
+        "op": "measurement",
+        "unit": null,
+        "value": 1,
+        "window_days": 28
+      },
+      "rule_version": 1,
+      "status": "executable"
+    },
+    "interpreter": {
+      "kind": "model",
+      "name": "meta/muse-spark-1.3",
+      "transport": "meta-api",
+      "version": "f101c184eaca0b87be11e773f15f3f42f6b6e8d6e87a9ab8afdfc5c6f90f826e"
+    },
+    "origin": "model",
+    "parent_id": null,
+    "problems": [],
+    "proposal_id": "prp-46d88359b594a47d5794c94f",
+    "questions": {},
+    "review": null,
+    "valid": true
+  },
+  {
+    "attempt_id": "att-36917b8d53c74a895787",
+    "author": "meta/muse-spark-1.3",
+    "created_at": "2026-10-28T14:29:29.624141+00:00",
+    "criterion": {
+      "anchor": "5.1.5",
+      "bundle_key": "elx-nsclc-01-demonstration@1.0.1",
+      "category": "inclusion",
+      "criterion_id": "I5",
+      "criterion_set": {
+        "criterion_set_id": "ELX-NSCLC-01-eligibility",
+        "version": "1.0"
+      },
+      "protocol": {
+        "protocol_id": "ELX-NSCLC-01",
+        "version": "1.0"
+      },
+      "text": "Absolute neutrophil count of at least 1.5 \u00d7 10\u2079/L within 14 days before eligibility assessment."
+    },
+    "criterion_id": "I5",
+    "interpretation": {
+      "applicability": null,
+      "parameters": {},
+      "requirement": {
+        "comparator": "ge",
+        "concept": "neutrophils",
+        "op": "measurement",
+        "unit": "10*9/L",
+        "value": "1.5",
+        "window_days": 14
+      },
+      "rule_version": 1,
+      "status": "executable"
+    },
+    "interpreter": {
+      "kind": "model",
+      "name": "meta/muse-spark-1.3",
+      "transport": "meta-api",
+      "version": "f101c184eaca0b87be11e773f15f3f42f6b6e8d6e87a9ab8afdfc5c6f90f826e"
+    },
+    "origin": "model",
+    "parent_id": null,
+    "problems": [],
+    "proposal_id": "prp-9af2159e5d9ccee6b910b212",
+    "questions": {},
+    "review": null,
+    "valid": true
+  },
+  {
+    "attempt_id": "att-2474b1dd608f9e763f15",
+    "author": "meta/muse-spark-1.3",
+    "created_at": "2026-10-28T14:29:30.987657+00:00",
+    "criterion": {
+      "anchor": "5.1.6",
+      "bundle_key": "elx-nsclc-01-demonstration@1.0.1",
+      "category": "inclusion",
+      "criterion_id": "I6",
+      "criterion_set": {
+        "criterion_set_id": "ELX-NSCLC-01-eligibility",
+        "version": "1.0"
+      },
+      "protocol": {
+        "protocol_id": "ELX-NSCLC-01",
+        "version": "1.0"
+      },
+      "text": "Haemoglobin of at least 9.0 g/dL within 14 days before eligibility assessment."
+    },
+    "criterion_id": "I6",
+    "interpretation": {
+      "applicability": null,
+      "parameters": {},
+      "requirement": {
+        "comparator": "ge",
+        "concept": "haemoglobin",
+        "op": "measurement",
+        "unit": "g/dL",
+        "value": "9.0",
+        "window_days": 14
+      },
+      "rule_version": 1,
+      "status": "executable"
+    },
+    "interpreter": {
+      "kind": "model",
+      "name": "meta/muse-spark-1.3",
+      "transport": "meta-api",
+      "version": "f101c184eaca0b87be11e773f15f3f42f6b6e8d6e87a9ab8afdfc5c6f90f826e"
+    },
+    "origin": "model",
+    "parent_id": null,
+    "problems": [],
+    "proposal_id": "prp-fc8e3413ca9b6ee21c6e4315",
+    "questions": {},
+    "review": null,
+    "valid": true
+  },
+  {
+    "attempt_id": "att-3bbd385212165bfc73fe",
+    "author": "meta/muse-spark-1.3",
+    "created_at": "2026-10-28T14:29:30.428691+00:00",
+    "criterion": {
+      "anchor": "5.1.7",
+      "bundle_key": "elx-nsclc-01-demonstration@1.0.1",
+      "category": "inclusion",
+      "criterion_id": "I7",
+      "criterion_set": {
+        "criterion_set_id": "ELX-NSCLC-01-eligibility",
+        "version": "1.0"
+      },
+      "protocol": {
+        "protocol_id": "ELX-NSCLC-01",
+        "version": "1.0"
+      },
+      "text": "No more than two prior systemic anticancer treatment regimens."
+    },
+    "criterion_id": "I7",
+    "interpretation": {
+      "applicability": null,
+      "parameters": {
+        "max_regimens": {
+          "editable": true,
+          "maximum": 10,
+          "minimum": 0,
+          "type": "integer",
+          "value": 2
+        }
+      },
+      "requirement": {
+        "comparator": "le",
+        "concept": "systemic_anticancer_regimen",
+        "history": {
+          "concept": "systemic_therapy_history_complete",
+          "op": "assertion",
+          "window_days": 28
+        },
+        "op": "regimen_count",
+        "value": {
+          "param": "max_regimens"
+        }
+      },
+      "rule_version": 1,
+      "status": "executable"
+    },
+    "interpreter": {
+      "kind": "model",
+      "name": "meta/muse-spark-1.3",
+      "transport": "meta-api",
+      "version": "f101c184eaca0b87be11e773f15f3f42f6b6e8d6e87a9ab8afdfc5c6f90f826e"
+    },
+    "origin": "model",
+    "parent_id": null,
+    "problems": [],
+    "proposal_id": "prp-018ede89582b6c45060e0a44",
+    "questions": {},
+    "review": null,
+    "valid": true
+  },
+  {
+    "attempt_id": "att-5e916bdc9aedee67f432",
+    "author": "meta/muse-spark-1.3",
+    "created_at": "2026-10-28T14:29:31.633191+00:00",
+    "criterion": {
+      "anchor": "5.1.8",
+      "bundle_key": "elx-nsclc-01-demonstration@1.0.1",
+      "category": "inclusion",
+      "criterion_id": "I8",
+      "criterion_set": {
+        "criterion_set_id": "ELX-NSCLC-01-eligibility",
+        "version": "1.0"
+      },
+      "protocol": {
+        "protocol_id": "ELX-NSCLC-01",
+        "version": "1.0"
+      },
+      "text": "Participants who received prior systemic anticancer therapy must have received the last dose at least 21 days before eligibility assessment."
+    },
+    "criterion_id": "I8",
+    "interpretation": {
+      "applicability": {
+        "comparator": "ge",
+        "concept": "systemic_anticancer_regimen",
+        "history": {
+          "concept": "systemic_therapy_history_complete",
+          "op": "assertion",
+          "window_days": 28
+        },
+        "op": "regimen_count",
+        "value": 1
+      },
+      "parameters": {},
+      "requirement": {
+        "comparator": "ge",
+        "concept": "systemic_anticancer_regimen",
+        "history": {
+          "concept": "systemic_therapy_history_complete",
+          "op": "assertion",
+          "window_days": 28
+        },
+        "op": "days_since_last_dose",
+        "value": 21
+      },
+      "rule_version": 1,
+      "status": "executable"
+    },
+    "interpreter": {
+      "kind": "model",
+      "name": "meta/muse-spark-1.3",
+      "transport": "meta-api",
+      "version": "f101c184eaca0b87be11e773f15f3f42f6b6e8d6e87a9ab8afdfc5c6f90f826e"
+    },
+    "origin": "model",
+    "parent_id": null,
+    "problems": [],
+    "proposal_id": "prp-94cbcb353f30d7068239f116",
+    "questions": {},
+    "review": null,
+    "valid": true
+  }
+]

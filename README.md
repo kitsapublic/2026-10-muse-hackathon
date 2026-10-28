@@ -36,7 +36,9 @@ The combined gain is **18**, rather than the sum of the individual gains (**10 +
 - A loopback service with durable jobs, cancellation/recovery, request identities and a bounded spending ledger.
 - Muse Spark 1.3 integration for criterion interpretation and bounded narrative questions. Numeric/date calculations remain deterministic.
 
-**Current model evidence:** the live Muse experiment is authorized but has not run because the operator credential is not yet available. Reference answers are authored fixtures, not model results. Recorded mode remains unavailable until genuine accepted responses exist. See [verification](docs/VERIFICATION.md) and [architecture](docs/ARCHITECTURE.md).
+**Measured Muse results:** the live demonstration matched all 1,000 criterion decisions and 100 patient classifications in 65.6 seconds. On 40 private synthetic patients, it matched 394/400 criteria and 38/40 classifications, with no false eligibility and two expected passes left unresolved. Narrative agreement was 90.28% on the demonstration and 85.63% on evaluation. These runs used reviewed reference rules; raw model interpretations remain pending review. Read the [benchmark and retained public evidence](docs/BENCHMARK.md).
+
+The bundled offline demo uses authored reference answers. Genuine recorded replay was verified in the operator store; portable recording import is not included in this download. See [verification](docs/VERIFICATION.md) and [architecture](docs/ARCHITECTURE.md).
 
 The fixture is an invented advanced NSCLC protocol with entirely synthetic patients. It is an engineering demonstration, not clinical advice, clinical validation or a system for deciding real patient care. No real patient data, private evaluation cases, model weights, credentials or application database are included.
 

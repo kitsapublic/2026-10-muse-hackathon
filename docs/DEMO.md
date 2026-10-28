@@ -7,4 +7,4 @@
 5. Apply both changes: 37 (+18). Explain that four extra patients needed both changes, so individual gains cannot simply be added.
 6. Show the transition matrix, criterion impact and one patient trace. Export the JSON report and CSV matrix.
 
-Once genuine Muse responses have been measured and retained, demonstrate recorded mode with its provenance and report model quality separately from deterministic correctness. Do not present authored reference answers or synthetic transport tests as model outputs.
+In the operator store, demonstrate genuine recorded mode with its provenance and show the measured benchmark, including the two private patients left unresolved. The standalone download remains reference-only until a portable recording importer is added. Report model quality separately from deterministic correctness. Do not present authored reference answers or synthetic transport tests as model outputs.

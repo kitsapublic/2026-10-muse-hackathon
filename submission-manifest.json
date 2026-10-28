@@ -6,8 +6,8 @@
       "sha256": "e55861ccbeacfb50ddc434351b33751b6c90af285c4546ccae05225454e2117a"
     },
     "README.md": {
-      "bytes": 4432,
-      "sha256": "2bf74bf0423bd1c4e036284e80687b72d4384912681607906624973f341640c1"
+      "bytes": 4872,
+      "sha256": "8f2525f08cbb290971c636cbf39c4a0078df5961832782ab7d6594b259051fb3"
     },
     "apps/showcase/e2e/model-lifecycle.spec.ts": {
       "bytes": 3515,
@@ -289,17 +289,53 @@
       "bytes": 1467,
       "sha256": "90c52d9291d90325b2069d21421db952460f35bffbd0f7c800081b138762cca3"
     },
+    "docs/BENCHMARK.md": {
+      "bytes": 5227,
+      "sha256": "c9f4785f6c0d0790d23a101c5a671f69ec31d38ef704a1cd0db1fd0b9b9127e6"
+    },
     "docs/DEMO.md": {
-      "bytes": 1087,
-      "sha256": "160a8222f36da47a70cd53ecaeb971997bf1337319639370684b6b3e986a1156"
+      "bytes": 1231,
+      "sha256": "c120893437f3f250f2318df89499085bf09e6711687119862e162af58fda6eda"
     },
     "docs/VERIFICATION.md": {
-      "bytes": 1981,
-      "sha256": "d876b6cc1e6f0fd80ee15d5e3a16dd788235cd5051bf073cf2d370f6739ee3cc"
+      "bytes": 2132,
+      "sha256": "16146782ea81461e87ac992a273f7671430de8e22d79bffba1b6f711be165484"
     },
     "docs/screenshots/comparison.png": {
       "bytes": 126358,
       "sha256": "2b2536c076d06f3fae4394a7f044b990496d209ecf5d2141bc9c6bae9e9c73c7"
+    },
+    "docs/screenshots/recorded-comparison.png": {
+      "bytes": 120245,
+      "sha256": "621c88fa92945b1718060daf04da82bf079640131db168b97ab669974dc557d2"
+    },
+    "evidence/benchmark-summary.json": {
+      "bytes": 10036,
+      "sha256": "f86b3217bc9248a3048795fa86039d85491a1e3f4afa994cd24e865d3a408c49"
+    },
+    "evidence/demonstration-live-report.json": {
+      "bytes": 1427012,
+      "sha256": "005b5f1b0c66188ccd603d693f1d87bf1ac5e4d48a62f0a5b1bfef15136580c4"
+    },
+    "evidence/demonstration-recorded-report.json": {
+      "bytes": 1024678,
+      "sha256": "952fcd0c96e7ecd259186a32c97581fdf24d37a948a47a046007422acdb499dc"
+    },
+    "evidence/model-interpretations.json": {
+      "bytes": 15748,
+      "sha256": "f6e31c31b4a74dbac8656d2e51048f6c48319893ecab680cf064125cd1034360"
+    },
+    "evidence/scenario-a-report.json": {
+      "bytes": 1023769,
+      "sha256": "f021ef40f7d730eceaff3b7c9bee0a1d73b6de64d4b98bdc3f942c6cd75651b3"
+    },
+    "evidence/scenario-ab-report.json": {
+      "bytes": 1023601,
+      "sha256": "8c84325acb10ae3cfa7eb39b2eda6680bbaf3dd73b3cd13f513cb5eacbb7f919"
+    },
+    "evidence/scenario-b-report.json": {
+      "bytes": 1024084,
+      "sha256": "63f47d82b96958b93ad8e53f596c4266ff4ac69056300fd4693a018465b39fd7"
     },
     "package-lock.json": {
       "bytes": 127927,
