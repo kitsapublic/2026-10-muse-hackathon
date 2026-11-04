@@ -10,6 +10,7 @@ import {
 import { ErrorNotice, reviewState } from "@kitsa/eligibility-ui";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { newKey, useJob, useLoad, useUrlState } from "./hooks";
+import { isStoryBundle, scenarioNames } from "./story";
 
 /** Readable names for the reference case's two permitted scenario parameters. */
 const PARAMETER_LABELS: Record<string, string> = {
@@ -36,6 +37,7 @@ function scenarioTitle(job: Job, detail: BundleDetail | null): string {
       .map((e) => `${PARAMETER_LABELS[`${e.criterion_id}.${e.parameter}`] ?? `${e.criterion_id}.${e.parameter}`} ${e.value}`)
       .join(", ");
   }
+  if (isStoryBundle(detail) && scenario.scenario_id && scenarioNames[scenario.scenario_id]) return scenarioNames[scenario.scenario_id]!;
   const saved = detail?.scenarios.find((s) => s.scenario_id === scenario.scenario_id);
   return scenario.title ?? saved?.title ?? scenario.scenario_id ?? job.job_id;
 }

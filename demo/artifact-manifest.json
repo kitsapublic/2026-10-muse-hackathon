@@ -27,8 +27,8 @@
       "sha256": "6addfb467e305f920af00c9c81c1f9cd6272d846436c763eaea53a8d5a5a9ccb"
     },
     "packages/kitsa-eligibility-ui-0.4.0.tgz": {
-      "bytes": 14876,
-      "sha256": "863fd1162285ee17b83be7f428971d779d478d02bfb1db4d21fe17a701bc1f17"
+      "bytes": 14911,
+      "sha256": "dfd14b0a7f0029f7786ca17ed906c6fad0d7eb562e82415c366eb0d0c9fa71be"
     },
     "recordings.json": {
       "bytes": 2526407,
@@ -78,13 +78,13 @@
       "bytes": 1318,
       "sha256": "3b58e9a6c13b366c316d85c47c6a345623eb483eb4144cd1776b31989f78e127"
     },
-    "showcase/assets/index-DsQ7ZPNs.js": {
-      "bytes": 320793,
-      "sha256": "bf842a2c80ffae2843914efee84121c642acc4502bcf10f7e5c9d610b3f1c78e"
+    "showcase/assets/index-BoJyTSaq.js": {
+      "bytes": 321538,
+      "sha256": "376befc3f3b90adfb6def886f1a9bd329d00fe8954021027e14e297cbbe754b7"
     },
-    "showcase/assets/index-T8X7hQnl.css": {
-      "bytes": 41343,
-      "sha256": "65c925957f0698471aa4b0072e98165f1e35ad6d41d18f5233cc7074330280aa"
+    "showcase/assets/index-M4p7oglm.css": {
+      "bytes": 41357,
+      "sha256": "6b30b01ba7ff018dc2a57666d5dbe00f933e50a5207d14d37551fcaa027f4591"
     },
     "showcase/assets/model-interpretations-DzClXtij.js": {
       "bytes": 11410,
@@ -96,7 +96,7 @@
     },
     "showcase/index.html": {
       "bytes": 581,
-      "sha256": "33555b04288b440fde2a4e00c998d820d12e41d0307b599ef581454e3e468e0d"
+      "sha256": "d15fc2ec6df5260623bdd0f8e0af4a0253dc88477a20003a8756a80d350aa1cf"
     },
     "third-party/@fontsource-variable_atkinson-hyperlegible-next-LICENSE": {
       "bytes": 4599,

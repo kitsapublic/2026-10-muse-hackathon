@@ -22,10 +22,11 @@ export interface ModeChooserProps {
   value: Mode;
   onChange: (mode: Mode) => void;
   disabled?: boolean;
+  descriptions?: Partial<Record<Mode, string>>;
 }
 
 /** Every mode is listed; an unavailable one stays visible and says why, and is never silently replaced. */
-export function ModeChooser({ modes, value, onChange, disabled }: ModeChooserProps) {
+export function ModeChooser({ modes, value, onChange, disabled, descriptions }: ModeChooserProps) {
   const entries: [Mode, ModeState][] = [
     ["reference", modes.reference],
     ["recorded", modes.recorded],
@@ -46,8 +47,8 @@ export function ModeChooser({ modes, value, onChange, disabled }: ModeChooserPro
             aria-describedby={`elab-mode-${mode}`}
           />
           <span className="elab-modes__name">{MODE_LABELS[mode]}</span>
-          <span id={`elab-mode-${mode}`} className="elab-modes__hint">
-            {state.available ? MODE_HINTS[mode] : (state.reason ?? "Unavailable.")}
+          <span id={`elab-mode-${mode}`} className="elab-modes__hint" title={!state.available ? state.reason ?? undefined : undefined}>
+            {descriptions?.[mode] ?? (state.available ? MODE_HINTS[mode] : (state.reason ?? "Unavailable."))}
           </span>
         </label>
       ))}

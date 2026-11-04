@@ -15,7 +15,7 @@ test("guided recorded story: evidence, 19 → 29/23/37, review export, Back, rel
   const axe = async () => expect((await new AxeBuilder({page}).withTags(["wcag2a","wcag2aa","wcag21aa"]).analyze()).violations).toEqual([]);
   await axe();
   await page.screenshot({path:info.outputPath("01-question.png")});
-  await page.getByRole("button", {name:"Read the patient’s EHR →"}).click();
+  await page.getByRole("button", {name:"Read one patient’s health record →"}).click();
   await expect(page.locator(".trace-card")).toBeVisible();
   await expect(page.locator(".trace-card .note").first()).toBeVisible();
   await expect(page.locator(".evidence-context")).toContainText("Viewing these responses makes no new calls");
@@ -25,7 +25,7 @@ test("guided recorded story: evidence, 19 → 29/23/37, review export, Back, rel
   await page.getByRole("button", {name:"Evaluate the draft criteria →"}).click();
   await expect(page.getByRole("radio", {name:/Recorded model/})).toBeChecked();
   await expect(page.getByRole("radio", {name:/Live model/})).toBeDisabled();
-  await page.getByRole("button", {name:"Evaluate eligibility",exact:true}).dblclick();
+  await page.getByRole("button", {name:"Screen all 100 patients",exact:true}).dblclick();
   await expect(page.locator(".outcomes [data-classification=passing] dd")).toHaveText("19 / 100");
   expect(mutations).toHaveLength(1);
   const baselineId = new URL(page.url()).searchParams.get("baseline");
@@ -44,7 +44,7 @@ test("guided recorded story: evidence, 19 → 29/23/37, review export, Back, rel
   await page.screenshot({path:info.outputPath("03-baseline.png"),fullPage:true});
   await page.getByRole("button", {name:"Optimize eligibility criteria →"}).click();
   const ids: string[] = [];
-  for (const [label, count, anchor] of [["Age limit: 75 → 80 years",29,"Not eligible"],["Prior systemic regimens: 2 → 3",23,"Not eligible"],["Age 80 + up to 3 prior regimens",37,"Eligible"]] as const) {
+  for (const [label, count, anchor] of [["Age limit: 75 → 80 years",29,"Not eligible"],["Previous treatment regimens: 2 → 3",23,"Not eligible"],["Both changes: age 80 + up to 3 regimens",37,"Eligible"]] as const) {
     await page.getByRole("button", {name:new RegExp(label.replace("+", "\\+"))}).click();
     await page.getByRole("button", {name:"Run selected scenario"}).click();
     await expect(page.locator(".outcomes [data-classification=passing] dd")).toHaveText(`${count} / 100`);

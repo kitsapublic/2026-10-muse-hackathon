@@ -5,15 +5,16 @@ export function Benchmark({ compact = false }: { compact?: boolean }) {
   const demo = history.demonstration, evaluation = history.private_evaluation_aggregates;
   const ops = demo.operations;
   return <div className="benchmark">
-    <div className="section-heading"><div><p className="eyebrow">Historical measurement · 28 October 2026</p><h3>The original run shows Muse’s measured performance.</h3></div><span className="story-status">Muse Spark 1.3</span></div>
-    <p>The original live run screened 100 synthetic patients using Muse Spark 1.3 with minimal reasoning and reviewed reference rules. The figures below come from that run.</p>
+    <div className="section-heading"><div><p className="eyebrow">Original live run · 28 October 2026</p><h3>How Muse performed in the original run.</h3></div><span className="story-status">Muse Spark 1.3</span></div>
+    <p><strong>Screening {demo.patients.total} patients against {demo.criterion_decisions.cells / demo.patients.total} criteria took {Math.round(ops.elapsed_ms / 1000)} seconds and cost ${(ops.charged_microusd / 1_000_000).toFixed(2)}.</strong></p>
+    <p>Original live run: synthetic patients, reviewed reference rules and Muse Spark 1.3 with minimal reasoning. Cost is calculated from model usage.</p>
     <dl className="metric-grid">
-      <div><dt>Model requests</dt><dd>{ops.requests}</dd></div><div><dt>Whole-job elapsed</dt><dd>{(ops.elapsed_ms / 1000).toFixed(1)} <small>s</small></dd></div>
-      <div><dt>Median / p95 request</dt><dd>{(ops.latency_ms.median / 1000).toFixed(2)} / {(ops.latency_ms.p95 / 1000).toFixed(2)} <small>s</small></dd></div>
-      <div><dt>Calculated charges</dt><dd>{money(ops.charged_microusd)}</dd></div>
+      <div><dt>Requests to Muse</dt><dd>{ops.requests}</dd></div><div><dt>Total time</dt><dd>{(ops.elapsed_ms / 1000).toFixed(1)} <small>s</small></dd></div>
+      <div><dt title="Time within which 50% / 95% of requests completed">Response time: 50% / 95%</dt><dd>{(ops.latency_ms.median / 1000).toFixed(2)} / {(ops.latency_ms.p95 / 1000).toFixed(2)} <small>s</small></dd></div>
+      <div><dt>Calculated cost</dt><dd>{money(ops.charged_microusd)}</dd></div>
     </dl>
-    <p className="elab-muted">The run used {count(ops.tokens.prompt_tokens)} input tokens and {count(ops.tokens.completion_tokens)} completion tokens. Completion tokens include {count(ops.tokens.reasoning_tokens)} reasoning tokens. The charge is calculated from token usage and has not been reconciled with an invoice.</p>
-    <details open={compact ? undefined : true}><summary>Inspect model quality and comparison evidence</summary>
+    <details open={compact ? undefined : true}><summary>Inspect model quality, usage and comparison evidence</summary>
+    <p className="elab-muted">The run used {count(ops.tokens.prompt_tokens)} input tokens and {count(ops.tokens.completion_tokens)} output tokens, including {count(ops.tokens.reasoning_tokens)} reasoning tokens. Tokens measure model usage; the calculated cost has not been reconciled with an invoice.</p>
     <h4>Agreement depends on what is being compared.</h4>
     <div className="story-table-scroll"><table className="elab-table"><caption>Agreement with independently stored expectations, under reviewed reference rules</caption>
       <thead><tr><th>Agreement</th><th>Demonstration · 100 patients</th><th>Private evaluation · 40 patients</th></tr></thead>

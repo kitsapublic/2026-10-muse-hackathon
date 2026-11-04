@@ -13,7 +13,7 @@ describe("guided story safety and restoration", () => {
     const submit = vi.spyOn(client,"submitJob"), report = vi.spyOn(client,"getReport");
     render(<App client={client}/>);
     await screen.findByText("An invented protocol.");
-    await userEvent.click(screen.getByRole("button",{name:"Read the patient’s EHR →"}));
+    await userEvent.click(screen.getByRole("button",{name:"Read one patient’s health record →"}));
     expect(screen.getByRole("heading",{level:1})).toHaveFocus();
     expect(window.location.search).toContain("scene=muse");
     act(()=>{window.history.replaceState(null,"","?scene=question");window.dispatchEvent(new PopStateEvent("popstate"));});
@@ -26,9 +26,9 @@ describe("guided story safety and restoration", () => {
     window.history.replaceState(null,"","?scene=baseline");
     render(<App client={client}/>);
     await screen.findByRole("button",{name:"Use reference answers"});
-    expect(screen.getByRole("button",{name:"Evaluate eligibility"})).toBeDisabled();
+    expect(screen.getByRole("button",{name:"Screen all 4 patients"})).toBeDisabled();
     await userEvent.click(screen.getByRole("button",{name:"Use reference answers"}));
-    expect(screen.getByRole("button",{name:"Evaluate eligibility"})).toBeEnabled();
+    expect(screen.getByRole("button",{name:"Screen all 4 patients"})).toBeEnabled();
     expect(screen.queryByRole("checkbox",{name:/Allow model/})).not.toBeInTheDocument();
   });
   it("restores the selected patient and does not display a scenario from another baseline", async () => {
@@ -50,8 +50,8 @@ describe("guided story safety and restoration", () => {
     const submit = vi.spyOn(f.client,"submitJob");
     window.history.replaceState(null,"","?scene=baseline&mode=reference");
     render(<App client={f.client}/>);
-    await waitFor(()=>expect(screen.getByRole("button",{name:"Evaluate eligibility"})).toBeEnabled());
-    await userEvent.dblClick(screen.getByRole("button",{name:"Evaluate eligibility"}));
+    await waitFor(()=>expect(screen.getByRole("button",{name:"Screen all 4 patients"})).toBeEnabled());
+    await userEvent.dblClick(screen.getByRole("button",{name:"Screen all 4 patients"}));
     expect(submit).toHaveBeenCalledTimes(1);
     act(()=>{window.history.replaceState(null,"","?bundle=different&scene=question");window.dispatchEvent(new PopStateEvent("popstate"));});
     await act(async()=>finish(job("late")));

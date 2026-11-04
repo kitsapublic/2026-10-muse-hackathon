@@ -324,7 +324,7 @@ html, body { background: #181818; }
 .ehr-observations > div { background: #292d31; border: 1px solid #414b54; border-radius: 12px; padding: 16px; min-width: 0; overflow-wrap: anywhere; }
 .ehr-observations strong { font-size: 13px; color: #c4d4e2; }
 .ehr-observations p { font-size: 17px; line-height: 1.5; margin: 10px 0; }
-.ehr-observations small { font-size: 11px; color: #bbb; }
+.ehr-observations small { display: block; font-size: 11px; color: #bbb; }
 .eligibility-table { margin: 24px 0; }
 .eligibility-table table { min-width: 660px; font-size: 13px; }
 .eligibility-table th, .eligibility-table td { vertical-align: top; text-align: left; padding: 16px 12px; }

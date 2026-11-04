@@ -61,25 +61,26 @@ function Trace({ trace }: { trace: ItemTrace }) {
   } catch { /* The retained request stays available as text below. */ }
   return <article className="trace-card">
     <div className="eyebrow">{trace.narrative_input?.question_id ? pretty(trace.narrative_input.question_id) : "Model request"}
-      <span className="trace-card__source">{trace.answer_source?.kind ?? "Attempt"}</span></div>
+      {trace.answer_source?.kind !== "direct" && <span className="trace-card__source">{pretty(trace.answer_source?.kind ?? "Attempt")}</span>}</div>
+    {trace.narrative_input?.statement && <p className="trace-pipeline__label">Statement Muse checks against the notes</p>}
     <h3>{trace.narrative_input?.statement ?? "Criterion interpretation"}</h3>
     {attempt ? <>
       <div className="trace-pipeline">
-        <div><span className="trace-pipeline__label">Notes provided to Muse</span>
+        <div><span className="trace-pipeline__label">Notes given to Muse</span>
           {notes.map((note) => <blockquote className="note" key={note.note_id} data-cited={answer?.supporting_note_ids.includes(note.note_id)}>
             <p>{note.text}</p><footer>{note.written_on} · {note.note_id}{answer?.supporting_note_ids.includes(note.note_id) ? " · cited" : ""}</footer>
           </blockquote>)}
         </div>
         <div className="trace-answer"><span className="trace-pipeline__label">Muse’s answer</span>
           <strong>{answer ? pretty(answer.value) : "No accepted answer"}</strong>
-          <p>{answer?.reason === "insufficient_evidence" ? "The notes do not provide enough evidence to resolve this statement." : answer?.reason === "conflicting_evidence" ? "The notes contain conflicting evidence, so Muse left this statement unresolved." : answer?.reason === "model_abstention" ? "Muse abstained from deciding whether this statement applies." : answer ? (answer.value === "yes" ? "The cited notes support this statement." : "The cited notes establish that this statement does not apply.") : "This attempt has no validated answer."}</p>
-          <span className="story-status">{attempt.validation?.code === "answered" ? "Schema and citations checked" : pretty(attempt.validation?.code ?? "pending")}</span>
+          <p>{answer?.reason === "insufficient_evidence" ? "The notes do not provide enough evidence to resolve this statement." : answer?.reason === "conflicting_evidence" ? "The notes contain conflicting evidence, so Muse left this statement unresolved." : answer?.reason === "model_abstention" ? "Muse abstained from deciding whether this statement applies." : answer ? (answer.value === "yes" ? "The cited notes support this statement." : "The cited notes show this statement does not apply to the patient.") : "This attempt has no validated answer."}</p>
+          <span className="story-status">{attempt.validation?.code === "answered" ? "Answer format and citations verified" : pretty(attempt.validation?.code ?? "pending")}</span>
         </div>
       </div>
       <dl className="trace-metrics">
-        <div><dt>Request latency</dt><dd>{attempt.latency_ms === null ? "Unavailable" : (attempt.latency_ms / 1000).toFixed(2) + " s"}</dd></div>
-        <div><dt>Input / output tokens</dt><dd>{attempt.usage ? count(attempt.usage.prompt_tokens) + " / " + count(attempt.usage.completion_tokens) : "Unavailable"}</dd></div>
-        <div><dt>Calculated source charge</dt><dd>{attempt.cost.charged_microusd === null ? "Unsettled" : money(attempt.cost.charged_microusd)}</dd></div>
+        <div><dt>Response time</dt><dd>{attempt.latency_ms === null ? "Unavailable" : (attempt.latency_ms / 1000).toFixed(2) + " s"}</dd></div>
+        <div><dt>Tokens in / out</dt><dd>{attempt.usage ? count(attempt.usage.prompt_tokens) + " / " + count(attempt.usage.completion_tokens) : "Unavailable"}</dd></div>
+        <div><dt>Calculated request cost</dt><dd>{attempt.cost.charged_microusd === null ? "Unsettled" : money(attempt.cost.charged_microusd)}</dd></div>
       </dl>
       <button className="elab-link" type="button" aria-expanded={expanded} onClick={() => setExpanded(!expanded)}>{expanded ? "Hide" : "Inspect"} exact request & response</button>
       {expanded && <div className="trace-raw"><h4>Request</h4><pre>{JSON.stringify(attempt.request, null, 2)}</pre>

@@ -15,11 +15,14 @@ function threshold(criterion: Result["criteria"][number]): string | null {
 /** All cumulative counts and new exclusions come directly from the evaluator's waterfall. */
 export function EligibilityWaterfall({ result }: { result: Result }) {
   const denominator = result.waterfall.denominator;
+  const firstStep = result.waterfall.steps[0];
+  const firstCriterion = result.criteria.find(c => c.criterion_id === firstStep?.criterion_id);
+  const ageExclusions = firstCriterion?.parameters.age_max !== undefined ? firstStep?.newly_failing ?? 0 : 0;
   const width = (count: number) => `${denominator ? count * 100 / denominator : 0}%`;
   return <section className="criterion-impact" aria-labelledby="eligibility-waterfall-title">
-    <h2 id="eligibility-waterfall-title">Which eligibility criteria exclude patients?</h2>
+    <h2 id="eligibility-waterfall-title">Which eligibility criteria exclude the most patients?</h2>
     <figure className="eligibility-waterfall" aria-label="Cumulative eligibility waterfall">
-      <figcaption><strong>{denominator} patients → {result.counts.passing} eligible</strong><p>Apply the criteria in protocol order. Each blue bar shows how many patients meet every criterion checked so far.</p></figcaption>
+      <figcaption><strong>{denominator} patients → {result.counts.passing} eligible</strong><p>Apply the criteria in protocol order. Each blue bar shows how many patients meet every criterion checked so far.{ageExclusions > 0 && <> The age limit alone removes {ageExclusions} patients before any other clinical criterion is applied.</>}</p></figcaption>
       <div className="waterfall-column-headings" aria-hidden="true"><span>Criterion applied</span><span>Meet all criteria so far</span><span>Newly excluded</span><span>Unresolved so far</span></div>
       <div className="waterfall-row waterfall-start"><div className="waterfall-label"><strong>Starting population</strong></div><div className="waterfall-measure"><div className="waterfall-track" aria-hidden="true"><span className="waterfall-fill" style={{width:width(denominator)}} /></div><strong>{denominator}</strong></div><span className="waterfall-neutral">—</span><span className="waterfall-neutral">—</span></div>
       <ol className="waterfall-steps">{result.waterfall.steps.map((step, index) => {
@@ -34,7 +37,7 @@ export function EligibilityWaterfall({ result }: { result: Result }) {
         </li>;
       })}</ol>
       <div className="waterfall-outcome"><strong>{result.counts.passing} eligible</strong><span>{result.counts.failing} excluded</span><span>{result.counts.unresolved} unresolved</span></div>
-      <p className="waterfall-note">A patient exits the blue population when a criterion fails or remains unresolved. Red counts new exclusions at each step; amber counts unresolved patients still awaiting an eligibility decision. Exclusions are counted once, at the first failing criterion.</p>
+      <p className="waterfall-note">Patients leave the blue bar when a criterion fails or cannot be resolved. Red counts each patient’s first exclusion; amber tracks unresolved eligibility.</p>
     </figure>
   </section>;
 }
@@ -47,10 +50,10 @@ export function EligibilityWaterfallComparison({ baseline, scenario, scenarioTit
       {newlyExcluded !== undefined && <small><span className="waterfall-excluded">{newlyExcluded ? `−${newlyExcluded}` : "0"} newly excluded</span><span className="waterfall-unresolved">{unresolved} unresolved</span></small>}</div>;
   }
   return <figure className="waterfall-comparison" aria-label="Draft and selected scenario eligibility waterfalls">
-    <figcaption><h3>Where the revised criteria change the population.</h3><p>Follow the same patients through the draft and selected criteria. Both waterfalls use the same scale; each bar counts patients meeting every criterion checked so far.</p></figcaption>
+    <figcaption><h3>Where the revised criteria change the population.</h3><p>Same patients, same scale. Each bar counts those meeting every criterion checked so far. Highlighted rows show the changed limits.</p></figcaption>
     <div className="comparison-scroll" tabIndex={0} role="region" aria-label="Side-by-side eligibility comparison">
       <div className="comparison-chart">
-        <div className="comparison-waterfall-row comparison-header"><div>Eligibility criterion</div><div><span>Draft protocol</span><strong>{baseline.counts.passing} eligible</strong></div><div><span>{scenarioTitle}</span><strong>{scenario.counts.passing} eligible</strong></div></div>
+        <div className="comparison-waterfall-row comparison-header"><div>Eligibility criterion</div><div><span>Draft criteria</span><strong>{baseline.counts.passing} eligible</strong></div><div><span>{scenarioTitle}</span><strong>{scenario.counts.passing} eligible</strong></div></div>
         <div className="comparison-waterfall-row comparison-start"><strong>Starting population</strong>{measure(baseline.waterfall.denominator)}{measure(scenario.waterfall.denominator)}</div>
         <ol className="comparison-waterfall-steps">{baseline.waterfall.steps.map(before => {
           const after = scenarioSteps.get(before.criterion_id);
@@ -67,6 +70,6 @@ export function EligibilityWaterfallComparison({ baseline, scenario, scenarioTit
         <div className="comparison-waterfall-row comparison-final"><strong>Final eligibility</strong><div><strong>{baseline.counts.passing} eligible</strong><span>{baseline.counts.failing} excluded · {baseline.counts.unresolved} unresolved</span></div><div><strong>{scenario.counts.passing} eligible</strong><span>{scenario.counts.failing} excluded · {scenario.counts.unresolved} unresolved</span></div></div>
       </div>
     </div>
-    <p className="waterfall-note">Highlighted rows show the eligibility thresholds that changed. Red counts newly excluded patients; amber tracks unresolved eligibility separately.</p>
+    <p className="waterfall-note">Red: newly excluded at each step. Amber: eligibility still unresolved.</p>
   </figure>;
 }

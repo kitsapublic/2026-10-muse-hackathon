@@ -5,8 +5,8 @@ import comparison from "../../../evidence/model-comparison.json";
 export { history, source, comparison };
 
 export const SCENES = [
-  { id: "question", label: "Design the eligibility criteria", title: "Simulate Clinical Trials", next: "Read the patient’s EHR" },
-  { id: "muse", label: "Read the patient’s EHR", title: "Turn a patient’s EHR into eligibility evidence.", next: "Evaluate the draft criteria" },
+  { id: "question", label: "Design the eligibility criteria", title: "Simulate Clinical Trials", next: "Read one patient’s health record" },
+  { id: "muse", label: "Read one patient’s health record", title: "Turn a patient’s health record into eligibility evidence.", next: "Evaluate the draft criteria" },
   { id: "baseline", label: "Evaluate the draft criteria", title: "Find out which patients meet the trial’s eligibility criteria.", next: "Optimize eligibility criteria" },
   { id: "scenarios", label: "Optimize eligibility criteria", title: "Optimize eligibility criteria to maximize the eligible population.", next: "Compare the eligible populations" },
   { id: "evidence", label: "Compare eligible populations", title: "Measure how each eligibility change affects the population.", next: "Review the proposed criteria" },
@@ -17,7 +17,7 @@ export const sceneIndex = (value: string | null) => Math.max(0, SCENES.findIndex
 export const isStoryBundle = (detail: BundleDetail | null) => detail?.bundle_key === source.bundle_key &&
   detail.manifest_sha256 === source.manifest_sha256;
 export const scenarioNames: Record<string, string> = {
-  "scenario-a": "Age limit: 75 → 80 years", "scenario-b": "Prior systemic regimens: 2 → 3", "scenario-ab": "Age 80 + up to 3 prior regimens",
+  "scenario-a": "Age limit: 75 → 80 years", "scenario-b": "Previous treatment regimens: 2 → 3", "scenario-ab": "Both changes: age 80 + up to 3 regimens",
 };
 export const money = (micro: number) => "$" + (micro / 1_000_000).toFixed(4);
 export const count = (n: number) => n.toLocaleString("en-GB");
