@@ -1,6 +1,6 @@
 {
   "name": "@kitsa/eligibility-lab-client",
-  "version": "0.2.4",
+  "version": "0.4.0",
   "description": "Typed client for the Eligibility Lab /v1 API, generated from the service's published OpenAPI schema.",
   "type": "module",
   "exports": {

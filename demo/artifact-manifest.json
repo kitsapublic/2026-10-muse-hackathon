@@ -1,26 +1,34 @@
 {
-  "engine_version": "0.2.5",
-  "engine_wheel": "wheelhouse/kitsa_eligibility_lab-0.2.5-py3-none-any.whl",
+  "engine_version": "0.2.8",
+  "engine_wheel": "wheelhouse/kitsa_eligibility_lab-0.2.8-py3-none-any.whl",
   "files": {
     "README.md": {
-      "bytes": 3219,
-      "sha256": "e94da3a0b966564a7737f454b2f7c655a92bf4d617f2ba1d3404d89d21062946"
+      "bytes": 4052,
+      "sha256": "6f4c57893e176f1a494ac268dde2d1683d21f162b35ec91a7031979ed6c60725"
     },
     "eligibility-lab.openapi.json": {
-      "bytes": 99970,
-      "sha256": "d5867ffe8ecc70ec6f0aa5161c88935beb8e7be68c4251a3c6be92b3a3cd8092"
+      "bytes": 169860,
+      "sha256": "a141b44a8b6cdfc44b0c2ee642c4a88664399c96267f85c04bb59dd779c044b8"
     },
     "engine-README.md": {
-      "bytes": 23551,
-      "sha256": "092ed315e31d3266b79a6d4d97b0a31f644cdc4fe0a777ed35299b8490f15bcf"
+      "bytes": 28010,
+      "sha256": "2fff3f868fa0a7d1a57fd9b8c2d370f4cecfbae7e4317967e4b47e3ddd2b9176"
     },
-    "packages/kitsa-eligibility-lab-client-0.2.4.tgz": {
-      "bytes": 17426,
-      "sha256": "79e2db35596a05e57875910a85440a23f7a7c7e1ca1dfa9d55a43778b8497254"
+    "evidence/regional-context.json": {
+      "bytes": 18434,
+      "sha256": "8b11d03404570c8f6d6433da1368fc6624bb76f05ea7cfee25f953c204e232e6"
     },
-    "packages/kitsa-eligibility-ui-0.2.4.tgz": {
+    "evidence/site-planning.json": {
+      "bytes": 911918,
+      "sha256": "0ecdbedf3a0be4faed7509d7355037ceab36b177db1f94804a41a8bf4ebec88a"
+    },
+    "packages/kitsa-eligibility-lab-client-0.4.0.tgz": {
+      "bytes": 30016,
+      "sha256": "6addfb467e305f920af00c9c81c1f9cd6272d846436c763eaea53a8d5a5a9ccb"
+    },
+    "packages/kitsa-eligibility-ui-0.4.0.tgz": {
       "bytes": 14876,
-      "sha256": "97be8361803dc3490ee1f5d3304815fda83a78970bf3fff8ff0bdb37fd3c57bf"
+      "sha256": "863fd1162285ee17b83be7f428971d779d478d02bfb1db4d21fe17a701bc1f17"
     },
     "recordings.json": {
       "bytes": 2526407,
@@ -70,49 +78,25 @@
       "bytes": 1318,
       "sha256": "3b58e9a6c13b366c316d85c47c6a345623eb483eb4144cd1776b31989f78e127"
     },
-    "showcase/assets/atkinson-hyperlegible-next-latin-ext-wght-normal-C6vrW8VD.woff2": {
-      "bytes": 19092,
-      "sha256": "7dae0c6c66af1aec82e096186aeb1f0e6fa36ab8061ed65422f2b7daf4dd93f3"
+    "showcase/assets/index-DsQ7ZPNs.js": {
+      "bytes": 320793,
+      "sha256": "bf842a2c80ffae2843914efee84121c642acc4502bcf10f7e5c9d610b3f1c78e"
     },
-    "showcase/assets/atkinson-hyperlegible-next-latin-wght-normal-BcXVPD7q.woff2": {
-      "bytes": 33996,
-      "sha256": "18b2a1a39a2fa298b0ba5390aca68462669826c90925656f1c1f6796e0e1bbaf"
+    "showcase/assets/index-T8X7hQnl.css": {
+      "bytes": 41343,
+      "sha256": "65c925957f0698471aa4b0072e98165f1e35ad6d41d18f5233cc7074330280aa"
     },
-    "showcase/assets/index-DazpNrbJ.js": {
-      "bytes": 244424,
-      "sha256": "49144351f1bbdb17176185d5c5c7f4837fb3421eea7d0001928fe540fad032c6"
+    "showcase/assets/model-interpretations-DzClXtij.js": {
+      "bytes": 11410,
+      "sha256": "f1e1bdfaf1c28d02845cfff96946aa65ec6313986681107d40470f90cfd16b52"
     },
-    "showcase/assets/index-krA12fEU.css": {
-      "bytes": 14497,
-      "sha256": "ebbc2bd1f26def318de3adbbbc69417767555c7a7b8fff58a8844a465dc889b7"
-    },
-    "showcase/assets/source-serif-4-cyrillic-ext-wght-normal-DHTKMUil.woff2": {
-      "bytes": 18112,
-      "sha256": "da49e14ae1d459f3d04cf4555fb954f6e54b247b708f8cfe2d8e7e4ee3c6829b"
-    },
-    "showcase/assets/source-serif-4-cyrillic-wght-normal-B1g8a0vD.woff2": {
-      "bytes": 36508,
-      "sha256": "a81082707b85203d7f2ae33833f7ae0bf832db167c8710f92f805a9808fb051a"
-    },
-    "showcase/assets/source-serif-4-greek-wght-normal-BpXpdlRW.woff2": {
-      "bytes": 20184,
-      "sha256": "54c4728aa0fd97d59b89b6d89b230065794b4c088c55efe71abc9ce882cfa853"
-    },
-    "showcase/assets/source-serif-4-latin-ext-wght-normal-BVZ5su8S.woff2": {
-      "bytes": 42212,
-      "sha256": "d10ccbbd0dc4ebae2938958dc1f622a53460fe297e9c958564742dd684309c3f"
-    },
-    "showcase/assets/source-serif-4-latin-wght-normal-DMe4EKeb.woff2": {
-      "bytes": 50936,
-      "sha256": "382475f38242c52d42a3e5ff8dc69b5d73f10d0d21e4550b5fe232984688779a"
-    },
-    "showcase/assets/source-serif-4-vietnamese-wght-normal-BsaNuasd.woff2": {
-      "bytes": 13508,
-      "sha256": "c3de01b5144e1a2d7e70eeaf66ab92afdedcc4424ed1d7ffc1993a657d1c762a"
+    "showcase/assets/muse-mark-CH_dGoKY.svg": {
+      "bytes": 2628,
+      "sha256": "73bdf6aed3c3a03b2181c69532672554fca8a1d303644c301abb1caf5300d703"
     },
     "showcase/index.html": {
-      "bytes": 563,
-      "sha256": "c00cc051b28b4700243ed72f442e2df257ad4725ef07d481c587f4a2cfe23c61"
+      "bytes": 581,
+      "sha256": "33555b04288b440fde2a4e00c998d820d12e41d0307b599ef581454e3e468e0d"
     },
     "third-party/@fontsource-variable_atkinson-hyperlegible-next-LICENSE": {
       "bytes": 4599,
@@ -186,9 +170,9 @@
       "bytes": 65455,
       "sha256": "7f952cbe720b688055e3f87de14f5c3e5fdaa8bc3928985c4077ca689de849a2"
     },
-    "wheelhouse/kitsa_eligibility_lab-0.2.5-py3-none-any.whl": {
-      "bytes": 111830,
-      "sha256": "97619f8ffcd7f9d8dadadc2a895e741103c7b4cba6fda2e4826db5148b7d7a0e"
+    "wheelhouse/kitsa_eligibility_lab-0.2.8-py3-none-any.whl": {
+      "bytes": 126913,
+      "sha256": "20d9b6d1b3a37af7a32be0cf4b726dd56b1c73f6115ac33d9148ca5048e7b27c"
     },
     "wheelhouse/pydantic-2.13.4-py3-none-any.whl": {
       "bytes": 472262,

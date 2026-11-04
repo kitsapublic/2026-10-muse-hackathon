@@ -2,7 +2,10 @@ import { EligibilityLabError, type JobComparison } from "@kitsa/eligibility-lab-
 import { render, screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { describe, expect, it, vi } from "vitest";
-import { App } from "./App";
+import { Explore } from "./Explore";
+import { useWorkflow } from "./useWorkflow";
+import type { EligibilityLabClient } from "@kitsa/eligibility-lab-client";
+function App({ client }: { client: EligibilityLabClient }) { return <Explore flow={useWorkflow(client)} />; }
 import { comparisonFor, fakeClient, job } from "./fake-client";
 
 describe("showcase workflow", () => {
@@ -21,7 +24,7 @@ describe("showcase workflow", () => {
     );
     const counts = await screen.findByLabelText("Baseline patients by classification");
     expect(within(counts).getByText("Meets every criterion").nextSibling).toHaveTextContent("2 of 4");
-    expect(window.location.search).toBe("?baseline=job-1");
+    expect(window.location.search).toContain("baseline=job-1");
     await userEvent.click(screen.getByRole("button", { name: /Use “Raise the upper age limit”/ }));
     await userEvent.click(screen.getByRole("button", { name: "Run scenario" }));
     expect(submit).toHaveBeenLastCalledWith(

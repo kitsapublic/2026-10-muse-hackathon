@@ -1,6 +1,6 @@
 {
   "name": "@kitsa/eligibility-ui",
-  "version": "0.2.4",
+  "version": "0.4.0",
   "description": "Reusable React components for Eligibility Lab results: interpretation review, the patient waterfall, criterion impact, decision matrix, scenarios and comparisons. No routing, authentication or application code.",
   "type": "module",
   "exports": {
@@ -28,7 +28,7 @@
     "react-dom": "^19.2.0"
   },
   "dependencies": {
-    "@kitsa/eligibility-lab-client": "0.2.4"
+    "@kitsa/eligibility-lab-client": "0.4.0"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "6.9.1",

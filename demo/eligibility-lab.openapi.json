@@ -1,6 +1,334 @@
 {
   "components": {
     "schemas": {
+      "Accounting": {
+        "additionalProperties": false,
+        "properties": {
+          "pricing": {
+            "additionalProperties": {
+              "type": "integer"
+            },
+            "title": "Pricing",
+            "type": "object"
+          },
+          "template_allowance_tokens": {
+            "title": "Template Allowance Tokens",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "pricing",
+          "template_allowance_tokens"
+        ],
+        "title": "Accounting",
+        "type": "object"
+      },
+      "AnswerSource": {
+        "additionalProperties": false,
+        "properties": {
+          "attempt_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Attempt Id"
+          },
+          "incurred_by_this_job": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Incurred By This Job"
+          },
+          "job_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Job Id"
+          },
+          "kind": {
+            "enum": [
+              "direct",
+              "cache",
+              "replay"
+            ],
+            "title": "Kind",
+            "type": "string"
+          },
+          "visible": {
+            "title": "Visible",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "kind",
+          "visible",
+          "job_id",
+          "attempt_id",
+          "incurred_by_this_job"
+        ],
+        "title": "AnswerSource",
+        "type": "object"
+      },
+      "AttemptCost": {
+        "additionalProperties": false,
+        "properties": {
+          "charged_microusd": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Charged Microusd"
+          },
+          "incurred_by_this_job": {
+            "title": "Incurred By This Job",
+            "type": "boolean"
+          },
+          "reservation": {
+            "enum": [
+              "held",
+              "settled",
+              "released"
+            ],
+            "title": "Reservation",
+            "type": "string"
+          },
+          "reserved_microusd": {
+            "title": "Reserved Microusd",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "reserved_microusd",
+          "charged_microusd",
+          "reservation",
+          "incurred_by_this_job"
+        ],
+        "title": "AttemptCost",
+        "type": "object"
+      },
+      "AttemptOutcome": {
+        "additionalProperties": false,
+        "properties": {
+          "attempt_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Attempt Id"
+          },
+          "code": {
+            "title": "Code",
+            "type": "string"
+          },
+          "detail": {
+            "title": "Detail",
+            "type": "string"
+          },
+          "late": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Late"
+          }
+        },
+        "required": [
+          "code",
+          "detail"
+        ],
+        "title": "AttemptOutcome",
+        "type": "object"
+      },
+      "AttemptTrace": {
+        "additionalProperties": false,
+        "properties": {
+          "accepted": {
+            "title": "Accepted",
+            "type": "boolean"
+          },
+          "answer": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/NarrativeAnswer"
+              },
+              {
+                "$ref": "#/components/schemas/InterpretationAnswer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Answer"
+          },
+          "attempt_id": {
+            "title": "Attempt Id",
+            "type": "string"
+          },
+          "completed_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Completed At"
+          },
+          "configuration": {
+            "additionalProperties": true,
+            "title": "Configuration",
+            "type": "object"
+          },
+          "configuration_sha256": {
+            "title": "Configuration Sha256",
+            "type": "string"
+          },
+          "cost": {
+            "$ref": "#/components/schemas/AttemptCost"
+          },
+          "dispatched_at": {
+            "title": "Dispatched At",
+            "type": "string"
+          },
+          "generation": {
+            "title": "Generation",
+            "type": "integer"
+          },
+          "job_id": {
+            "title": "Job Id",
+            "type": "string"
+          },
+          "latency_ms": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Latency Ms"
+          },
+          "model": {
+            "title": "Model",
+            "type": "string"
+          },
+          "provider": {
+            "title": "Provider",
+            "type": "string"
+          },
+          "request": {
+            "$ref": "#/components/schemas/TraceRequest"
+          },
+          "response": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/TraceResponse"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "retry_of": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Retry Of"
+          },
+          "state": {
+            "enum": [
+              "dispatched",
+              "completed",
+              "failed",
+              "ambiguous",
+              "not_sent"
+            ],
+            "title": "State",
+            "type": "string"
+          },
+          "transport": {
+            "title": "Transport",
+            "type": "string"
+          },
+          "usage": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ProviderUsage"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "validation": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/TraceValidation"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "attempt_id",
+          "job_id",
+          "retry_of",
+          "generation",
+          "state",
+          "validation",
+          "accepted",
+          "transport",
+          "provider",
+          "model",
+          "configuration",
+          "configuration_sha256",
+          "request",
+          "response",
+          "answer",
+          "usage",
+          "latency_ms",
+          "cost",
+          "dispatched_at",
+          "completed_at"
+        ],
+        "title": "AttemptTrace",
+        "type": "object"
+      },
       "BaselineJobRequest": {
         "additionalProperties": false,
         "properties": {
@@ -501,6 +829,79 @@
         "title": "ComparisonSummaries",
         "type": "object"
       },
+      "Configuration": {
+        "additionalProperties": false,
+        "properties": {
+          "accounting": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Accounting"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "evaluator": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "title": "Evaluator",
+            "type": "object"
+          },
+          "format": {
+            "title": "Format",
+            "type": "string"
+          },
+          "provider": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ProviderConfiguration"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "transport": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Transport"
+          }
+        },
+        "required": [
+          "format",
+          "evaluator",
+          "provider",
+          "transport",
+          "accounting"
+        ],
+        "title": "Configuration",
+        "type": "object"
+      },
+      "Costs": {
+        "additionalProperties": false,
+        "properties": {
+          "reused": {
+            "$ref": "#/components/schemas/ReusedCosts"
+          },
+          "this_job": {
+            "$ref": "#/components/schemas/JobCosts"
+          }
+        },
+        "required": [
+          "this_job",
+          "reused"
+        ],
+        "title": "Costs",
+        "type": "object"
+      },
       "Counts": {
         "additionalProperties": false,
         "properties": {
@@ -847,6 +1248,124 @@
         "title": "ErrorDetail",
         "type": "object"
       },
+      "EvidenceExclusion": {
+        "properties": {
+          "facilities": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Facilities",
+            "type": "array"
+          },
+          "reason": {
+            "enum": [
+              "ambiguous_facility",
+              "other_campus",
+              "invalid_record"
+            ],
+            "title": "Reason",
+            "type": "string"
+          },
+          "trial_id": {
+            "title": "Trial Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "trial_id",
+          "reason",
+          "facilities"
+        ],
+        "title": "EvidenceExclusion",
+        "type": "object"
+      },
+      "EvidenceProvenance": {
+        "additionalProperties": false,
+        "properties": {
+          "origin": {
+            "title": "Origin",
+            "type": "string"
+          },
+          "source_kind": {
+            "const": "structured",
+            "title": "Source Kind",
+            "type": "string"
+          }
+        },
+        "required": [
+          "source_kind",
+          "origin"
+        ],
+        "title": "EvidenceProvenance",
+        "type": "object"
+      },
+      "EvidenceRecord": {
+        "additionalProperties": false,
+        "properties": {
+          "concept": {
+            "title": "Concept",
+            "type": "string"
+          },
+          "encounter_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Encounter Id"
+          },
+          "evidence_id": {
+            "title": "Evidence Id",
+            "type": "string"
+          },
+          "observed_on": {
+            "title": "Observed On",
+            "type": "string"
+          },
+          "provenance": {
+            "$ref": "#/components/schemas/EvidenceProvenance"
+          },
+          "status": {
+            "enum": [
+              "final",
+              "entered_in_error"
+            ],
+            "title": "Status",
+            "type": "string"
+          },
+          "value": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "string"
+              },
+              {
+                "$ref": "#/components/schemas/QuantityValue"
+              },
+              {
+                "$ref": "#/components/schemas/RegimenValue"
+              }
+            ],
+            "title": "Value"
+          }
+        },
+        "required": [
+          "evidence_id",
+          "concept",
+          "observed_on",
+          "encounter_id",
+          "status",
+          "value",
+          "provenance"
+        ],
+        "title": "EvidenceRecord",
+        "type": "object"
+      },
       "Experiment": {
         "additionalProperties": false,
         "properties": {
@@ -982,6 +1501,32 @@
         "title": "HTTPValidationError",
         "type": "object"
       },
+      "HiddenSource": {
+        "additionalProperties": false,
+        "description": "An answer source outside the reader's audiences: named only by its kind.",
+        "properties": {
+          "kind": {
+            "enum": [
+              "direct",
+              "cache",
+              "replay"
+            ],
+            "title": "Kind",
+            "type": "string"
+          },
+          "visible": {
+            "const": false,
+            "title": "Visible",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "kind",
+          "visible"
+        ],
+        "title": "HiddenSource",
+        "type": "object"
+      },
       "Identities": {
         "additionalProperties": false,
         "properties": {
@@ -1063,6 +1608,58 @@
         "title": "Impact",
         "type": "object"
       },
+      "InterpretationAnswer": {
+        "additionalProperties": false,
+        "properties": {
+          "interpretation": {
+            "additionalProperties": true,
+            "title": "Interpretation",
+            "type": "object"
+          },
+          "questions": {
+            "items": {
+              "$ref": "#/components/schemas/InterpretationQuestion"
+            },
+            "title": "Questions",
+            "type": "array"
+          }
+        },
+        "required": [
+          "interpretation",
+          "questions"
+        ],
+        "title": "InterpretationAnswer",
+        "type": "object"
+      },
+      "InterpretationItemInput": {
+        "additionalProperties": false,
+        "properties": {
+          "conventions": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Conventions",
+            "type": "array"
+          },
+          "criterion": {
+            "$ref": "#/components/schemas/CriterionPin"
+          },
+          "parameter_names": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Parameter Names",
+            "type": "array"
+          }
+        },
+        "required": [
+          "criterion",
+          "conventions",
+          "parameter_names"
+        ],
+        "title": "InterpretationItemInput",
+        "type": "object"
+      },
       "InterpretationJobRequest": {
         "additionalProperties": false,
         "properties": {
@@ -1114,6 +1711,54 @@
           "criterion_ids"
         ],
         "title": "InterpretationJobRequest",
+        "type": "object"
+      },
+      "InterpretationQuestion": {
+        "additionalProperties": false,
+        "properties": {
+          "question_id": {
+            "title": "Question Id",
+            "type": "string"
+          },
+          "statement": {
+            "title": "Statement",
+            "type": "string"
+          }
+        },
+        "required": [
+          "question_id",
+          "statement"
+        ],
+        "title": "InterpretationQuestion",
+        "type": "object"
+      },
+      "InterpretationSet": {
+        "additionalProperties": false,
+        "properties": {
+          "members": {
+            "items": {
+              "$ref": "#/components/schemas/SetMember"
+            },
+            "title": "Members",
+            "type": "array"
+          },
+          "set_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Set Id"
+          }
+        },
+        "required": [
+          "set_id",
+          "members"
+        ],
+        "title": "InterpretationSet",
         "type": "object"
       },
       "Item": {
@@ -1209,6 +1854,155 @@
           "answer_attempt"
         ],
         "title": "Item",
+        "type": "object"
+      },
+      "ItemTrace": {
+        "additionalProperties": false,
+        "description": "One work item of a job (a scenario's are its baseline's): its input, the attempts it sent and the attempt whose\nanswer it accepted, wherever that was sent.",
+        "properties": {
+          "answer_attempt": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/AttemptTrace"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "answer_source": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/AnswerSource"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "attempts": {
+            "items": {
+              "$ref": "#/components/schemas/AttemptTrace"
+            },
+            "title": "Attempts",
+            "type": "array"
+          },
+          "available": {
+            "title": "Available",
+            "type": "boolean"
+          },
+          "decision_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Decision Id"
+          },
+          "interpretation_input": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/InterpretationItemInput"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "item": {
+            "$ref": "#/components/schemas/TraceItem"
+          },
+          "job_configuration_sha256": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Job Configuration Sha256"
+          },
+          "job_id": {
+            "title": "Job Id",
+            "type": "string"
+          },
+          "job_kind": {
+            "enum": [
+              "baseline",
+              "scenario",
+              "interpretation"
+            ],
+            "title": "Job Kind",
+            "type": "string"
+          },
+          "job_mode": {
+            "enum": [
+              "reference",
+              "recorded",
+              "live"
+            ],
+            "title": "Job Mode",
+            "type": "string"
+          },
+          "lineage_job_id": {
+            "title": "Lineage Job Id",
+            "type": "string"
+          },
+          "narrative_input": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/NarrativeItemInput"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "proposal_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Proposal Id"
+          },
+          "unavailable_reason": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Unavailable Reason"
+          }
+        },
+        "required": [
+          "job_id",
+          "job_kind",
+          "job_mode",
+          "lineage_job_id",
+          "job_configuration_sha256",
+          "item",
+          "narrative_input",
+          "interpretation_input",
+          "decision_id",
+          "proposal_id",
+          "available",
+          "unavailable_reason",
+          "answer_source",
+          "answer_attempt",
+          "attempts"
+        ],
+        "title": "ItemTrace",
         "type": "object"
       },
       "Job": {
@@ -1427,6 +2221,30 @@
         "title": "JobComparison",
         "type": "object"
       },
+      "JobCosts": {
+        "additionalProperties": false,
+        "properties": {
+          "held_microusd": {
+            "title": "Held Microusd",
+            "type": "integer"
+          },
+          "requests": {
+            "title": "Requests",
+            "type": "integer"
+          },
+          "settled_microusd": {
+            "title": "Settled Microusd",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "requests",
+          "settled_microusd",
+          "held_microusd"
+        ],
+        "title": "JobCosts",
+        "type": "object"
+      },
       "JobError": {
         "additionalProperties": false,
         "properties": {
@@ -1468,6 +2286,98 @@
           "result"
         ],
         "title": "JobResult",
+        "type": "object"
+      },
+      "LineageEntry": {
+        "additionalProperties": false,
+        "properties": {
+          "decision_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Decision Id"
+          },
+          "item_id": {
+            "title": "Item Id",
+            "type": "string"
+          },
+          "item_key": {
+            "title": "Item Key",
+            "type": "string"
+          },
+          "kind": {
+            "enum": [
+              "narrative",
+              "interpretation"
+            ],
+            "title": "Kind",
+            "type": "string"
+          },
+          "outcome": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Outcome"
+          },
+          "proposal_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Proposal Id"
+          },
+          "source": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/VisibleSource"
+              },
+              {
+                "$ref": "#/components/schemas/HiddenSource"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source"
+          },
+          "state": {
+            "enum": [
+              "pending",
+              "dispatched",
+              "answered",
+              "failed",
+              "ambiguous",
+              "skipped"
+            ],
+            "title": "State",
+            "type": "string"
+          }
+        },
+        "required": [
+          "item_id",
+          "item_key",
+          "kind",
+          "state",
+          "outcome",
+          "decision_id",
+          "proposal_id",
+          "source"
+        ],
+        "title": "LineageEntry",
         "type": "object"
       },
       "ModeState": {
@@ -1533,6 +2443,179 @@
         "title": "Modes",
         "type": "object"
       },
+      "NarrativeAnswer": {
+        "additionalProperties": false,
+        "properties": {
+          "reason": {
+            "anyOf": [
+              {
+                "enum": [
+                  "insufficient_evidence",
+                  "conflicting_evidence",
+                  "model_abstention"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reason"
+          },
+          "supporting_note_ids": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Supporting Note Ids",
+            "type": "array"
+          },
+          "value": {
+            "enum": [
+              "yes",
+              "no",
+              "undetermined"
+            ],
+            "title": "Value",
+            "type": "string"
+          }
+        },
+        "required": [
+          "value",
+          "reason",
+          "supporting_note_ids"
+        ],
+        "title": "NarrativeAnswer",
+        "type": "object"
+      },
+      "NarrativeDecision": {
+        "additionalProperties": false,
+        "properties": {
+          "considered_note_ids": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Considered Note Ids",
+            "type": "array"
+          },
+          "decision_id": {
+            "title": "Decision Id",
+            "type": "string"
+          },
+          "evaluation_date": {
+            "title": "Evaluation Date",
+            "type": "string"
+          },
+          "input_sha256": {
+            "title": "Input Sha256",
+            "type": "string"
+          },
+          "patient_id": {
+            "title": "Patient Id",
+            "type": "string"
+          },
+          "question_id": {
+            "title": "Question Id",
+            "type": "string"
+          },
+          "reason": {
+            "anyOf": [
+              {
+                "enum": [
+                  "insufficient_evidence",
+                  "conflicting_evidence",
+                  "model_abstention"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reason"
+          },
+          "supporting_note_ids": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Supporting Note Ids",
+            "type": "array"
+          },
+          "value": {
+            "enum": [
+              "yes",
+              "no",
+              "undetermined"
+            ],
+            "title": "Value",
+            "type": "string"
+          },
+          "window_days": {
+            "title": "Window Days",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "decision_id",
+          "patient_id",
+          "question_id",
+          "evaluation_date",
+          "window_days",
+          "considered_note_ids",
+          "value",
+          "reason",
+          "supporting_note_ids",
+          "input_sha256"
+        ],
+        "title": "NarrativeDecision",
+        "type": "object"
+      },
+      "NarrativeItemInput": {
+        "additionalProperties": false,
+        "properties": {
+          "evaluation_date": {
+            "title": "Evaluation Date",
+            "type": "string"
+          },
+          "input_sha256": {
+            "title": "Input Sha256",
+            "type": "string"
+          },
+          "note_ids": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Note Ids",
+            "type": "array"
+          },
+          "patient_id": {
+            "title": "Patient Id",
+            "type": "string"
+          },
+          "question_id": {
+            "title": "Question Id",
+            "type": "string"
+          },
+          "statement": {
+            "title": "Statement",
+            "type": "string"
+          },
+          "window_days": {
+            "title": "Window Days",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "patient_id",
+          "question_id",
+          "statement",
+          "evaluation_date",
+          "window_days",
+          "note_ids",
+          "input_sha256"
+        ],
+        "title": "NarrativeItemInput",
+        "type": "object"
+      },
       "NarrativeSourceView": {
         "additionalProperties": false,
         "properties": {
@@ -1554,6 +2637,66 @@
           "description"
         ],
         "title": "NarrativeSourceView",
+        "type": "object"
+      },
+      "NoteProvenance": {
+        "additionalProperties": false,
+        "properties": {
+          "origin": {
+            "title": "Origin",
+            "type": "string"
+          },
+          "source_kind": {
+            "const": "note",
+            "title": "Source Kind",
+            "type": "string"
+          }
+        },
+        "required": [
+          "source_kind",
+          "origin"
+        ],
+        "title": "NoteProvenance",
+        "type": "object"
+      },
+      "NoteRecord": {
+        "additionalProperties": false,
+        "properties": {
+          "encounter_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Encounter Id"
+          },
+          "note_id": {
+            "title": "Note Id",
+            "type": "string"
+          },
+          "provenance": {
+            "$ref": "#/components/schemas/NoteProvenance"
+          },
+          "text": {
+            "title": "Text",
+            "type": "string"
+          },
+          "written_on": {
+            "title": "Written On",
+            "type": "string"
+          }
+        },
+        "required": [
+          "note_id",
+          "written_on",
+          "encounter_id",
+          "text",
+          "provenance"
+        ],
+        "title": "NoteRecord",
         "type": "object"
       },
       "ParameterChange": {
@@ -1623,6 +2766,79 @@
           "text"
         ],
         "title": "Passage",
+        "type": "object"
+      },
+      "PatientCohort": {
+        "additionalProperties": false,
+        "properties": {
+          "cohort_id": {
+            "title": "Cohort Id",
+            "type": "string"
+          },
+          "digest": {
+            "title": "Digest",
+            "type": "string"
+          },
+          "version": {
+            "title": "Version",
+            "type": "string"
+          }
+        },
+        "required": [
+          "cohort_id",
+          "version",
+          "digest"
+        ],
+        "title": "PatientCohort",
+        "type": "object"
+      },
+      "PatientRecord": {
+        "additionalProperties": false,
+        "properties": {
+          "bundle_key": {
+            "title": "Bundle Key",
+            "type": "string"
+          },
+          "cohort": {
+            "$ref": "#/components/schemas/PatientCohort"
+          },
+          "evidence": {
+            "items": {
+              "$ref": "#/components/schemas/EvidenceRecord"
+            },
+            "title": "Evidence",
+            "type": "array"
+          },
+          "notes": {
+            "items": {
+              "$ref": "#/components/schemas/NoteRecord"
+            },
+            "title": "Notes",
+            "type": "array"
+          },
+          "patient_digest": {
+            "title": "Patient Digest",
+            "type": "string"
+          },
+          "patient_id": {
+            "title": "Patient Id",
+            "type": "string"
+          },
+          "reference_date": {
+            "title": "Reference Date",
+            "type": "string"
+          }
+        },
+        "required": [
+          "bundle_key",
+          "patient_id",
+          "reference_date",
+          "cohort",
+          "patient_digest",
+          "evidence",
+          "notes"
+        ],
+        "title": "PatientRecord",
         "type": "object"
       },
       "PatientResult": {
@@ -1862,6 +3078,356 @@
         "title": "ProtocolView",
         "type": "object"
       },
+      "ProviderAttempt": {
+        "additionalProperties": false,
+        "properties": {
+          "accepted": {
+            "title": "Accepted",
+            "type": "boolean"
+          },
+          "attempt_id": {
+            "title": "Attempt Id",
+            "type": "string"
+          },
+          "charged_microusd": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Charged Microusd"
+          },
+          "configuration_sha256": {
+            "title": "Configuration Sha256",
+            "type": "string"
+          },
+          "http_status": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Http Status"
+          },
+          "item_id": {
+            "title": "Item Id",
+            "type": "string"
+          },
+          "late": {
+            "title": "Late",
+            "type": "boolean"
+          },
+          "latency_ms": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Latency Ms"
+          },
+          "model": {
+            "title": "Model",
+            "type": "string"
+          },
+          "outcome": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/AttemptOutcome"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "request_sha256": {
+            "title": "Request Sha256",
+            "type": "string"
+          },
+          "reservation": {
+            "enum": [
+              "held",
+              "settled",
+              "released"
+            ],
+            "title": "Reservation",
+            "type": "string"
+          },
+          "reserved_microusd": {
+            "title": "Reserved Microusd",
+            "type": "integer"
+          },
+          "response_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Response Id"
+          },
+          "retry_of": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Retry Of"
+          },
+          "state": {
+            "enum": [
+              "dispatched",
+              "completed",
+              "failed",
+              "ambiguous",
+              "not_sent"
+            ],
+            "title": "State",
+            "type": "string"
+          },
+          "transport": {
+            "title": "Transport",
+            "type": "string"
+          },
+          "usage": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ProviderUsage"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "attempt_id",
+          "item_id",
+          "retry_of",
+          "transport",
+          "model",
+          "state",
+          "outcome",
+          "accepted",
+          "late",
+          "http_status",
+          "response_id",
+          "reserved_microusd",
+          "charged_microusd",
+          "reservation",
+          "usage",
+          "latency_ms",
+          "request_sha256",
+          "configuration_sha256"
+        ],
+        "title": "ProviderAttempt",
+        "type": "object"
+      },
+      "ProviderConfiguration": {
+        "additionalProperties": false,
+        "properties": {
+          "adapter": {
+            "title": "Adapter",
+            "type": "string"
+          },
+          "endpoint": {
+            "title": "Endpoint",
+            "type": "string"
+          },
+          "max_tokens": {
+            "title": "Max Tokens",
+            "type": "integer"
+          },
+          "model": {
+            "title": "Model",
+            "type": "string"
+          },
+          "prompt": {
+            "title": "Prompt",
+            "type": "string"
+          },
+          "provider": {
+            "title": "Provider",
+            "type": "string"
+          },
+          "reasoning_effort": {
+            "title": "Reasoning Effort",
+            "type": "string"
+          },
+          "schema": {
+            "title": "Schema",
+            "type": "string"
+          },
+          "task": {
+            "enum": [
+              "narrative",
+              "interpretation"
+            ],
+            "title": "Task",
+            "type": "string"
+          }
+        },
+        "required": [
+          "provider",
+          "endpoint",
+          "model",
+          "reasoning_effort",
+          "max_tokens",
+          "prompt",
+          "schema",
+          "adapter",
+          "task"
+        ],
+        "title": "ProviderConfiguration",
+        "type": "object"
+      },
+      "ProviderUsage": {
+        "additionalProperties": false,
+        "properties": {
+          "cached_tokens": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Cached Tokens"
+          },
+          "completion_tokens": {
+            "title": "Completion Tokens",
+            "type": "integer"
+          },
+          "flags": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Flags",
+            "type": "array"
+          },
+          "prompt_tokens": {
+            "title": "Prompt Tokens",
+            "type": "integer"
+          },
+          "reasoning_tokens": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reasoning Tokens"
+          },
+          "total_tokens": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Total Tokens"
+          }
+        },
+        "required": [
+          "prompt_tokens",
+          "completion_tokens"
+        ],
+        "title": "ProviderUsage",
+        "type": "object"
+      },
+      "PublicSiteField": {
+        "properties": {
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "label": {
+            "title": "Label",
+            "type": "string"
+          },
+          "qualification": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Qualification"
+          },
+          "references": {
+            "items": {
+              "type": "string"
+            },
+            "title": "References",
+            "type": "array"
+          },
+          "section": {
+            "title": "Section",
+            "type": "string"
+          },
+          "source": {
+            "title": "Source",
+            "type": "string"
+          },
+          "value": {
+            "title": "Value"
+          }
+        },
+        "required": [
+          "section",
+          "id",
+          "label",
+          "source"
+        ],
+        "title": "PublicSiteField",
+        "type": "object"
+      },
+      "QuantityValue": {
+        "additionalProperties": false,
+        "properties": {
+          "amount": {
+            "title": "Amount",
+            "type": "string"
+          },
+          "unit": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Unit"
+          }
+        },
+        "required": [
+          "amount",
+          "unit"
+        ],
+        "title": "QuantityValue",
+        "type": "object"
+      },
       "Question": {
         "additionalProperties": false,
         "properties": {
@@ -1879,6 +3445,313 @@
           "statement"
         ],
         "title": "Question",
+        "type": "object"
+      },
+      "RegimenValue": {
+        "additionalProperties": false,
+        "properties": {
+          "last_dose_on": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Last Dose On"
+          },
+          "regimen_id": {
+            "title": "Regimen Id",
+            "type": "string"
+          },
+          "start_on": {
+            "title": "Start On",
+            "type": "string"
+          },
+          "state": {
+            "enum": [
+              "ongoing",
+              "completed"
+            ],
+            "title": "State",
+            "type": "string"
+          }
+        },
+        "required": [
+          "regimen_id",
+          "state",
+          "start_on",
+          "last_dose_on"
+        ],
+        "title": "RegimenValue",
+        "type": "object"
+      },
+      "RegistryCoverage": {
+        "properties": {
+          "error": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Error"
+          },
+          "exclusions": {
+            "items": {
+              "$ref": "#/components/schemas/EvidenceExclusion"
+            },
+            "title": "Exclusions",
+            "type": "array"
+          },
+          "matching_complete": {
+            "title": "Matching Complete",
+            "type": "boolean"
+          },
+          "pages_read": {
+            "title": "Pages Read",
+            "type": "integer"
+          },
+          "pagination_complete": {
+            "title": "Pagination Complete",
+            "type": "boolean"
+          },
+          "query": {
+            "title": "Query",
+            "type": "string"
+          },
+          "records_read": {
+            "title": "Records Read",
+            "type": "integer"
+          },
+          "total_returned_by_registry": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Total Returned By Registry"
+          },
+          "truncated": {
+            "title": "Truncated",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "query",
+          "total_returned_by_registry",
+          "records_read",
+          "pages_read",
+          "pagination_complete",
+          "matching_complete",
+          "truncated",
+          "exclusions"
+        ],
+        "title": "RegistryCoverage",
+        "type": "object"
+      },
+      "Report": {
+        "additionalProperties": false,
+        "description": "A job's JSON report (`kitsa/eligibility-lab-service-report/2`).",
+        "properties": {
+          "bundle": {
+            "$ref": "#/components/schemas/ReportBundle"
+          },
+          "configuration": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Configuration"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "configuration_sha256": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Configuration Sha256"
+          },
+          "costs": {
+            "$ref": "#/components/schemas/Costs"
+          },
+          "format": {
+            "const": "kitsa/eligibility-lab-service-report/2",
+            "title": "Format",
+            "type": "string"
+          },
+          "interpretation_set": {
+            "$ref": "#/components/schemas/InterpretationSet"
+          },
+          "job": {
+            "$ref": "#/components/schemas/Job"
+          },
+          "lineage": {
+            "items": {
+              "$ref": "#/components/schemas/LineageEntry"
+            },
+            "title": "Lineage",
+            "type": "array"
+          },
+          "lineage_job_id": {
+            "title": "Lineage Job Id",
+            "type": "string"
+          },
+          "metrics": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Metrics"
+          },
+          "mode": {
+            "$ref": "#/components/schemas/ReportMode"
+          },
+          "narrative_decisions": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/components/schemas/NarrativeDecision"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Narrative Decisions"
+          },
+          "narrative_source": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/NarrativeSourceView"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "provider_attempts": {
+            "items": {
+              "$ref": "#/components/schemas/ProviderAttempt"
+            },
+            "title": "Provider Attempts",
+            "type": "array"
+          },
+          "result": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Result"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "format",
+          "job",
+          "configuration",
+          "configuration_sha256",
+          "mode",
+          "bundle",
+          "interpretation_set",
+          "narrative_source",
+          "narrative_decisions",
+          "lineage_job_id",
+          "lineage",
+          "provider_attempts",
+          "costs",
+          "result",
+          "metrics"
+        ],
+        "title": "Report",
+        "type": "object"
+      },
+      "ReportBundle": {
+        "additionalProperties": false,
+        "properties": {
+          "audience": {
+            "const": "public",
+            "title": "Audience",
+            "type": "string"
+          },
+          "bundle_id": {
+            "title": "Bundle Id",
+            "type": "string"
+          },
+          "bundle_key": {
+            "title": "Bundle Key",
+            "type": "string"
+          },
+          "bundle_version": {
+            "title": "Bundle Version",
+            "type": "string"
+          },
+          "identities": {
+            "$ref": "#/components/schemas/Identities"
+          },
+          "installed_at": {
+            "title": "Installed At",
+            "type": "string"
+          },
+          "manifest_sha256": {
+            "title": "Manifest Sha256",
+            "type": "string"
+          }
+        },
+        "required": [
+          "bundle_key",
+          "bundle_id",
+          "bundle_version",
+          "manifest_sha256",
+          "identities",
+          "installed_at",
+          "audience"
+        ],
+        "title": "ReportBundle",
+        "type": "object"
+      },
+      "ReportMode": {
+        "additionalProperties": false,
+        "properties": {
+          "label": {
+            "title": "Label",
+            "type": "string"
+          },
+          "mode": {
+            "enum": [
+              "reference",
+              "recorded",
+              "live"
+            ],
+            "title": "Mode",
+            "type": "string"
+          }
+        },
+        "required": [
+          "mode",
+          "label"
+        ],
+        "title": "ReportMode",
         "type": "object"
       },
       "Result": {
@@ -2076,6 +3949,30 @@
           "item_ids"
         ],
         "title": "RetryRequest",
+        "type": "object"
+      },
+      "ReusedCosts": {
+        "additionalProperties": false,
+        "properties": {
+          "answers": {
+            "title": "Answers",
+            "type": "integer"
+          },
+          "source_attempts": {
+            "title": "Source Attempts",
+            "type": "integer"
+          },
+          "source_settled_microusd": {
+            "title": "Source Settled Microusd",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "answers",
+          "source_attempts",
+          "source_settled_microusd"
+        ],
+        "title": "ReusedCosts",
         "type": "object"
       },
       "Review": {
@@ -2591,6 +4488,675 @@
         "title": "Session",
         "type": "object"
       },
+      "SetMember": {
+        "additionalProperties": false,
+        "properties": {
+          "approved_by_review": {
+            "title": "Approved By Review",
+            "type": "string"
+          },
+          "criterion_id": {
+            "title": "Criterion Id",
+            "type": "string"
+          },
+          "interpretation": {
+            "additionalProperties": true,
+            "title": "Interpretation",
+            "type": "object"
+          },
+          "interpreter": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "title": "Interpreter",
+            "type": "object"
+          },
+          "origin": {
+            "enum": [
+              "reference",
+              "model",
+              "edit"
+            ],
+            "title": "Origin",
+            "type": "string"
+          },
+          "proposal_id": {
+            "title": "Proposal Id",
+            "type": "string"
+          },
+          "questions": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "title": "Questions",
+            "type": "object"
+          }
+        },
+        "required": [
+          "criterion_id",
+          "proposal_id",
+          "origin",
+          "interpreter",
+          "interpretation",
+          "questions",
+          "approved_by_review"
+        ],
+        "title": "SetMember",
+        "type": "object"
+      },
+      "SiteEvidence": {
+        "properties": {
+          "content_sha256": {
+            "title": "Content Sha256",
+            "type": "string"
+          },
+          "pin": {
+            "$ref": "#/components/schemas/SitePin"
+          },
+          "pool_id": {
+            "title": "Pool Id",
+            "type": "string"
+          },
+          "profile_error": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Profile Error"
+          },
+          "profile_fields": {
+            "items": {
+              "$ref": "#/components/schemas/PublicSiteField"
+            },
+            "title": "Profile Fields",
+            "type": "array"
+          },
+          "profile_modified_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Profile Modified At"
+          },
+          "profile_url": {
+            "title": "Profile Url",
+            "type": "string"
+          },
+          "registry": {
+            "$ref": "#/components/schemas/RegistryCoverage"
+          },
+          "retrieved_at": {
+            "title": "Retrieved At",
+            "type": "string"
+          },
+          "source_mode": {
+            "enum": [
+              "live",
+              "recorded"
+            ],
+            "title": "Source Mode",
+            "type": "string"
+          },
+          "sources": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Sources",
+            "type": "array"
+          },
+          "studies": {
+            "items": {
+              "$ref": "#/components/schemas/SiteStudy"
+            },
+            "title": "Studies",
+            "type": "array"
+          }
+        },
+        "required": [
+          "pool_id",
+          "pin",
+          "retrieved_at",
+          "source_mode",
+          "profile_url",
+          "profile_modified_at",
+          "profile_fields",
+          "profile_error",
+          "registry",
+          "studies",
+          "sources",
+          "content_sha256"
+        ],
+        "title": "SiteEvidence",
+        "type": "object"
+      },
+      "SitePin": {
+        "additionalProperties": false,
+        "properties": {
+          "campus_qualification": {
+            "default": "Exact facility name and city aliases identify this campus; uncertain matches are excluded.",
+            "title": "Campus Qualification",
+            "type": "string"
+          },
+          "city": {
+            "title": "City",
+            "type": "string"
+          },
+          "city_aliases": {
+            "items": {
+              "type": "string"
+            },
+            "title": "City Aliases",
+            "type": "array"
+          },
+          "country": {
+            "title": "Country",
+            "type": "string"
+          },
+          "country_aliases": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Country Aliases",
+            "type": "array"
+          },
+          "country_code": {
+            "title": "Country Code",
+            "type": "string"
+          },
+          "facility_aliases": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Facility Aliases",
+            "type": "array"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "registry_query": {
+            "title": "Registry Query",
+            "type": "string"
+          },
+          "site_id": {
+            "title": "Site Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "site_id",
+          "name",
+          "city",
+          "country",
+          "country_code",
+          "registry_query",
+          "facility_aliases",
+          "city_aliases",
+          "country_aliases"
+        ],
+        "title": "SitePin",
+        "type": "object"
+      },
+      "SiteStudy": {
+        "properties": {
+          "collaborators": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Collaborators",
+            "type": "array"
+          },
+          "completion_date": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Completion Date"
+          },
+          "conditions": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Conditions",
+            "type": "array"
+          },
+          "facility_status": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Facility Status"
+          },
+          "lead_sponsor": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Lead Sponsor"
+          },
+          "matched_facilities": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Matched Facilities",
+            "type": "array"
+          },
+          "maximum_age": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Maximum Age"
+          },
+          "minimum_age": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Minimum Age"
+          },
+          "overall_status": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Overall Status"
+          },
+          "start_date": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Start Date"
+          },
+          "status_source": {
+            "enum": [
+              "facility",
+              "study_proxy",
+              "unknown"
+            ],
+            "title": "Status Source",
+            "type": "string"
+          },
+          "study_type": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Study Type"
+          },
+          "title": {
+            "title": "Title",
+            "type": "string"
+          },
+          "trial_id": {
+            "title": "Trial Id",
+            "type": "string"
+          },
+          "updated_on": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Updated On"
+          },
+          "url": {
+            "title": "Url",
+            "type": "string"
+          }
+        },
+        "required": [
+          "trial_id",
+          "title",
+          "url",
+          "conditions",
+          "study_type",
+          "overall_status",
+          "facility_status",
+          "status_source",
+          "start_date",
+          "completion_date",
+          "updated_on",
+          "lead_sponsor",
+          "collaborators",
+          "minimum_age",
+          "maximum_age",
+          "matched_facilities"
+        ],
+        "title": "SiteStudy",
+        "type": "object"
+      },
+      "TraceItem": {
+        "additionalProperties": false,
+        "properties": {
+          "answer_attempt": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Answer Attempt"
+          },
+          "item_id": {
+            "title": "Item Id",
+            "type": "string"
+          },
+          "item_key": {
+            "title": "Item Key",
+            "type": "string"
+          },
+          "kind": {
+            "enum": [
+              "narrative",
+              "interpretation"
+            ],
+            "title": "Kind",
+            "type": "string"
+          },
+          "outcome": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Outcome"
+          },
+          "position": {
+            "title": "Position",
+            "type": "integer"
+          },
+          "retry_of": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Retry Of"
+          },
+          "state": {
+            "enum": [
+              "pending",
+              "dispatched",
+              "answered",
+              "failed",
+              "ambiguous",
+              "skipped"
+            ],
+            "title": "State",
+            "type": "string"
+          }
+        },
+        "required": [
+          "item_id",
+          "position",
+          "kind",
+          "item_key",
+          "state",
+          "outcome",
+          "retry_of",
+          "answer_attempt"
+        ],
+        "title": "TraceItem",
+        "type": "object"
+      },
+      "TraceMessage": {
+        "additionalProperties": false,
+        "properties": {
+          "content": {
+            "title": "Content",
+            "type": "string"
+          },
+          "role": {
+            "enum": [
+              "system",
+              "user"
+            ],
+            "title": "Role",
+            "type": "string"
+          }
+        },
+        "required": [
+          "role",
+          "content"
+        ],
+        "title": "TraceMessage",
+        "type": "object"
+      },
+      "TraceRequest": {
+        "additionalProperties": false,
+        "description": "The retained request body; credentials and headers are never part of it.",
+        "properties": {
+          "body_bytes": {
+            "title": "Body Bytes",
+            "type": "integer"
+          },
+          "max_tokens": {
+            "title": "Max Tokens",
+            "type": "integer"
+          },
+          "messages": {
+            "items": {
+              "$ref": "#/components/schemas/TraceMessage"
+            },
+            "title": "Messages",
+            "type": "array"
+          },
+          "model": {
+            "title": "Model",
+            "type": "string"
+          },
+          "reasoning_effort": {
+            "title": "Reasoning Effort",
+            "type": "string"
+          },
+          "request_sha256": {
+            "title": "Request Sha256",
+            "type": "string"
+          },
+          "response_format": {
+            "additionalProperties": true,
+            "title": "Response Format",
+            "type": "object"
+          },
+          "store": {
+            "title": "Store",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "request_sha256",
+          "body_bytes",
+          "model",
+          "reasoning_effort",
+          "max_tokens",
+          "store",
+          "messages",
+          "response_format"
+        ],
+        "title": "TraceRequest",
+        "type": "object"
+      },
+      "TraceResponse": {
+        "additionalProperties": false,
+        "description": "The reply's final assistant message content; no other part of the response body and no header.",
+        "properties": {
+          "content": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Content"
+          },
+          "finish_reason": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Finish Reason"
+          },
+          "http_status": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Http Status"
+          },
+          "model": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Model"
+          },
+          "response_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Response Id"
+          },
+          "response_sha256": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Response Sha256"
+          }
+        },
+        "required": [
+          "http_status",
+          "response_id",
+          "response_sha256",
+          "model",
+          "finish_reason",
+          "content"
+        ],
+        "title": "TraceResponse",
+        "type": "object"
+      },
+      "TraceValidation": {
+        "additionalProperties": false,
+        "properties": {
+          "code": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Code"
+          },
+          "detail": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Detail"
+          },
+          "late": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Late"
+          }
+        },
+        "required": [
+          "code",
+          "detail",
+          "late"
+        ],
+        "title": "TraceValidation",
+        "type": "object"
+      },
       "ValidationError": {
         "properties": {
           "ctx": {
@@ -2629,6 +5195,85 @@
           "type"
         ],
         "title": "ValidationError",
+        "type": "object"
+      },
+      "VisibleSource": {
+        "additionalProperties": false,
+        "properties": {
+          "attempt_id": {
+            "title": "Attempt Id",
+            "type": "string"
+          },
+          "charged_microusd": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Charged Microusd"
+          },
+          "configuration_sha256": {
+            "title": "Configuration Sha256",
+            "type": "string"
+          },
+          "incurred_by_this_job": {
+            "title": "Incurred By This Job",
+            "type": "boolean"
+          },
+          "job_id": {
+            "title": "Job Id",
+            "type": "string"
+          },
+          "kind": {
+            "enum": [
+              "direct",
+              "cache",
+              "replay"
+            ],
+            "title": "Kind",
+            "type": "string"
+          },
+          "request_sha256": {
+            "title": "Request Sha256",
+            "type": "string"
+          },
+          "response_sha256": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Response Sha256"
+          },
+          "transport": {
+            "title": "Transport",
+            "type": "string"
+          },
+          "visible": {
+            "const": true,
+            "title": "Visible",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "kind",
+          "visible",
+          "job_id",
+          "attempt_id",
+          "transport",
+          "request_sha256",
+          "response_sha256",
+          "configuration_sha256",
+          "charged_microusd",
+          "incurred_by_this_job"
+        ],
+        "title": "VisibleSource",
         "type": "object"
       },
       "Waterfall": {
@@ -2700,7 +5345,7 @@
   "info": {
     "description": "Local Eligibility Lab service: installed synthetic bundles, reviewed interpretations, durable jobs, comparisons and exports. Loopback only.",
     "title": "Eligibility Lab",
-    "version": "0.2.5"
+    "version": "0.2.8"
   },
   "openapi": "3.1.0",
   "paths": {
@@ -2796,6 +5441,87 @@
           }
         },
         "summary": "Bundle",
+        "tags": [
+          "bundles"
+        ]
+      }
+    },
+    "/v1/bundles/{bundle_key}/patients/{patient_id}": {
+      "get": {
+        "operationId": "patient_v1_bundles__bundle_key__patients__patient_id__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "bundle_key",
+            "required": true,
+            "schema": {
+              "title": "Bundle Key",
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "patient_id",
+            "required": true,
+            "schema": {
+              "title": "Patient Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PatientRecord"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          }
+        },
+        "summary": "Patient",
         "tags": [
           "bundles"
         ]
@@ -3407,6 +6133,87 @@
         ]
       }
     },
+    "/v1/jobs/{job_id}/items/{item_id}/trace": {
+      "get": {
+        "operationId": "item_trace_v1_jobs__job_id__items__item_id__trace_get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "job_id",
+            "required": true,
+            "schema": {
+              "title": "Job Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "item_id",
+            "required": true,
+            "schema": {
+              "title": "Item Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ItemTrace"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          }
+        },
+        "summary": "Item Trace",
+        "tags": [
+          "jobs"
+        ]
+      }
+    },
     "/v1/jobs/{job_id}/matrix.csv": {
       "get": {
         "operationId": "matrix_v1_jobs__job_id__matrix_csv_get",
@@ -3498,9 +6305,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "additionalProperties": true,
-                  "title": "Response Report V1 Jobs  Job Id  Report Json Get",
-                  "type": "object"
+                  "$ref": "#/components/schemas/Report"
                 }
               }
             },
@@ -4026,6 +6831,78 @@
         "summary": "Session",
         "tags": [
           "session"
+        ]
+      }
+    },
+    "/v1/sites/{site_id}/evidence": {
+      "get": {
+        "operationId": "site_evidence_v1_sites__site_id__evidence_get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "site_id",
+            "required": true,
+            "schema": {
+              "title": "Site Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SiteEvidence"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          }
+        },
+        "summary": "Site Evidence",
+        "tags": [
+          "sites"
         ]
       }
     }

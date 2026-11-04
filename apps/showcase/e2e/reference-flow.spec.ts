@@ -27,8 +27,8 @@ test("reference workflow: review, baseline, scenarios, comparison, export and re
   const bundles = await (await request.get("/v1/bundles")).json();
   expect(bundles.map((b: { bundle_key: string }) => b.bundle_key)).toEqual(["elx-nsclc-01-demonstration@1.0.1"]);
 
-  await page.goto("/");
-  await expect(page.getByRole("heading", { level: 1 })).toHaveText("Simulate who qualifies, and what a change would do");
+  await page.goto("/?view=explore");
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText("Review eligibility decisions and compare protocol changes.");
   await expect(page.getByText("100 synthetic patients")).toBeVisible();
   await expect(page.locator(".showcase__bar .elab-mode")).toHaveText("Reference answers");
   await expect(page.getByRole("radio", { name: /Recorded model/ })).toBeDisabled();

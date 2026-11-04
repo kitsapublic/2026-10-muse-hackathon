@@ -76,8 +76,29 @@ describe("eligibility lab client", () => {
     expect(calls.filter((c) => c.method === "POST").length).toBe(2);
   });
 
+  it("reads patients, site evidence, item traces and typed reports at their encoded paths", async () => {
+    const { calls, client } = fakeService(() => json({}));
+    await client.getPatient("elx@1.0.1", "ELX-D-011");
+    await client.getItemTrace("job-2", "job-1.7");
+    await client.getReport("job-2");
+    expect(calls.map((c) => [c.method, new URL(c.url).pathname])).toEqual([
+      ["GET", "/v1/bundles/elx%401.0.1/patients/ELX-D-011"],
+      ["GET", "/v1/jobs/job-2/items/job-1.7/trace"],
+      ["GET", "/v1/jobs/job-2/report.json"],
+    ]);
+    expect(calls.every((c) => c.headers.get(ACTION_HEADER) === null)).toBe(true);
+  });
+
   it("builds same-origin download links", () => {
     const { client } = fakeService(() => json({}));
     expect(client.downloads("job-1").matrix).toBe("http://127.0.0.1:8765/v1/jobs/job-1/matrix.csv");
   });
+});
+
+it("reads site evidence without an action token or request body",async()=>{
+  const {calls,client}=fakeService(()=>json({pool_id:"pool"}));
+  await client.getSiteEvidence("site@1");
+  expect(calls).toHaveLength(1);expect(calls[0]!.method).toBe("GET");
+  expect(calls[0]!.url).toBe("http://127.0.0.1:8765/v1/sites/site%401/evidence");
+  expect(calls[0]!.body).toBe("");expect(calls[0]!.headers.get(ACTION_HEADER)).toBeNull();
 });

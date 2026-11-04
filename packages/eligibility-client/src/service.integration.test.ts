@@ -56,5 +56,15 @@ describe.skipIf(!url)("generated client against the running service", () => {
     expect(comparison.comparison.baseline.run_id).toBe(baseline.result?.run_id);
     const matrix = await fetch(client.downloads(baseline.job_id).matrix);
     expect(matrix.headers.get("content-type")).toContain("text/csv");
+    const patient = await client.getPatient(bundle!.bundle_key, "ELX-D-011");
+    expect(patient.notes.map((n) => n.note_id)).toEqual(["ELX-D-011-N01", "ELX-D-011-N02"]);
+    expect(patient.evidence.every((e) => e.provenance.source_kind === "structured")).toBe(true);
+    const report = await client.getReport(scenario.job_id);
+    expect(report.format).toBe("kitsa/eligibility-lab-service-report/2");
+    expect(report.lineage_job_id).toBe(baseline.job_id);
+    expect(report.costs.this_job.requests).toBe(0);
+    const missing = await client.getItemTrace(baseline.job_id, `${baseline.job_id}.0`).catch((error: unknown) => error);
+    expect(missing).toBeInstanceOf(EligibilityLabError);
+    expect((missing as EligibilityLabError).code).toBe("item_not_found");
   });
 });

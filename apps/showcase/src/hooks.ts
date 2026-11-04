@@ -16,16 +16,19 @@ export function useLoad<T>(load: (signal: AbortSignal) => Promise<T> | null, dep
   const [state, setState] = useState<{ data: T | null; error: unknown; loading: boolean }>({
     data: null, error: null, loading: false,
   });
+  const [loadedFor, setLoadedFor] = useState<readonly unknown[]>([]);
   const [version, setVersion] = useState(0);
   useEffect(() => {
     const controller = new AbortController();
     let active = true;
     const pending = load(controller.signal);
+    setLoadedFor(deps);
     if (pending === null) {
       setState({ data: null, error: null, loading: false });
       return () => controller.abort();
     }
-    setState((previous) => ({ ...previous, loading: true, error: null }));
+    const same = loadedFor.length === deps.length && loadedFor.every((value, index) => Object.is(value, deps[index]));
+    setState((previous) => ({ data: same ? previous.data : null, loading: true, error: null }));
     pending.then(
       (data) => active && setState({ data, error: null, loading: false }),
       (error: unknown) => active && setState({ data: null, error, loading: false }),
@@ -37,7 +40,8 @@ export function useLoad<T>(load: (signal: AbortSignal) => Promise<T> | null, dep
     // `load` is recreated every render; `deps` name what it depends on.
   }, [...deps, version]);
   const reload = useCallback(() => setVersion((v) => v + 1), []);
-  return { ...state, reload };
+  const matches = loadedFor.length === deps.length && loadedFor.every((value, index) => Object.is(value, deps[index]));
+  return { ...(matches ? state : { data: null, error: null, loading: true }), reload };
 }
 
 /** Polls a job until it ends. Polls for a job that is no longer selected are cancelled and their answers ignored. */
@@ -81,12 +85,17 @@ export interface UrlState {
   baseline: string | null;
   scenario: string | null;
   interpretation: string | null;
+  scene: string | null;
+  patient: string | null;
+  view: string | null;
+  mode: string | null;
 }
 
 function readUrl(): UrlState {
   const params = new URLSearchParams(window.location.search);
   return { bundle: params.get("bundle"), baseline: params.get("baseline"), scenario: params.get("scenario"),
-           interpretation: params.get("interpretation") };
+           interpretation: params.get("interpretation"), scene: params.get("scene"), patient: params.get("patient"),
+           view: params.get("view"), mode: params.get("mode") };
 }
 
 /** The selected bundle, baseline and scenario live in the address, so a reload resumes the same view. */
@@ -98,14 +107,13 @@ export function useUrlState(): [UrlState, (patch: Partial<UrlState>) => void] {
     return () => window.removeEventListener("popstate", restore);
   }, []);
   const update = useCallback((patch: Partial<UrlState>) => {
-    setState((previous) => {
-      const next = { ...previous, ...patch };
-      const params = new URLSearchParams();
-      for (const [key, value] of Object.entries(next)) if (value) params.set(key, value);
-      const query = params.toString();
-      window.history.pushState(null, "", query ? `?${query}` : window.location.pathname);
-      return next;
-    });
+    const next = { ...readUrl(), ...patch };
+    const params = new URLSearchParams();
+    for (const [key, value] of Object.entries(next)) if (value) params.set(key, value);
+    const query = params.toString();
+    const target = query ? `?${query}` : window.location.pathname;
+    if (window.location.search !== (query ? `?${query}` : "")) window.history.pushState(null, "", target);
+    setState(next);
   }, []);
   return [state, update];
 }

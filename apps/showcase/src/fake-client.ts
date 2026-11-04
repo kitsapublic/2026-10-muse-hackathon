@@ -149,9 +149,11 @@ export function fakeClient(overrides: Partial<EligibilityLabClient> = {}) {
     results.set(jobId, { job: done, result: baseResult });
   };
   const client: EligibilityLabClient = {
+    getSiteEvidence: async () => { throw new Error("No live site source in this test"); },
     session: async () => session,
     listBundles: async () => [bundle],
     getBundle: async () => bundle,
+    getPatient: async () => { throw new EligibilityLabError("patient_not_found", "no patient has that identity", 404); },
     listProposals: async () => proposals.map((p) => ({ ...p })),
     review: async (proposalId, decision) => {
       const target = proposals.find((p) => p.proposal_id === proposalId)!;
@@ -182,6 +184,7 @@ export function fakeClient(overrides: Partial<EligibilityLabClient> = {}) {
       return found;
     },
     listItems: async () => [],
+    getItemTrace: async () => { throw new EligibilityLabError("item_not_found", "no work item has that identity", 404); },
     cancelJob: async (jobId) => jobs.get(jobId)!,
     resumeJob: async (jobId) => jobs.get(jobId)!,
     retryItems: async (jobId) => jobs.get(jobId)!,
@@ -190,7 +193,11 @@ export function fakeClient(overrides: Partial<EligibilityLabClient> = {}) {
       if (!found) throw new EligibilityLabError("result_not_ready", "no result", 409);
       return found;
     },
-    getComparison: async (jobId) => comparisonFor(jobId, 3),
+    getComparison: async (jobId) => {
+      const actual = jobs.get(jobId)!;
+      return { ...comparisonFor(jobId, 3), job: actual, baseline_job_id: actual.baseline_job_id! };
+    },
+    getReport: async () => { throw new Error("not used"); },
     ledger: async () => [],
     downloads: (jobId) => ({ report: `/v1/jobs/${jobId}/report.json`, matrix: `/v1/jobs/${jobId}/matrix.csv`,
                              comparison: `/v1/jobs/${jobId}/comparison.csv` }),

@@ -1,5 +1,3 @@
-import "@fontsource-variable/atkinson-hyperlegible-next";
-import "@fontsource-variable/source-serif-4";
 import "@kitsa/eligibility-ui/styles.css";
 import "./app.css";
 import { createEligibilityLabClient } from "@kitsa/eligibility-lab-client";

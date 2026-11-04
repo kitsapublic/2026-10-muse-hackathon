@@ -1,4 +1,4 @@
-# Eligibility Lab local demonstration
+# Simulate Clinical Trials local demonstration
 
 This package contains one engine wheel, its hash-locked runtime dependencies, the built showcase, the generated API client and React component packages, the public synthetic demonstration fixture, and the genuine Muse narrative responses from its completed live baseline. It has no private evaluation cohort, model weights, application credentials or real patient data. Licensing and event compliance remain separate release gates.
 
@@ -16,12 +16,14 @@ Open http://127.0.0.1:8765/. The service binds to loopback. Stop with Control-C;
 
 ## Demonstration sequence
 
-1. Read the invented protocol and the fixed evaluation date, 27 October 2026.
-2. Inspect the ten criteria and their retained reference approvals. Select **Recorded model**; you can also select **Reference** to compare authored answers.
-3. Run the baseline: 19 meet every criterion, 57 fail, 24 remain unresolved, out of 100.
-4. Raise the upper age limit from 75 to 80: 29 pass. Increase prior regimens from 2 to 3: 23 pass.
-5. Apply both changes: 37 pass. The gains overlap; the engine recalculates every scenario.
-6. Inspect the waterfall, criterion impact, changed patients and JSON/CSV exports. Missing evidence stays unresolved.
+1. Introduce the protocol-writing problem and the draft NSCLC eligibility criteria. Treat the 100 synthetic EHRs as a representative population sample for the demonstration.
+2. Read Patient 011's structured and unstructured EHR evidence. She is 78 with three prior systemic regimens: both draft thresholds exclude her. The before-and-after table shows why ages 18–80 and up to three regimens would let her qualify. Inspect Muse's cited clinical-note evidence alongside the structured facts.
+3. Evaluate the draft criteria in **Recorded model** mode. The cumulative waterfall shows how 100 patients narrow to 19 eligible, 57 excluded and 24 unresolved.
+4. Optimize the eligibility thresholds: upper age 75 → 80 gives 29 eligible; prior regimens 2 → 3 gives 23; both give 37. Patient 011 qualifies only after both changes.
+5. Compare the draft and selected scenario waterfalls side by side. Both use the same population and scale, with changed thresholds highlighted. Inspect the patient-level evidence behind any change.
+6. Export the proposed criteria, run identities and unresolved evidence for protocol review. **Explore the lab** opens full criterion review, adjustable thresholds and JSON/CSV exports.
+
+The visual design follows Muse's public browser interface. The Muse mark beside the model attribution comes from https://muse.ai/images/landing/brand/muse-logo.svg; the application is Simulate Clinical Trials. System fonts are used throughout.
 
 The fixture is engineering material, not a clinical recommendation or validation. Reference answers are labelled as authored material. Recorded model revalidates all 391 genuine responses from 28 October 2026 against their exact notes, questions and provider configuration, then executes the current engine. The original live result/evaluator stays historical; the new recorded run has its own identity. The imported source ledger contains only the demonstration baseline, with spending disabled and limits exhausted; it is not the full benchmark ledger. Live mode is never enabled by this launcher. The benchmark report describes measured model quality separately from engine correctness.
 

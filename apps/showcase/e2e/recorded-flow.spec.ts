@@ -10,7 +10,7 @@ test("portable Muse recordings: baseline, scenarios, lineage, exports and reload
   expect(session.modes.live.available).toBe(false);
   const bundles = await (await request.get("/v1/bundles")).json();
   expect(bundles.map((b: { bundle_key: string }) => b.bundle_key)).toEqual(["elx-nsclc-01-demonstration@1.0.1"]);
-  await page.goto("/");
+  await page.goto("/?view=explore");
   await expect(page.getByText("10 of 10 interpretations approved")).toBeVisible();
   await expect(page.getByRole("radio", { name: /Live model/ })).toBeDisabled();
   await page.getByRole("radio", { name: /Recorded model/ }).check();

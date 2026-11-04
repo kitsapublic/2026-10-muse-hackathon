@@ -3,7 +3,7 @@ import { expect, test } from "@playwright/test";
 test.skip(process.env.ELIGIBILITY_LAB_SYNTHETIC_BROWSER !== "1", "requires the synthetic provider fixture");
 
 test("synthetic model job: consent, cancellation, reload, resume, explicit retry and interpretation review", async ({ page, request }) => {
-  await page.goto("/");
+  await page.goto("/?view=explore");
   await page.getByRole("button", { name: "Approve all shown" }).click();
   await expect(page.getByText("4 of 4 interpretations approved")).toBeVisible();
   await page.getByRole("radio", { name: /Live model/ }).check();

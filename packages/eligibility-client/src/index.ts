@@ -34,6 +34,17 @@ export type JobComparison = Schemas["JobComparison"];
 export type Comparison = Schemas["Comparison"];
 export type EditSpec = Schemas["EditSpec"];
 export type Experiment = Schemas["Experiment"];
+export type PatientRecord = Schemas["PatientRecord"];
+export type EvidenceRecord = Schemas["EvidenceRecord"];
+export type NoteRecord = Schemas["NoteRecord"];
+export type ItemTrace = Schemas["ItemTrace"];
+export type AttemptTrace = Schemas["AttemptTrace"];
+export type AnswerSource = Schemas["AnswerSource"];
+export type Report = Schemas["Report"];
+export type SiteEvidence = Schemas["SiteEvidence"];
+export type SiteStudy = Schemas["SiteStudy"];
+export type LineageEntry = Schemas["LineageEntry"];
+export type ProviderAttempt = Schemas["ProviderAttempt"];
 export type BaselineJobRequest = Schemas["BaselineJobRequest"];
 export type ScenarioJobRequest = Schemas["ScenarioJobRequest"];
 export type InterpretationJobRequest = Schemas["InterpretationJobRequest"];
@@ -117,8 +128,17 @@ export function createEligibilityLabClient(options: ClientOptions = {}) {
   return {
     session: loadSession,
     listBundles: () => unwrap(api.GET("/v1/bundles")),
+    getSiteEvidence: (siteId: string, signal?: AbortSignal) =>
+      unwrap(api.GET("/v1/sites/{site_id}/evidence", { params: { path: { site_id: siteId } }, signal })),
     getBundle: (bundleKey: string) =>
       unwrap(api.GET("/v1/bundles/{bundle_key}", { params: { path: { bundle_key: bundleKey } } })),
+    /** One synthetic patient of an installed public bundle: typed evidence and dated notes. */
+    getPatient: (bundleKey: string, patientId: string) =>
+      unwrap(
+        api.GET("/v1/bundles/{bundle_key}/patients/{patient_id}", {
+          params: { path: { bundle_key: bundleKey, patient_id: patientId } },
+        }),
+      ),
     listProposals: (bundleKey: string) =>
       unwrap(api.GET("/v1/bundles/{bundle_key}/proposals", { params: { path: { bundle_key: bundleKey } } })),
     review: (proposalId: string, decision: "approved" | "rejected") =>
@@ -151,6 +171,17 @@ export function createEligibilityLabClient(options: ClientOptions = {}) {
     getJob: (jobId: string, signal?: AbortSignal) =>
       unwrap(api.GET("/v1/jobs/{job_id}", { params: { path: { job_id: jobId } }, ...(signal ? { signal } : {}) })),
     listItems: (jobId: string) => unwrap(api.GET("/v1/jobs/{job_id}/items", { params: { path: { job_id: jobId } } })),
+    /**
+     * The trace of one work item: its input, its attempts and the attempt whose answer it accepted. A scenario's items
+     * are its baseline's: name the scenario job with one of its baseline's item ids.
+     */
+    getItemTrace: (jobId: string, itemId: string, signal?: AbortSignal) =>
+      unwrap(
+        api.GET("/v1/jobs/{job_id}/items/{item_id}/trace", {
+          params: { path: { job_id: jobId, item_id: itemId } },
+          ...(signal ? { signal } : {}),
+        }),
+      ),
     cancelJob: (jobId: string) =>
       change((value) =>
         api.POST("/v1/jobs/{job_id}/cancel", { params: { path: { job_id: jobId } }, headers: token(value) }),
@@ -177,6 +208,11 @@ export function createEligibilityLabClient(options: ClientOptions = {}) {
           params: { path: { job_id: jobId } },
           ...(signal ? { signal } : {}),
         }),
+      ),
+    /** The job's typed JSON report, the same document `downloads(jobId).report` serves as an attachment. */
+    getReport: (jobId: string, signal?: AbortSignal) =>
+      unwrap(
+        api.GET("/v1/jobs/{job_id}/report.json", { params: { path: { job_id: jobId } }, ...(signal ? { signal } : {}) }),
       ),
     ledger: () => unwrap(api.GET("/v1/ledger")),
     downloads: (jobId: string): Downloads => {

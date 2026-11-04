@@ -38,6 +38,23 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/bundles/{bundle_key}/patients/{patient_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Patient */
+        get: operations["patient_v1_bundles__bundle_key__patients__patient_id__get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/bundles/{bundle_key}/proposals": {
         parameters: {
             query?: never;
@@ -150,6 +167,23 @@ export interface paths {
         };
         /** Items */
         get: operations["items_v1_jobs__job_id__items_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/jobs/{job_id}/items/{item_id}/trace": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Item Trace */
+        get: operations["item_trace_v1_jobs__job_id__items__item_id__trace_get"];
         put?: never;
         post?: never;
         delete?: never;
@@ -311,10 +345,120 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/sites/{site_id}/evidence": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Site Evidence */
+        get: operations["site_evidence_v1_sites__site_id__evidence_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
 }
 export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
+        /** Accounting */
+        Accounting: {
+            /** Pricing */
+            pricing: {
+                [key: string]: number;
+            };
+            /** Template Allowance Tokens */
+            template_allowance_tokens: number;
+        };
+        /** AnswerSource */
+        AnswerSource: {
+            /** Attempt Id */
+            attempt_id: string | null;
+            /** Incurred By This Job */
+            incurred_by_this_job: boolean | null;
+            /** Job Id */
+            job_id: string | null;
+            /**
+             * Kind
+             * @enum {string}
+             */
+            kind: "direct" | "cache" | "replay";
+            /** Visible */
+            visible: boolean;
+        };
+        /** AttemptCost */
+        AttemptCost: {
+            /** Charged Microusd */
+            charged_microusd: number | null;
+            /** Incurred By This Job */
+            incurred_by_this_job: boolean;
+            /**
+             * Reservation
+             * @enum {string}
+             */
+            reservation: "held" | "settled" | "released";
+            /** Reserved Microusd */
+            reserved_microusd: number;
+        };
+        /** AttemptOutcome */
+        AttemptOutcome: {
+            /** Attempt Id */
+            attempt_id?: string | null;
+            /** Code */
+            code: string;
+            /** Detail */
+            detail: string;
+            /** Late */
+            late?: boolean | null;
+        };
+        /** AttemptTrace */
+        AttemptTrace: {
+            /** Accepted */
+            accepted: boolean;
+            /** Answer */
+            answer: components["schemas"]["NarrativeAnswer"] | components["schemas"]["InterpretationAnswer"] | null;
+            /** Attempt Id */
+            attempt_id: string;
+            /** Completed At */
+            completed_at: string | null;
+            /** Configuration */
+            configuration: {
+                [key: string]: unknown;
+            };
+            /** Configuration Sha256 */
+            configuration_sha256: string;
+            cost: components["schemas"]["AttemptCost"];
+            /** Dispatched At */
+            dispatched_at: string;
+            /** Generation */
+            generation: number;
+            /** Job Id */
+            job_id: string;
+            /** Latency Ms */
+            latency_ms: number | null;
+            /** Model */
+            model: string;
+            /** Provider */
+            provider: string;
+            request: components["schemas"]["TraceRequest"];
+            response: components["schemas"]["TraceResponse"] | null;
+            /** Retry Of */
+            retry_of: string | null;
+            /**
+             * State
+             * @enum {string}
+             */
+            state: "dispatched" | "completed" | "failed" | "ambiguous" | "not_sent";
+            /** Transport */
+            transport: string;
+            usage: components["schemas"]["ProviderUsage"] | null;
+            validation: components["schemas"]["TraceValidation"] | null;
+        };
         /** BaselineJobRequest */
         BaselineJobRequest: {
             /** Bundle Key */
@@ -487,6 +631,24 @@ export interface components {
                 [key: string]: components["schemas"]["GroupSummary"];
             };
         };
+        /** Configuration */
+        Configuration: {
+            accounting: components["schemas"]["Accounting"] | null;
+            /** Evaluator */
+            evaluator: {
+                [key: string]: string;
+            };
+            /** Format */
+            format: string;
+            provider: components["schemas"]["ProviderConfiguration"] | null;
+            /** Transport */
+            transport: string | null;
+        };
+        /** Costs */
+        Costs: {
+            reused: components["schemas"]["ReusedCosts"];
+            this_job: components["schemas"]["JobCosts"];
+        };
         /** Counts */
         Counts: {
             /** Failing */
@@ -621,6 +783,47 @@ export interface components {
             /** Problems */
             problems: string[];
         };
+        /** EvidenceExclusion */
+        EvidenceExclusion: {
+            /** Facilities */
+            facilities: string[];
+            /**
+             * Reason
+             * @enum {string}
+             */
+            reason: "ambiguous_facility" | "other_campus" | "invalid_record";
+            /** Trial Id */
+            trial_id: string;
+        };
+        /** EvidenceProvenance */
+        EvidenceProvenance: {
+            /** Origin */
+            origin: string;
+            /**
+             * Source Kind
+             * @constant
+             */
+            source_kind: "structured";
+        };
+        /** EvidenceRecord */
+        EvidenceRecord: {
+            /** Concept */
+            concept: string;
+            /** Encounter Id */
+            encounter_id: string | null;
+            /** Evidence Id */
+            evidence_id: string;
+            /** Observed On */
+            observed_on: string;
+            provenance: components["schemas"]["EvidenceProvenance"];
+            /**
+             * Status
+             * @enum {string}
+             */
+            status: "final" | "entered_in_error";
+            /** Value */
+            value: number | string | components["schemas"]["QuantityValue"] | components["schemas"]["RegimenValue"];
+        };
         /** Experiment */
         Experiment: {
             /** Ambiguous Requests */
@@ -674,6 +877,22 @@ export interface components {
             /** Detail */
             detail?: components["schemas"]["ValidationError"][];
         };
+        /**
+         * HiddenSource
+         * @description An answer source outside the reader's audiences: named only by its kind.
+         */
+        HiddenSource: {
+            /**
+             * Kind
+             * @enum {string}
+             */
+            kind: "direct" | "cache" | "replay";
+            /**
+             * Visible
+             * @constant
+             */
+            visible: false;
+        };
         /** Identities */
         Identities: {
             /** Cohort */
@@ -704,6 +923,23 @@ export interface components {
             /** Passing If Waived */
             passing_if_waived: number;
         };
+        /** InterpretationAnswer */
+        InterpretationAnswer: {
+            /** Interpretation */
+            interpretation: {
+                [key: string]: unknown;
+            };
+            /** Questions */
+            questions: components["schemas"]["InterpretationQuestion"][];
+        };
+        /** InterpretationItemInput */
+        InterpretationItemInput: {
+            /** Conventions */
+            conventions: string[];
+            criterion: components["schemas"]["CriterionPin"];
+            /** Parameter Names */
+            parameter_names: string[];
+        };
         /** InterpretationJobRequest */
         InterpretationJobRequest: {
             /** Bundle Key */
@@ -727,6 +963,20 @@ export interface components {
              * @default false
              */
             retry: boolean;
+        };
+        /** InterpretationQuestion */
+        InterpretationQuestion: {
+            /** Question Id */
+            question_id: string;
+            /** Statement */
+            statement: string;
+        };
+        /** InterpretationSet */
+        InterpretationSet: {
+            /** Members */
+            members: components["schemas"]["SetMember"][];
+            /** Set Id */
+            set_id: string | null;
         };
         /** Item */
         Item: {
@@ -756,6 +1006,44 @@ export interface components {
              * @enum {string}
              */
             state: "pending" | "dispatched" | "answered" | "failed" | "ambiguous" | "skipped";
+        };
+        /**
+         * ItemTrace
+         * @description One work item of a job (a scenario's are its baseline's): its input, the attempts it sent and the attempt whose
+         *     answer it accepted, wherever that was sent.
+         */
+        ItemTrace: {
+            answer_attempt: components["schemas"]["AttemptTrace"] | null;
+            answer_source: components["schemas"]["AnswerSource"] | null;
+            /** Attempts */
+            attempts: components["schemas"]["AttemptTrace"][];
+            /** Available */
+            available: boolean;
+            /** Decision Id */
+            decision_id: string | null;
+            interpretation_input: components["schemas"]["InterpretationItemInput"] | null;
+            item: components["schemas"]["TraceItem"];
+            /** Job Configuration Sha256 */
+            job_configuration_sha256: string | null;
+            /** Job Id */
+            job_id: string;
+            /**
+             * Job Kind
+             * @enum {string}
+             */
+            job_kind: "baseline" | "scenario" | "interpretation";
+            /**
+             * Job Mode
+             * @enum {string}
+             */
+            job_mode: "reference" | "recorded" | "live";
+            /** Lineage Job Id */
+            lineage_job_id: string;
+            narrative_input: components["schemas"]["NarrativeItemInput"] | null;
+            /** Proposal Id */
+            proposal_id: string | null;
+            /** Unavailable Reason */
+            unavailable_reason: string | null;
         };
         /** Job */
         Job: {
@@ -814,6 +1102,15 @@ export interface components {
             comparison: components["schemas"]["Comparison"];
             job: components["schemas"]["Job"];
         };
+        /** JobCosts */
+        JobCosts: {
+            /** Held Microusd */
+            held_microusd: number;
+            /** Requests */
+            requests: number;
+            /** Settled Microusd */
+            settled_microusd: number;
+        };
         /** JobError */
         JobError: {
             /** Code */
@@ -827,6 +1124,31 @@ export interface components {
         JobResult: {
             job: components["schemas"]["Job"];
             result: components["schemas"]["Result"];
+        };
+        /** LineageEntry */
+        LineageEntry: {
+            /** Decision Id */
+            decision_id: string | null;
+            /** Item Id */
+            item_id: string;
+            /** Item Key */
+            item_key: string;
+            /**
+             * Kind
+             * @enum {string}
+             */
+            kind: "narrative" | "interpretation";
+            /** Outcome */
+            outcome: string | null;
+            /** Proposal Id */
+            proposal_id: string | null;
+            /** Source */
+            source: components["schemas"]["VisibleSource"] | components["schemas"]["HiddenSource"] | null;
+            /**
+             * State
+             * @enum {string}
+             */
+            state: "pending" | "dispatched" | "answered" | "failed" | "ambiguous" | "skipped";
         };
         /** ModeState */
         ModeState: {
@@ -845,6 +1167,61 @@ export interface components {
             recorded: components["schemas"]["ModeState"];
             reference: components["schemas"]["ModeState"];
         };
+        /** NarrativeAnswer */
+        NarrativeAnswer: {
+            /** Reason */
+            reason: ("insufficient_evidence" | "conflicting_evidence" | "model_abstention") | null;
+            /** Supporting Note Ids */
+            supporting_note_ids: string[];
+            /**
+             * Value
+             * @enum {string}
+             */
+            value: "yes" | "no" | "undetermined";
+        };
+        /** NarrativeDecision */
+        NarrativeDecision: {
+            /** Considered Note Ids */
+            considered_note_ids: string[];
+            /** Decision Id */
+            decision_id: string;
+            /** Evaluation Date */
+            evaluation_date: string;
+            /** Input Sha256 */
+            input_sha256: string;
+            /** Patient Id */
+            patient_id: string;
+            /** Question Id */
+            question_id: string;
+            /** Reason */
+            reason: ("insufficient_evidence" | "conflicting_evidence" | "model_abstention") | null;
+            /** Supporting Note Ids */
+            supporting_note_ids: string[];
+            /**
+             * Value
+             * @enum {string}
+             */
+            value: "yes" | "no" | "undetermined";
+            /** Window Days */
+            window_days: number;
+        };
+        /** NarrativeItemInput */
+        NarrativeItemInput: {
+            /** Evaluation Date */
+            evaluation_date: string;
+            /** Input Sha256 */
+            input_sha256: string;
+            /** Note Ids */
+            note_ids: string[];
+            /** Patient Id */
+            patient_id: string;
+            /** Question Id */
+            question_id: string;
+            /** Statement */
+            statement: string;
+            /** Window Days */
+            window_days: number;
+        };
         /** NarrativeSourceView */
         NarrativeSourceView: {
             /** Description */
@@ -854,6 +1231,28 @@ export interface components {
              * @enum {string}
              */
             kind: "reference" | "model";
+        };
+        /** NoteProvenance */
+        NoteProvenance: {
+            /** Origin */
+            origin: string;
+            /**
+             * Source Kind
+             * @constant
+             */
+            source_kind: "note";
+        };
+        /** NoteRecord */
+        NoteRecord: {
+            /** Encounter Id */
+            encounter_id: string | null;
+            /** Note Id */
+            note_id: string;
+            provenance: components["schemas"]["NoteProvenance"];
+            /** Text */
+            text: string;
+            /** Written On */
+            written_on: string;
         };
         /** ParameterChange */
         ParameterChange: {
@@ -872,6 +1271,31 @@ export interface components {
             heading: string | null;
             /** Text */
             text: string;
+        };
+        /** PatientCohort */
+        PatientCohort: {
+            /** Cohort Id */
+            cohort_id: string;
+            /** Digest */
+            digest: string;
+            /** Version */
+            version: string;
+        };
+        /** PatientRecord */
+        PatientRecord: {
+            /** Bundle Key */
+            bundle_key: string;
+            cohort: components["schemas"]["PatientCohort"];
+            /** Evidence */
+            evidence: components["schemas"]["EvidenceRecord"][];
+            /** Notes */
+            notes: components["schemas"]["NoteRecord"][];
+            /** Patient Digest */
+            patient_digest: string;
+            /** Patient Id */
+            patient_id: string;
+            /** Reference Date */
+            reference_date: string;
         };
         /** PatientResult */
         PatientResult: {
@@ -957,12 +1381,215 @@ export interface components {
             /** Version */
             version: string;
         };
+        /** ProviderAttempt */
+        ProviderAttempt: {
+            /** Accepted */
+            accepted: boolean;
+            /** Attempt Id */
+            attempt_id: string;
+            /** Charged Microusd */
+            charged_microusd: number | null;
+            /** Configuration Sha256 */
+            configuration_sha256: string;
+            /** Http Status */
+            http_status: number | null;
+            /** Item Id */
+            item_id: string;
+            /** Late */
+            late: boolean;
+            /** Latency Ms */
+            latency_ms: number | null;
+            /** Model */
+            model: string;
+            outcome: components["schemas"]["AttemptOutcome"] | null;
+            /** Request Sha256 */
+            request_sha256: string;
+            /**
+             * Reservation
+             * @enum {string}
+             */
+            reservation: "held" | "settled" | "released";
+            /** Reserved Microusd */
+            reserved_microusd: number;
+            /** Response Id */
+            response_id: string | null;
+            /** Retry Of */
+            retry_of: string | null;
+            /**
+             * State
+             * @enum {string}
+             */
+            state: "dispatched" | "completed" | "failed" | "ambiguous" | "not_sent";
+            /** Transport */
+            transport: string;
+            usage: components["schemas"]["ProviderUsage"] | null;
+        };
+        /** ProviderConfiguration */
+        ProviderConfiguration: {
+            /** Adapter */
+            adapter: string;
+            /** Endpoint */
+            endpoint: string;
+            /** Max Tokens */
+            max_tokens: number;
+            /** Model */
+            model: string;
+            /** Prompt */
+            prompt: string;
+            /** Provider */
+            provider: string;
+            /** Reasoning Effort */
+            reasoning_effort: string;
+            /** Schema */
+            schema: string;
+            /**
+             * Task
+             * @enum {string}
+             */
+            task: "narrative" | "interpretation";
+        };
+        /** ProviderUsage */
+        ProviderUsage: {
+            /** Cached Tokens */
+            cached_tokens?: number | null;
+            /** Completion Tokens */
+            completion_tokens: number;
+            /** Flags */
+            flags?: string[];
+            /** Prompt Tokens */
+            prompt_tokens: number;
+            /** Reasoning Tokens */
+            reasoning_tokens?: number | null;
+            /** Total Tokens */
+            total_tokens?: number | null;
+        };
+        /** PublicSiteField */
+        PublicSiteField: {
+            /** Id */
+            id: string;
+            /** Label */
+            label: string;
+            /** Qualification */
+            qualification?: string | null;
+            /** References */
+            references?: string[];
+            /** Section */
+            section: string;
+            /** Source */
+            source: string;
+            /** Value */
+            value?: unknown;
+        };
+        /** QuantityValue */
+        QuantityValue: {
+            /** Amount */
+            amount: string;
+            /** Unit */
+            unit: string | null;
+        };
         /** Question */
         Question: {
             /** Question Id */
             question_id: string;
             /** Statement */
             statement: string;
+        };
+        /** RegimenValue */
+        RegimenValue: {
+            /** Last Dose On */
+            last_dose_on: string | null;
+            /** Regimen Id */
+            regimen_id: string;
+            /** Start On */
+            start_on: string;
+            /**
+             * State
+             * @enum {string}
+             */
+            state: "ongoing" | "completed";
+        };
+        /** RegistryCoverage */
+        RegistryCoverage: {
+            /** Error */
+            error?: string | null;
+            /** Exclusions */
+            exclusions: components["schemas"]["EvidenceExclusion"][];
+            /** Matching Complete */
+            matching_complete: boolean;
+            /** Pages Read */
+            pages_read: number;
+            /** Pagination Complete */
+            pagination_complete: boolean;
+            /** Query */
+            query: string;
+            /** Records Read */
+            records_read: number;
+            /** Total Returned By Registry */
+            total_returned_by_registry: number | null;
+            /** Truncated */
+            truncated: boolean;
+        };
+        /**
+         * Report
+         * @description A job's JSON report (`kitsa/eligibility-lab-service-report/2`).
+         */
+        Report: {
+            bundle: components["schemas"]["ReportBundle"];
+            configuration: components["schemas"]["Configuration"] | null;
+            /** Configuration Sha256 */
+            configuration_sha256: string | null;
+            costs: components["schemas"]["Costs"];
+            /**
+             * Format
+             * @constant
+             */
+            format: "kitsa/eligibility-lab-service-report/2";
+            interpretation_set: components["schemas"]["InterpretationSet"];
+            job: components["schemas"]["Job"];
+            /** Lineage */
+            lineage: components["schemas"]["LineageEntry"][];
+            /** Lineage Job Id */
+            lineage_job_id: string;
+            /** Metrics */
+            metrics: {
+                [key: string]: unknown;
+            } | null;
+            mode: components["schemas"]["ReportMode"];
+            /** Narrative Decisions */
+            narrative_decisions: components["schemas"]["NarrativeDecision"][] | null;
+            narrative_source: components["schemas"]["NarrativeSourceView"] | null;
+            /** Provider Attempts */
+            provider_attempts: components["schemas"]["ProviderAttempt"][];
+            result: components["schemas"]["Result"] | null;
+        };
+        /** ReportBundle */
+        ReportBundle: {
+            /**
+             * Audience
+             * @constant
+             */
+            audience: "public";
+            /** Bundle Id */
+            bundle_id: string;
+            /** Bundle Key */
+            bundle_key: string;
+            /** Bundle Version */
+            bundle_version: string;
+            identities: components["schemas"]["Identities"];
+            /** Installed At */
+            installed_at: string;
+            /** Manifest Sha256 */
+            manifest_sha256: string;
+        };
+        /** ReportMode */
+        ReportMode: {
+            /** Label */
+            label: string;
+            /**
+             * Mode
+             * @enum {string}
+             */
+            mode: "reference" | "recorded" | "live";
         };
         /** Result */
         Result: {
@@ -1033,6 +1660,15 @@ export interface components {
         RetryRequest: {
             /** Item Ids */
             item_ids: string[];
+        };
+        /** ReusedCosts */
+        ReusedCosts: {
+            /** Answers */
+            answers: number;
+            /** Source Attempts */
+            source_attempts: number;
+            /** Source Settled Microusd */
+            source_settled_microusd: number;
         };
         /** Review */
         Review: {
@@ -1203,6 +1839,212 @@ export interface components {
             /** Workspace */
             workspace: string;
         };
+        /** SetMember */
+        SetMember: {
+            /** Approved By Review */
+            approved_by_review: string;
+            /** Criterion Id */
+            criterion_id: string;
+            /** Interpretation */
+            interpretation: {
+                [key: string]: unknown;
+            };
+            /** Interpreter */
+            interpreter: {
+                [key: string]: string;
+            };
+            /**
+             * Origin
+             * @enum {string}
+             */
+            origin: "reference" | "model" | "edit";
+            /** Proposal Id */
+            proposal_id: string;
+            /** Questions */
+            questions: {
+                [key: string]: string;
+            };
+        };
+        /** SiteEvidence */
+        SiteEvidence: {
+            /** Content Sha256 */
+            content_sha256: string;
+            pin: components["schemas"]["SitePin"];
+            /** Pool Id */
+            pool_id: string;
+            /** Profile Error */
+            profile_error: string | null;
+            /** Profile Fields */
+            profile_fields: components["schemas"]["PublicSiteField"][];
+            /** Profile Modified At */
+            profile_modified_at: string | null;
+            /** Profile Url */
+            profile_url: string;
+            registry: components["schemas"]["RegistryCoverage"];
+            /** Retrieved At */
+            retrieved_at: string;
+            /**
+             * Source Mode
+             * @enum {string}
+             */
+            source_mode: "live" | "recorded";
+            /** Sources */
+            sources: string[];
+            /** Studies */
+            studies: components["schemas"]["SiteStudy"][];
+        };
+        /** SitePin */
+        SitePin: {
+            /**
+             * Campus Qualification
+             * @default Exact facility name and city aliases identify this campus; uncertain matches are excluded.
+             */
+            campus_qualification: string;
+            /** City */
+            city: string;
+            /** City Aliases */
+            city_aliases: string[];
+            /** Country */
+            country: string;
+            /** Country Aliases */
+            country_aliases: string[];
+            /** Country Code */
+            country_code: string;
+            /** Facility Aliases */
+            facility_aliases: string[];
+            /** Name */
+            name: string;
+            /** Registry Query */
+            registry_query: string;
+            /** Site Id */
+            site_id: string;
+        };
+        /** SiteStudy */
+        SiteStudy: {
+            /** Collaborators */
+            collaborators: string[];
+            /** Completion Date */
+            completion_date: string | null;
+            /** Conditions */
+            conditions: string[];
+            /** Facility Status */
+            facility_status: string | null;
+            /** Lead Sponsor */
+            lead_sponsor: string | null;
+            /** Matched Facilities */
+            matched_facilities: string[];
+            /** Maximum Age */
+            maximum_age: string | null;
+            /** Minimum Age */
+            minimum_age: string | null;
+            /** Overall Status */
+            overall_status: string | null;
+            /** Start Date */
+            start_date: string | null;
+            /**
+             * Status Source
+             * @enum {string}
+             */
+            status_source: "facility" | "study_proxy" | "unknown";
+            /** Study Type */
+            study_type: string | null;
+            /** Title */
+            title: string;
+            /** Trial Id */
+            trial_id: string;
+            /** Updated On */
+            updated_on: string | null;
+            /** Url */
+            url: string;
+        };
+        /** TraceItem */
+        TraceItem: {
+            /** Answer Attempt */
+            answer_attempt: string | null;
+            /** Item Id */
+            item_id: string;
+            /** Item Key */
+            item_key: string;
+            /**
+             * Kind
+             * @enum {string}
+             */
+            kind: "narrative" | "interpretation";
+            /** Outcome */
+            outcome: {
+                [key: string]: unknown;
+            } | null;
+            /** Position */
+            position: number;
+            /** Retry Of */
+            retry_of: string | null;
+            /**
+             * State
+             * @enum {string}
+             */
+            state: "pending" | "dispatched" | "answered" | "failed" | "ambiguous" | "skipped";
+        };
+        /** TraceMessage */
+        TraceMessage: {
+            /** Content */
+            content: string;
+            /**
+             * Role
+             * @enum {string}
+             */
+            role: "system" | "user";
+        };
+        /**
+         * TraceRequest
+         * @description The retained request body; credentials and headers are never part of it.
+         */
+        TraceRequest: {
+            /** Body Bytes */
+            body_bytes: number;
+            /** Max Tokens */
+            max_tokens: number;
+            /** Messages */
+            messages: components["schemas"]["TraceMessage"][];
+            /** Model */
+            model: string;
+            /** Reasoning Effort */
+            reasoning_effort: string;
+            /** Request Sha256 */
+            request_sha256: string;
+            /** Response Format */
+            response_format: {
+                [key: string]: unknown;
+            };
+            /** Store */
+            store: boolean;
+        };
+        /**
+         * TraceResponse
+         * @description The reply's final assistant message content; no other part of the response body and no header.
+         */
+        TraceResponse: {
+            /** Content */
+            content: string | null;
+            /** Finish Reason */
+            finish_reason: string | null;
+            /** Http Status */
+            http_status: number | null;
+            /** Model */
+            model: string | null;
+            /** Response Id */
+            response_id: string | null;
+            /** Response Sha256 */
+            response_sha256: string | null;
+        };
+        /** TraceValidation */
+        TraceValidation: {
+            /** Code */
+            code: string | null;
+            /** Detail */
+            detail: string | null;
+            /** Late */
+            late: boolean | null;
+        };
         /** ValidationError */
         ValidationError: {
             /** Context */
@@ -1215,6 +2057,35 @@ export interface components {
             msg: string;
             /** Error Type */
             type: string;
+        };
+        /** VisibleSource */
+        VisibleSource: {
+            /** Attempt Id */
+            attempt_id: string;
+            /** Charged Microusd */
+            charged_microusd: number | null;
+            /** Configuration Sha256 */
+            configuration_sha256: string;
+            /** Incurred By This Job */
+            incurred_by_this_job: boolean;
+            /** Job Id */
+            job_id: string;
+            /**
+             * Kind
+             * @enum {string}
+             */
+            kind: "direct" | "cache" | "replay";
+            /** Request Sha256 */
+            request_sha256: string;
+            /** Response Sha256 */
+            response_sha256: string | null;
+            /** Transport */
+            transport: string;
+            /**
+             * Visible
+             * @constant
+             */
+            visible: true;
         };
         /** Waterfall */
         Waterfall: {
@@ -1285,6 +2156,65 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["BundleDetail"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Unprocessable Content */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+        };
+    };
+    patient_v1_bundles__bundle_key__patients__patient_id__get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                bundle_key: string;
+                patient_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PatientRecord"];
                 };
             };
             /** @description Forbidden */
@@ -1767,6 +2697,65 @@ export interface operations {
             };
         };
     };
+    item_trace_v1_jobs__job_id__items__item_id__trace_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                job_id: string;
+                item_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ItemTrace"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Unprocessable Content */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+        };
+    };
     matrix_v1_jobs__job_id__matrix_csv_get: {
         parameters: {
             query?: never;
@@ -1842,9 +2831,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": {
-                        [key: string]: unknown;
-                    };
+                    "application/json": components["schemas"]["Report"];
                 };
             };
             /** @description Forbidden */
@@ -2223,6 +3210,64 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["Session"];
+                };
+            };
+            /** @description Forbidden */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Not Found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Conflict */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+            /** @description Unprocessable Content */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorBody"];
+                };
+            };
+        };
+    };
+    site_evidence_v1_sites__site_id__evidence_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                site_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["SiteEvidence"];
                 };
             };
             /** @description Forbidden */

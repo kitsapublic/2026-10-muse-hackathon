@@ -126,7 +126,7 @@ export function ExecutionMetrics({ result, job }: { result: Result; job?: Job | 
       </div>
       {processing !== undefined && (
         <div>
-          <dt>Whole job on the service</dt>
+          <dt>Latest worker execution</dt>
           <dd>{formatCount(processing)} ms</dd>
         </div>
       )}

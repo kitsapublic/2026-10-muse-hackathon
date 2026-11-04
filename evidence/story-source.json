@@ -1,0 +1,8 @@
+{
+  "format": "kitsa/eligibility-lab-story-source/1",
+  "bundle_key": "elx-nsclc-01-demonstration@1.0.1",
+  "manifest_sha256": "e6d2153b74c82dd4059034ffbae2bdd6795cba908a20eb11dacef2f4dd5eef20",
+  "source_job_id": "job-bc6ef842bd52873e5111",
+  "report_sha256": "005b5f1b0c66188ccd603d693f1d87bf1ac5e4d48a62f0a5b1bfef15136580c4",
+  "anchor_patient_id": "ELX-D-011"
+}
