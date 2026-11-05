@@ -1,30 +1,69 @@
-# Simulate Clinical Trials local demonstration
+# Simulate Clinical Trials · offline runtime
 
-This package contains one engine wheel, its hash-locked runtime dependencies, the built showcase, the generated API client and React component packages, the public synthetic demonstration fixture, and the genuine Muse narrative responses from its completed live baseline. It has no private evaluation cohort, model weights, application credentials or real patient data. Licensing and event compliance remain separate release gates.
+This folder contains the prebuilt application, engine **0.2.8**, hash-locked Python dependencies, public synthetic fixture **1.0.1**, and **391 genuine recorded Muse responses**. No API key, model credits, Node installation or private Kitsa repository is needed. Setup and the recorded walkthrough run offline after the package and Python have been obtained.
 
-## Setup and run
+## Run
 
-Use Python 3.11 or 3.14 on macOS Apple Silicon (the offline wheelhouse is verified on those targets). Node is not needed to run the built showcase. Other platforms require compatible dependencies and independent verification.
+From this folder:
 
 ```sh
 python3 verify.py
 python3 setup.py --venv .venv
-.venv/bin/python run.py --store ../recorded-demo-store
+.venv/bin/python run.py --store ../local-store
 ```
 
-Open http://127.0.0.1:8765/. The service binds to loopback. Stop with Control-C; the selected runs survive in the store. Setup refuses to overwrite an environment. `run.py` imports the bundled recordings into a fresh store, preserving their source reviews and lineage, then enables reference and recorded modes. No key is needed and no credits are spent. Live mode stays disabled. An existing store with different work is refused: choose a new path rather than deleting it. Restarts preserve reviews and runs. Do not replace the wheel in an existing experiment: jobs pin their evaluator configuration.
+Open **http://127.0.0.1:8765/**. Setup verifies and installs the bundled dependencies; startup imports the fixture, recorded evidence and criterion approvals.
 
-## Demonstration sequence
+## Stop and restart
 
-1. Introduce the protocol-writing problem and the draft NSCLC eligibility criteria. Treat the 100 synthetic EHRs as a representative population sample for the demonstration.
-2. Read Patient 011's structured and unstructured EHR evidence. She is 78 with three prior systemic regimens: both draft thresholds exclude her. The before-and-after table shows why ages 18–80 and up to three regimens would let her qualify. Inspect Muse's cited clinical-note evidence alongside the structured facts.
-3. Evaluate the draft criteria in **Recorded model** mode. The cumulative waterfall shows how 100 patients narrow to 19 eligible, 57 excluded and 24 unresolved.
-4. Optimize the eligibility thresholds: upper age 75 → 80 gives 29 eligible; prior regimens 2 → 3 gives 23; both give 37. Patient 011 qualifies only after both changes.
-5. Compare the draft and selected scenario waterfalls side by side. Both use the same population and scale, with changed thresholds highlighted. Inspect the patient-level evidence behind any change.
-6. Export the proposed criteria, run identities and unresolved evidence for protocol review. **Explore the lab** opens full criterion review, adjustable thresholds and JSON/CSV exports.
+Stop with **Control-C**. To resume later, run only:
 
-The visual design follows Muse's public browser interface. The Muse mark beside the model attribution comes from https://muse.ai/images/landing/brand/muse-logo.svg; the application is Simulate Clinical Trials. System fonts are used throughout.
+```sh
+.venv/bin/python run.py --store ../local-store --port 8765
+```
 
-The fixture is engineering material, not a clinical recommendation or validation. Reference answers are labelled as authored material. Recorded model revalidates all 391 genuine responses from 28 October 2026 against their exact notes, questions and provider configuration, then executes the current engine. The original live result/evaluator stays historical; the new recorded run has its own identity. The imported source ledger contains only the demonstration baseline, with spending disabled and limits exhausted; it is not the full benchmark ledger. Live mode is never enabled by this launcher. The benchmark report describes measured model quality separately from engine correctness.
+Reviews, runs and results are stored in `../local-store`. Reimporting the same recording preserves subsequent work. For an independent session, choose a new directory and, if necessary, a free port:
 
-`artifact-manifest.json` records every retained file's hash and the engine version. `python3 verify.py` checks integrity; it is not a publisher signature. The JavaScript packages in `packages/` can be installed into a React application, and the engine/service is the same wheel used by the showcase. Dependency licenses are retained in their wheel/package artifacts. `engine-README.md` describes the contracts and operator commands.
+```sh
+.venv/bin/python run.py --store ../local-store-fresh --port 8770
+```
+
+Open http://127.0.0.1:8770/ for that session. Do not delete another store to resolve an import conflict. Setup refuses to overwrite existing environments; reuse `.venv` or install to a new path.
+
+## Walkthrough and expected results
+
+1. Read the illustrative lung-cancer protocol and ten draft eligibility criteria.
+2. Inspect Patient 011's structured EHR facts, clinical notes and cited Muse answer. Age 78 and three prior regimens exceed both draft limits.
+3. Evaluate the 100 synthetic patients in **Recorded model** mode.
+4. Test age 75 → 80, prior regimens 2 → 3, and both together.
+5. Compare the waterfalls and inspect changed patient decisions.
+6. Export the proposed criteria and evidence for protocol review.
+
+| Scenario | Eligible | Excluded | Unresolved |
+| --- | ---: | ---: | ---: |
+| Draft | 19 | 57 | 24 |
+| Age revision | 29 | 44 | 27 |
+| Regimen revision | 23 | 50 | 27 |
+| Both revisions | 37 | 33 | 30 |
+
+Patient 011 qualifies only after both changes. All scenarios use the same patients and evidence. **Explore the lab** exposes detailed criterion review, matrices, request traces and JSON/CSV downloads.
+
+Recorded mode revalidates the retained Muse responses against their exact notes, questions and provider configuration, then executes the current engine. Reference mode uses authored synthetic answers. Neither mode makes new model calls. `run.py` removes an inherited `MODEL_API_KEY` and never enables live spending. The original live evaluator and charges remain historical evidence, separate from new recorded runs.
+
+## Compatibility and troubleshooting
+
+The offline bundle is tested on Python 3.15.2 on macOS ARM64. Other platforms have not been verified.
+
+| Problem | Action |
+| --- | --- |
+| Python is missing or no matching wheel is found | Install the current Python 3.15 ARM64 interpreter for this offline bundle. |
+| An environment already exists | Skip setup and run with that environment, or select a new `--venv` path. |
+| `Artifact changed` or a missing file | Obtain an intact package. The verifier deliberately refuses modified runtime files. |
+| The port is busy | Stop your previous server or choose another `--port` and browser URL. |
+| Recording import refuses the store | Use a new `--store` path; unrelated existing work is never replaced. |
+| The engine version or recorded configuration differs | Use the environment created by this package's setup and its unchanged reference fixture. |
+| The browser cannot connect | Keep the server terminal running and use its exact `127.0.0.1` port. |
+
+`artifact-manifest.json` records hashes and sizes of the retained files. `verify.py` checks integrity before installation and startup; it is not a publisher signature. Dependencies retain their licenses under `third-party/` and inside the wheels. See [engine-README.md](engine-README.md) for API and operator contracts.
+
+The application is a local engineering demonstration with a fictional drug and synthetic EHRs. It includes no real patient data, private evaluation cases, credentials or model weights. It is not a production deployment or a clinically validated decision system. The Muse mark is retained from https://muse.ai/images/landing/brand/muse-logo.svg.

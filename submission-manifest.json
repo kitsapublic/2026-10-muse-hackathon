@@ -1,13 +1,13 @@
 {
-  "demo_archive_sha256": "48fded784ef89bb5459a7282a1efd9015399bc15ba2b754f2ef6ba5618a59c19",
+  "demo_archive_sha256": "579791db75a2beaaf6796a4d9cf3c91353ceb4d3cb98a2136c02e3d577f215fa",
   "files": {
     ".gitignore": {
       "bytes": 151,
       "sha256": "e55861ccbeacfb50ddc434351b33751b6c90af285c4546ccae05225454e2117a"
     },
     "README.md": {
-      "bytes": 6512,
-      "sha256": "4009b8cb97d5edd14ca9fb7e4738ab7ebe56026e8297e94d838a649ffee11ec0"
+      "bytes": 10157,
+      "sha256": "d7c6ad242e43ad10aed2881ccb51894aa62f9e1508b2ffdc8604518ecbbb18d9"
     },
     "apps/showcase/e2e/guided-story.spec.ts": {
       "bytes": 7010,
@@ -154,12 +154,12 @@
       "sha256": "9bf0121090c02474e1849a33b8e55fb3e8434feb0fab88944c5154a6c67be4e0"
     },
     "demo/README.md": {
-      "bytes": 4052,
-      "sha256": "6f4c57893e176f1a494ac268dde2d1683d21f162b35ec91a7031979ed6c60725"
+      "bytes": 4329,
+      "sha256": "9bc8c5e09703faeadc74563b943b6030d8767dedacacb45073d5da0ebe564584"
     },
     "demo/artifact-manifest.json": {
-      "bytes": 8178,
-      "sha256": "2717977e9551c79bffdbe8d9c6d391997ed0e2b9db21a9d7b8ed272934c21aa0"
+      "bytes": 7989,
+      "sha256": "356d90dfd09c5c0a41e386d99b1166f0f5edd10e6769a4b22bd10ee909295ea1"
     },
     "demo/eligibility-lab.openapi.json": {
       "bytes": 169860,
@@ -226,8 +226,8 @@
       "sha256": "13e675995adb966ff7fcb81557f24e6621ce803784568a42a8ead61f30d50238"
     },
     "demo/service.lock": {
-      "bytes": 14360,
-      "sha256": "1e04851715ac473b0c0904ee398e49f061dcc003f7abd7c6ffa557e413f15ef3"
+      "bytes": 15251,
+      "sha256": "114714a2cb704745ed7be2e068f69edd3fad577efe812b9f1ad8a94b3578341f"
     },
     "demo/setup.py": {
       "bytes": 1318,
@@ -329,29 +329,25 @@
       "bytes": 126913,
       "sha256": "20d9b6d1b3a37af7a32be0cf4b726dd56b1c73f6115ac33d9148ca5048e7b27c"
     },
-    "demo/wheelhouse/pydantic-2.13.4-py3-none-any.whl": {
-      "bytes": 472262,
-      "sha256": "45a282cde31d808236fd7ea9d919b128653c8b38b393d1c4ab335c62924d9aba"
+    "demo/wheelhouse/pydantic-2.14.2-py3-none-any.whl": {
+      "bytes": 490403,
+      "sha256": "7efbf7507b937931cd32a5755acb00ea1cf5ccb1d4e8067a5850d5069e382118"
     },
-    "demo/wheelhouse/pydantic_core-2.46.4-cp311-cp311-macosx_11_0_arm64.whl": {
-      "bytes": 1948255,
-      "sha256": "e0d65b8c354be7fb5f720c3caa8bc940bc2d20ce749c8e06135f07f8ed95dd7c"
-    },
-    "demo/wheelhouse/pydantic_core-2.46.4-cp314-cp314-macosx_11_0_arm64.whl": {
-      "bytes": 1952179,
-      "sha256": "23ace664830ee0bfe014a0c7bc248b1f7f25ed7ad103852c317624a1083af462"
+    "demo/wheelhouse/pydantic_core-2.50.2-cp315-cp315-macosx_11_0_arm64.whl": {
+      "bytes": 2100409,
+      "sha256": "f73930dacad5e611fe019e18df6f53c30629b1843d038d303b8dec86a32493bd"
     },
     "demo/wheelhouse/starlette-1.3.1-py3-none-any.whl": {
       "bytes": 73632,
       "sha256": "c7372aae11c3c3f26a42df7bd626cec2f47d03483d261d369516a615a53714c6"
     },
-    "demo/wheelhouse/typing_extensions-4.15.0-py3-none-any.whl": {
-      "bytes": 44614,
-      "sha256": "f0fa19c6845758ab08074a0cfa8b7aecb71c999ca73d62883bc25cc018c4e548"
+    "demo/wheelhouse/typing_extensions-4.16.0-py3-none-any.whl": {
+      "bytes": 45571,
+      "sha256": "481caa481374e813c1b176ada14e97f1f67a4539ce9cfeb3f350d78d6370c2e8"
     },
-    "demo/wheelhouse/typing_inspection-0.4.2-py3-none-any.whl": {
-      "bytes": 14611,
-      "sha256": "4ed1cacbdc298c220f1bd249ed5287caa16f34d44ef4e9c3d0cbad5b521545e7"
+    "demo/wheelhouse/typing_inspection-0.4.5-py3-none-any.whl": {
+      "bytes": 14874,
+      "sha256": "bc210535442b39e1bf2805e0c7a17dfd6a4ace760c84c7f7d16245d23a6b1c39"
     },
     "demo/wheelhouse/uvicorn-0.52.3-py3-none-any.whl": {
       "bytes": 79859,
